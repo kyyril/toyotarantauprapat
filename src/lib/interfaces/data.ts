@@ -1,4 +1,4 @@
-export interface Produk {
+export interface Mobil {
   id: number;
   nama: string;
   harga: number;
@@ -17,6 +17,6 @@ export interface Promo {
 }
 
 export interface Data {
-  produk: Produk[];
+  mobil: Mobil[];
   promo: Promo[];
 }

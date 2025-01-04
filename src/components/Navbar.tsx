@@ -23,8 +23,8 @@ export const navigationItems = [
     href: "/promo",
   },
   {
-    name: "Produk",
-    href: "/produk",
+    name: "Mobil",
+    href: "/mobil",
   },
   {
     name: "Layanan",

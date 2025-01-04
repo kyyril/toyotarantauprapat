@@ -5,10 +5,10 @@
     "lokasi": "Rantauprapat, Labuhan Batu, Indonesia"
   },
 
-  "produk": [
+  "mobil": [
     {
       "id": 1,
-      "nama": "Produk 1",
+      "nama": "Produk-1",
       "gambar": "/assets/card.png",
       "deskripsi": "Deskripsi Produk 1",
       "harga": 100000,
@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "nama": "Produk 2",
+      "nama": "Produk-2",
       "gambar": "/assets/card.png",
       "deskripsi": "Deskripsi Produk 2",
       "harga": 200000,
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "nama": "Produk 3",
+      "nama": "Produk-3",
       "gambar": "/assets/card.png",
       "deskripsi": "Deskripsi Produk 3",
       "harga": 300000,
@@ -32,7 +32,7 @@
     },
     {
       "id": 4,
-      "nama": "Produk 4",
+      "nama": "Produk-4",
       "gambar": "/assets/card.png",
       "deskripsi": "Deskripsi Produk 4",
       "harga": 400000,
@@ -40,7 +40,7 @@
     },
     {
       "id": 5,
-      "nama": "Produk 5",
+      "nama": "Produk-5",
       "gambar": "/assets/card.png",
       "deskripsi": "Deskripsi Produk 5",
       "harga": 500000,

@@ -1,3 +1,4 @@
+import { CardPromo } from "@/components/CardPromo";
 import { Button } from "@/components/ui/button";
 import { PhoneCall } from "lucide-react";
 import Image from "next/image";
@@ -52,6 +53,9 @@ export default function Home() {
         id="promo"
       >
         <h2 className="text-xl">Promo</h2>
+        <div>
+          <CardPromo />
+        </div>
       </section>
     </main>
   );
