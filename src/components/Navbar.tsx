@@ -19,8 +19,8 @@ export const navigationItems = [
     href: "/",
   },
   {
-    name: "Tentang",
-    href: "/tentang",
+    name: "Ulasan",
+    href: "/ulasan",
   },
   {
     name: "Produk",

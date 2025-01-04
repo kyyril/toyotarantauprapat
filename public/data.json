@@ -1,0 +1,45 @@
+{
+  "info": {
+    "nama": "Toyota",
+    "deskripsi": "Toyota rantau adalah sebuah toko online yang menyediakan produk-produk motor berkualitas tinggi dan terbaik",
+    "lokasi": "Rantauprapat, Labuhan Batu, Indonesia"
+  },
+
+  "produk": [
+    {
+      "id": 1,
+      "nama": "Produk 1",
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRhquDkbr-Sr4jR4mJg75T2iNosIsPT0oxDIIze1zK3j4EGOjcaThew9ibGI-kj2dzr4I&usqp=CAU",
+      "deskripsi": "Deskripsi Produk 1",
+      "harga": 100000
+    },
+    {
+      "id": 2,
+      "nama": "Produk 2",
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRhquDkbr-Sr4jR4mJg75T2iNosIsPT0oxDIIze1zK3j4EGOjcaThew9ibGI-kj2dzr4I&usqp=CAU",
+      "deskripsi": "Deskripsi Produk 2",
+      "harga": 200000
+    },
+    {
+      "id": 3,
+      "nama": "Produk 3",
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRhquDkbr-Sr4jR4mJg75T2iNosIsPT0oxDIIze1zK3j4EGOjcaThew9ibGI-kj2dzr4I&usqp=CAU",
+      "deskripsi": "Deskripsi Produk 3",
+      "harga": 300000
+    },
+    {
+      "id": 4,
+      "nama": "Produk 4",
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRhquDkbr-Sr4jR4mJg75T2iNosIsPT0oxDIIze1zK3j4EGOjcaThew9ibGI-kj2dzr4I&usqp=CAU",
+      "deskripsi": "Deskripsi Produk 4",
+      "harga": 400000
+    },
+    {
+      "id": 5,
+      "nama": "Produk 5",
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRhquDkbr-Sr4jR4mJg75T2iNosIsPT0oxDIIze1zK3j4EGOjcaThew9ibGI-kj2dzr4I&usqp=CAU",
+      "deskripsi": "Deskripsi Produk 5",
+      "harga": 500000
+    }
+  ]
+}
