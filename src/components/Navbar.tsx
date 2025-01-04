@@ -19,8 +19,8 @@ export const navigationItems = [
     href: "/",
   },
   {
-    name: "Ulasan",
-    href: "/ulasan",
+    name: "Promo",
+    href: "/promo",
   },
   {
     name: "Produk",

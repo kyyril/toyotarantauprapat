@@ -8,24 +8,23 @@ import {
 } from "@/components/ui/card";
 import { getJSONData } from "@/lib/server";
 
-export async function CardPromo() {
+export async function CardProduk() {
   const data = await getJSONData();
   return (
     <div>
       <div>apalah</div>
       <div className="flex ">
-        {data.promo.map((promo) => (
-          <Card key={promo.id} className="mx-2">
+        {data.produk.map((prod) => (
+          <Card key={prod.id} className="mx-2">
             <CardHeader>
-              <CardTitle>{promo.nama}</CardTitle>
+              <CardTitle>{prod.nama}</CardTitle>
             </CardHeader>
             <CardContent>
-              <img src={promo.gambar} alt={promo.nama} />
+              <img src={prod.gambar} alt={prod.nama} />
             </CardContent>
+            <CardDescription>{prod.deskripsi}</CardDescription>
             <CardFooter>
-              <p>
-                {promo.mulai} - {promo.akhir}
-              </p>
+              <p>{prod.harga}</p>
             </CardFooter>
           </Card>
         ))}
