@@ -1,8 +1,10 @@
-import { CardPromo } from "@/components/CardPromo";
-import { Button } from "@/components/ui/button";
-import { PhoneCall } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { PhoneCall } from "lucide-react";
+
+import { CardPromo } from "@/components/CardPromo";
+import CardProsesPembayaran from "@/components/CardProsesPembayaran";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -23,23 +25,29 @@ export default function Home() {
             />
           </div>
           <div className="max-w-7xl w-full px-4 md:px-8 mx-auto">
-            <div className="space-y-2">
+            <div className="space-y-1 mb-2 flex flex-col">
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter ">
-                Auto 2000
+                Auto
+                <span className="text-red-500"> 2000</span>
+              </h1>
+              <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter">
+                RantauPrapat
               </h1>
             </div>
             <p className="max-w-[600px] lg:text-lg text-gray-500 font-light dark:text-gray-400">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem, deleniti natus iste commodi dolor quos laboriosam
-              nemo sit facilis soluta sequi aspernatur, magni, odio quibusdam.
+              Selamat datang di dealer dan bengkel Resmi Auto2000 Rantauprapat .
+              Tersedia beragam kebutuhan serta promo maupun fasilitas pembayaran
+              secara kredit dan tunai. Dapatkan juga layanan purna jual seperti
+              servis mobil dan penjualan part Toyota.
             </p>
             <div className="space-x-4 mt-2">
               <Link target="_blank" href={"/"}>
                 <Button
-                  className="hover:text-red-500"
+                  className="hover:text-red-500 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out"
                   variant="secondary"
                   size="sm"
                 >
+                  081269548966
                   <PhoneCall />
                 </Button>
               </Link>
@@ -48,15 +56,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* promo */}
       <section
-        className="max-w-7xl w-full h-screen mt-10 px-4 md:px-16 mx-auto"
+        className="max-w-7xl w-full mt-10 px-4 md:px-16 mx-auto"
         id="promo"
       >
-        <h2 className="text-xl">Promo</h2>
         <div>
           <CardPromo />
         </div>
       </section>
+
+      {/* standart pembayaran */}
+      <section
+        className="max-w-7xl w-full mt-10 px-4 md:px-16 mx-auto"
+        id="pembayaran"
+      >
+        <div>
+          <CardProsesPembayaran />
+        </div>
+      </section>
+
+      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 mx-auto font-semibold text-red-500">
+        “Auto2000 Rantauprapat tidak bertanggung jawab jika pembayaran tanpa
+        kuintansi resmi PT. ASTRA INTERNATIONAL Tbk. dan atau transfer
+        ditunjukkan ke rekening pribadi Sales/Oknum”
+        <hr />
+      </div>
     </main>
   );
 }

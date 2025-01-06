@@ -16,7 +16,14 @@ export interface Promo {
   detail: string[];
 }
 
+interface ProsesPembayaran {
+  id: number;
+  nama: string;
+  deskripsi: string;
+}
+
 export interface Data {
   mobil: Mobil[];
   promo: Promo[];
+  prosespembayaran: ProsesPembayaran[];
 }

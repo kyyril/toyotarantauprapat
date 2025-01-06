@@ -5,6 +5,41 @@
     "lokasi": "Rantauprapat, Labuhan Batu, Indonesia"
   },
 
+  "prosespembayaran": [
+    {
+      "id": 1,
+      "nama": "Tunai",
+      "deskripsi": "Pembayaran wajib disetorkan langsung oleh customer ke kasir Auto2000 Rantauprapat dianggap sah apabila uang sudah diterima oleh kasir AUTO2000 Rantauprapat dan diterbitkan kuitansi resmi dari PT. Astra Internasional Tbk."
+    },
+    {
+      "id": 2,
+      "nama": "Tanda Terima Jaminan",
+      "deskripsi": "Harus segera ditukarkan menjadi kuitansi resmi PT. Astra Internasional Tbk. ke kasir AUTO2000 Rantauprapat dalam waktu maksimal 3 hari dan nilai maksimal di Tanda Terima Jaminan Pembelian Sementara (TTJPS) Rp. 5.000.000,- (Lima Juta Rupiah)."
+    },
+    {
+      "id": 3,
+      "nama": "Cek/Bilyet Giro",
+      "deskripsi": "Harus diatasnamakan PT. Astra International Tbk. dan dianggap sah apabila dana sudah dinyatakan masuk direkening PT. Astra International Tbk:"
+    },
+    {
+      "id": 4,
+      "nama": "Transfer",
+      "deskripsi": "Transfer wajib dilakukan ke rekening PT. Astra International Tbk. dengan nomor rekening :"
+    }
+  ],
+  "bank": [
+    {
+      "id": 1,
+      "nama": "BRI",
+      "nomorRekening": "0228.0100.1539.303"
+    },
+    {
+      "id": 2,
+      "nama": "Mandiri",
+      "nomorRekening": "183.0000.88.2000"
+    }
+  ],
+
   "mobil": [
     {
       "id": 1,

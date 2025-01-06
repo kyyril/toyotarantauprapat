@@ -10,5 +10,5 @@ async function Mobil() {
     </main>
   );
 }
-
+ 
 export default Mobil;
