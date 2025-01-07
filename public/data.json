@@ -43,43 +43,73 @@
   "mobil": [
     {
       "id": 1,
-      "nama": "Produk-1",
+      "nama": "Mobil-1",
       "gambar": "/assets/card.png",
-      "deskripsi": "Deskripsi Produk 1",
       "harga": 100000,
-      "detail": {}
+      "type": "hybrid",
+      "tahun": "2023",
+      "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+      "spesifikasi": {
+        "transmisi": "automatic",
+        "cc": "1500",
+        "bahanbakar": "bensin"
+      }
     },
     {
       "id": 2,
-      "nama": "Produk-2",
+      "nama": "Mobil-2",
       "gambar": "/assets/card.png",
-      "deskripsi": "Deskripsi Produk 2",
       "harga": 200000,
-      "detail": {}
+      "type": "hybrid",
+      "tahun": "2023",
+      "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+      "spesifikasi": {
+        "transmisi": "automatic",
+        "cc": "1500",
+        "bahanbakar": "bensin"
+      }
     },
     {
       "id": 3,
-      "nama": "Produk-3",
+      "nama": "Mobil-3",
       "gambar": "/assets/card.png",
-      "deskripsi": "Deskripsi Produk 3",
       "harga": 300000,
-      "detail": {}
+      "type": "hybrid",
+      "tahun": "2023",
+      "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+      "spesifikasi": {
+        "transmisi": "automatic",
+        "cc": "1500",
+        "bahanbakar": "bensin"
+      }
     },
     {
       "id": 4,
-      "nama": "Produk-4",
+      "nama": "Mobil-4",
       "gambar": "/assets/card.png",
-      "deskripsi": "Deskripsi Produk 4",
       "harga": 400000,
-      "detail": {}
+      "type": "hybrid",
+      "tahun": "2023",
+      "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+      "spesifikasi": {
+        "transmisi": "automatic",
+        "cc": "1500",
+        "bahanbakar": "bensin"
+      }
     },
     {
       "id": 5,
-      "nama": "Produk-5",
+      "nama": "Mobil-5",
       "gambar": "/assets/card.png",
-      "deskripsi": "Deskripsi Produk 5",
       "harga": 500000,
-      "detail": {}
+      "type": "hybrid",
+      "tahun": "2023",
+      "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet",
+      "spesifikasi": {
+        "transmisi": "automatic",
+        "cc": "1500",
+        "bahanbakar": "bensin"
+      }
     }
   ],
 

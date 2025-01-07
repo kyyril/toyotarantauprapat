@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PhoneCall } from "lucide-react";
+import { Car, CreditCard, PhoneCall, Wrench } from "lucide-react";
 
 import { CardPromo } from "@/components/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -76,12 +77,55 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 mx-auto font-semibold text-red-500">
+      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 text-center mx-auto text-red-700">
         “Auto2000 Rantauprapat tidak bertanggung jawab jika pembayaran tanpa
         kuintansi resmi PT. ASTRA INTERNATIONAL Tbk. dan atau transfer
         ditunjukkan ke rekening pribadi Sales/Oknum”
         <hr />
       </div>
+
+      {/* service */}
+      <section
+        id="service"
+        className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col  items-center">
+            <CreditCard className="h-8 w-8 text-red-500" />
+            <span className="font-bold text-center text-md">
+              Simulasi Credit
+            </span>
+            <p>lorem ipsum dolor sit amet</p>
+          </div>
+          <div className="flex flex-col mx-4 items-center">
+            <Wrench className="h-8 w-8 text-red-500" />
+            <span className="font-bold text-md">Service</span>
+            <p>lorem ipsum dolor sit amet</p>
+          </div>
+          <div className="flex flex-col  items-center">
+            <Car className="h-8 w-8 text-red-500" />
+            <span className="font-bold text-md">Test Drive</span>
+            <p>lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
+        id="pembayaran"
+      >
+        <div className="mb-4">
+          <h2 className="text-2xl font-semibold">Lokasi</h2>
+        </div>
+        <div className="flex justify-center items-center">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6288.034080097089!2d99.83794699514428!3d2.0921307861927723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302da1ac3eab9c87%3A0x979ac3ca48e16c17!2sAuto2000%20Rantauprapat!5e1!3m2!1sid!2sid!4v1736217571208!5m2!1sid!2sid"
+            width="800"
+            height="450"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
     </main>
   );
 }

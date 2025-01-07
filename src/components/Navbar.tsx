@@ -11,7 +11,6 @@ import { usePathname } from "next/navigation";
 import MobileMenu from "./MobileMenu";
 import ThemeToggler from "./ThemeToggle";
 import Image from "next/image";
-import { PhoneCall } from "lucide-react";
 
 export const navigationItems = [
   {

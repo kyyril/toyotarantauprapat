@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "./ui/card";
+import { Card, CardDescription, CardFooter } from "./ui/card";
 
 import { getJSONData } from "@/lib/server";
 
@@ -31,14 +25,9 @@ async function CardProsesPembayaran() {
                 </div>
               </div>
             </div>
-
-            <CardDescription className="flex px-3 justify-start text-sm text-primary">
+            <CardDescription className="flex px-3 ml-2 justify-start text-sm text-primary">
               {inpem.deskripsi}
             </CardDescription>
-
-            <CardFooter className="py-1 flex justify-between text-muted-foreground text-sm">
-              p
-            </CardFooter>
           </Card>
         ))}
       </div>
