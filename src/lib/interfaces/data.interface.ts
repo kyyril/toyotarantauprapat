@@ -1,11 +1,3 @@
-export interface Mobil {
-  id: number;
-  nama: string;
-  harga: number;
-  gambar: string;
-  deskripsi: string;
-}
-
 export interface Promo {
   id: number;
   utama: string;
@@ -23,7 +15,6 @@ interface ProsesPembayaran {
 }
 
 export interface Data {
-  mobil: Mobil[];
   promo: Promo[];
   prosespembayaran: ProsesPembayaran[];
 }

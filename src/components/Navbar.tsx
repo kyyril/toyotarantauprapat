@@ -29,6 +29,10 @@ export const navigationItems = [
     name: "Layanan",
     href: "/layanan",
   },
+  {
+    name: "Rekomendasi AI",
+    href: "/rekomendasi-ai",
+  },
 ];
 
 export function Navigation() {

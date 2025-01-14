@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs/promises"; // Use promises version of fs
-import { Data } from "./interfaces/data";
+import { Data } from "./interfaces/data.interface";
 
 export async function getJSONData(): Promise<Data> {
   const filePath = path.join(process.cwd(), "public", "data.json");
