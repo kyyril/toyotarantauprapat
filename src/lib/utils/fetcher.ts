@@ -7,7 +7,12 @@ export const fetchMobil = async () => {
     const { data } = await axios.get(
       `https://script.google.com/macros/s/${idMobil}/exec`
     );
-    return data?.data || [];
+    return (
+      data?.data.map((mobil: any) => ({
+        ...mobil,
+        type: mobil.type.split(",").map((t: string) => t.trim()), // Convert 'type' string to list
+      })) || []
+    );
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
