@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardDescription, CardFooter } from "./ui/card";
+import { Card, CardDescription } from "./ui/card";
 
 import { getJSONData } from "@/lib/server";
 
@@ -11,7 +11,7 @@ async function CardProsesPembayaran() {
         <h2 className="text-2xl font-semibold">Proses Pembayaran</h2>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-1">
-        {data.prosespembayaran.map((inpem, index) => (
+        {data.prosespembayaran.map((inpem) => (
           <Card key={inpem.id} className="m-1">
             <div className="flex text-sm justify-between">
               <div className="flex items-start left-0 top-0 w-auto justify-start">
