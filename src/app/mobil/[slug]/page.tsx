@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 async function fetchMobilDetail(slug: string): Promise<DetailMobil | null> {
   try {
     const response = await fetch(
-      `https://script.google.com/macros/s/${idMobil}/exec?action=detail&id_parent=${slug}`,
+      `https://script.google.com/macros/s/${idMobil}/exec?action=detail&nama=${slug}`,
       { cache: "no-store" }
     );
     if (!response.ok) {
@@ -53,8 +53,8 @@ export default function CarDetail() {
     );
   }
 
-  const hargaArray = mobil.harga?.split(",") || ["N/A"];
-  const typeArray = mobil.type?.split(",") || ["Unknown"];
+  const hargaArray: string[] = mobil.harga?.split(",") || ["N/A"];
+  const typeArray: string[] = mobil.type?.split(",") || ["Unknown"];
 
   return (
     <main className="w-full flex justify-center items-start min-h-screen mt-5">
@@ -62,24 +62,30 @@ export default function CarDetail() {
         <p className="text-lg mt-4">
           {mobil.deskripsi || "Deskripsi tidak tersedia."}
         </p>
-        <p>
-          <strong>Harga:</strong>{" "}
-          {hargaArray.map((h, i) => (
-            <span key={i} className="mr-2">
-              {h}
-            </span>
-          ))}
-        </p>
-        <p>
+        <table className="table-auto w-full mt-4 border-collapse border border-gray-200">
+          <thead>
+            <tr>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Tipe
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Harga
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {typeArray.map((ty, index) => (
+              <tr key={index}>
+                <td className="border border-gray-300 px-4 py-2">{ty}</td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {hargaArray[index] || "Tidak tersedia"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="mt-4">
           <strong>Mesin:</strong> {mobil.mesin || "Tidak diketahui"} cc
-        </p>
-        <p>
-          <strong>Tipe:</strong>{" "}
-          {typeArray.map((ty, i) => (
-            <span key={i} className="mr-2">
-              {ty}
-            </span>
-          ))}
         </p>
       </section>
     </main>

@@ -35,7 +35,7 @@ export function ListMobil({ data }: { data: Mobil[] }) {
         {data
           .filter((mob) => mob.nama.toLocaleLowerCase().includes(query))
           .map((mob) => (
-            <Link key={mob.id} href={`/mobil/${mob.id}`}>
+            <Link key={mob.id} href={`/mobil/${mob.nama}`}>
               <Card className="overflow-hidden">
                 <div className="h-40 overflow-hidden">
                   <img
@@ -52,7 +52,7 @@ export function ListMobil({ data }: { data: Mobil[] }) {
                 <div className="flex flex-wrap">
                   {mob.type.map((ty, index) => (
                     <span
-                      className="bg-red-500 rounded-md text-sm mx-1 px-2 py-1 text-white"
+                      className="bg-red-500 rounded-md text-sm mx-1 px-2 py-1 "
                       key={index}
                     >
                       {ty}
