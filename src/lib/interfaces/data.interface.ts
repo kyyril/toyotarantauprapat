@@ -1,11 +1,10 @@
 export interface Promo {
   id: number;
-  utama: string;
   nama: string;
   mulai: string;
   akhir: string;
   gambar: string;
-  detail: string[];
+  deskripsi: string;
 }
 
 interface ProsesPembayaran {
@@ -15,6 +14,5 @@ interface ProsesPembayaran {
 }
 
 export interface Data {
-  promo: Promo[];
   prosespembayaran: ProsesPembayaran[];
 }

@@ -1,25 +1,9 @@
 "use client";
 
 import { DetailMobil } from "@/lib/interfaces/mobil.interface";
-import { idMobil } from "@/lib/utils/fetcher";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-async function fetchMobilDetail(slug: string): Promise<DetailMobil | null> {
-  try {
-    const response = await fetch(
-      `https://script.google.com/macros/s/${idMobil}/exec?action=detail&nama=${slug}`,
-      { cache: "no-store" }
-    );
-    if (!response.ok) {
-      throw new Error(`Failed to fetch detail: ${response.statusText}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching mobil detail:", error);
-    return null;
-  }
-}
+import { fetchMobilDetail } from "@/lib/utils/fetcher";
 
 export default function CarDetail() {
   const params = useParams(); // Menggunakan useParams untuk mendapatkan parameter

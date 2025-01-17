@@ -38,48 +38,5 @@
       "nama": "Mandiri",
       "nomorRekening": "183.0000.88.2000"
     }
-  ],
-
-  "promo": [
-    {
-      "id": 1,
-      "nama": "Diskon 10%",
-      "mulai": "2022-01-01",
-      "akhir": "2022-12-31",
-      "gambar": "/assets/promo.png",
-      "detail": {
-        "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, lorem ipsum dolor sit amet"
-      }
-    },
-    {
-      "id": 2,
-      "nama": "Diskon 20%",
-      "mulai": "2022-01-01",
-      "akhir": "2022-12-31",
-      "gambar": "/assets/promo.png",
-      "detail": {
-        "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, lorem ipsum dolor sit amet"
-      }
-    },
-    {
-      "id": 3,
-      "nama": "Diskon 30%",
-      "mulai": "2022-01-01",
-      "akhir": "2022-12-31",
-      "gambar": "/assets/promo.png",
-      "detail": {
-        "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, lorem ipsum dolor sit amet"
-      }
-    },
-    {
-      "id": 4,
-      "nama": "Diskon 40%",
-      "mulai": "2022-01-01",
-      "akhir": "2022-12-31",
-      "gambar": "/assets/promo.png",
-      "detail": {
-        "deskripsi": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. lorem ipsum dolor sit amet, lorem ipsum dolor sit amet"
-      }
-    }
   ]
 }
