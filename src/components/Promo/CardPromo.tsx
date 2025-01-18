@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Promo } from "@/lib/interfaces/data.interface";
 import { fetchPromo } from "@/lib/utils/fetcher";
+import { TimerIcon } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function CardPromo() {
@@ -39,7 +41,14 @@ export function CardPromo() {
   }
 
   const hotPromos = promos.filter((promo) => promo.id >= 100);
-  const regularPromos = promos.filter((promo) => promo.id < 100);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -49,9 +58,9 @@ export function CardPromo() {
           {hotPromos.map((promo) => (
             <div
               key={promo.id}
-              className="w-screen min-w-[100vw] flex-shrink-0 m-1 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out"
+              className="w-screen min-w-[100vw] flex-shrink-0 m-1"
             >
-              <Card className=" rounded-none shadow-none outline-none">
+              <Card className="border-none rounded-none shadow-none outline-none">
                 <CardHeader>
                   <CardTitle>{promo.nama}</CardTitle>
                 </CardHeader>
@@ -64,7 +73,8 @@ export function CardPromo() {
                   />
                 </CardContent>
                 <CardFooter className="text-sm">
-                  {promo.mulai} - {promo.akhir}
+                  <TimerIcon /> {formatDate(promo.mulai)} -{" "}
+                  {formatDate(promo.akhir)}
                 </CardFooter>
               </Card>
             </div>
@@ -75,21 +85,24 @@ export function CardPromo() {
       <div className="mb-4">
         <h2 className="text-2xl font-semibold">Lainnya</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {regularPromos.map((promo) => (
-            <Card
+          {promos.map((promo, index) => (
+            <Link
+              href={{ pathname: "/promodetail", query: { id: promo?.id } }}
               key={promo.id}
-              className="m-1 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out"
             >
-              <CardHeader>
-                <CardTitle>{promo.nama}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <img src={promo.gambar} alt={promo.nama} loading="lazy" />
-              </CardContent>
-              <CardFooter className="text-sm">
-                {promo.mulai} - {promo.akhir}
-              </CardFooter>
-            </Card>
+              <Card className="m-1 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out">
+                <CardHeader>
+                  <CardTitle>{promo.nama}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img src={promo.gambar} alt={promo.nama} loading="lazy" />
+                </CardContent>
+                <CardFooter className="text-sm">
+                  <TimerIcon /> {formatDate(promo.mulai)} -{" "}
+                  {formatDate(promo.akhir)}
+                </CardFooter>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

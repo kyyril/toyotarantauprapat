@@ -38,6 +38,7 @@ export async function fetchMobilDetail(
   }
 }
 
+// promo
 export async function fetchPromo() {
   try {
     const response = await axios.get(
@@ -46,6 +47,18 @@ export async function fetchPromo() {
     return response.data;
   } catch (error) {
     console.error("Error fetching promo:", error);
+    throw error;
+  }
+}
+
+export async function fetchPromoDetail(idPromo: any) {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=promo&id_promo=${idPromo}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
     throw error;
   }
 }

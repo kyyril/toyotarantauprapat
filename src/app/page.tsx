@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Car, CreditCard, PhoneCall, Wrench } from "lucide-react";
 
-import { CardPromo } from "@/components/CardPromo";
+import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
 
@@ -34,7 +34,7 @@ export default function Home() {
                 RantauPrapat
               </h1>
             </div>
-            <p className="max-w-[600px] lg:text-lg text-gray-500 font-light dark:text-gray-400">
+            <p className="max-w-[600px] lg:text-lg  text-gray-500 font-light dark:text-gray-400">
               Selamat datang di dealer dan bengkel Resmi Auto2000 Rantauprapat .
               Tersedia beragam kebutuhan serta promo maupun fasilitas pembayaran
               secara kredit dan tunai. Dapatkan juga layanan purna jual seperti

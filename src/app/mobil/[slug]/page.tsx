@@ -36,7 +36,6 @@ export default function CarDetail() {
       </div>
     );
   }
-
   const hargaArray: string[] = mobil.harga?.split(",") || ["N/A"];
   const typeArray: string[] = mobil.type?.split(",") || ["Unknown"];
 
