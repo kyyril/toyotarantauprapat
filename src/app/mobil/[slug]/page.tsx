@@ -1,19 +1,23 @@
 "use client";
 
-import { DetailMobil } from "@/lib/interfaces/mobil.interface";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchMobilDetail } from "@/lib/utils/fetcher";
+import { Mobil } from "@/lib/interfaces/mobil.interface";
 
 export default function CarDetail() {
-  const params = useParams(); // Menggunakan useParams untuk mendapatkan parameter
-  const [mobil, setMobil] = useState<DetailMobil | null>(null);
+  const params = useParams();
+  const [mobil, setMobil] = useState<Mobil | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState<string>("");
 
   useEffect(() => {
     if (params?.slug) {
       fetchMobilDetail(params.slug)
-        .then((data) => setMobil(data))
+        .then((data) => {
+          setMobil(data);
+          setSelectedType(data.type?.split(",")[0] || ""); // Set default type
+        })
         .catch((error) => console.error(error))
         .finally(() => setLoading(false));
     }
@@ -36,37 +40,49 @@ export default function CarDetail() {
       </div>
     );
   }
+
   const hargaArray: string[] = mobil.harga?.split(",") || ["N/A"];
   const typeArray: string[] = mobil.type?.split(",") || ["Unknown"];
+  const currentPrice =
+    hargaArray[typeArray.indexOf(selectedType)] || "Tidak tersedia";
 
   return (
     <main className="w-full flex justify-center items-start min-h-screen mt-5">
       <section className="w-full max-w-5xl flex justify-center flex-col">
+        <img
+          src={mobil.gambar}
+          alt={mobil.nama}
+          className="w-full h-auto max-h-96 object-cover mb-4"
+        />
+        <p className="text-lg mt-4">
+          {mobil.nama || "Deskripsi tidak tersedia."}
+        </p>
         <p className="text-lg mt-4">
           {mobil.deskripsi || "Deskripsi tidak tersedia."}
         </p>
-        <table className="table-auto w-full mt-4 border-collapse border border-gray-200">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Tipe
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Harga
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+        <div className="mt-4">
+          <label
+            htmlFor="type"
+            className="block text-lg font-medium text-gray-700"
+          >
+            Pilih Tipe:
+          </label>
+          <select
+            id="type"
+            value={selectedType}
+            onChange={(e) => setSelectedType(e.target.value)}
+            className="mt-2 block w-full p-2 border border-gray-300 rounded-md"
+          >
             {typeArray.map((ty, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 px-4 py-2">{ty}</td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {hargaArray[index] || "Tidak tersedia"}
-                </td>
-              </tr>
+              <option key={index} value={ty}>
+                {ty}
+              </option>
             ))}
-          </tbody>
-        </table>
+          </select>
+          <p className="mt-4 text-lg">
+            <strong>Harga:</strong> {currentPrice}
+          </p>
+        </div>
         <p className="mt-4">
           <strong>Mesin:</strong> {mobil.mesin || "Tidak diketahui"} cc
         </p>

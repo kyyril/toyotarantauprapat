@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DetailMobil } from "../interfaces/mobil.interface";
+import { Mobil } from "../interfaces/mobil.interface";
 
 export const idSpead = process.env.NEXT_PUBLIC_SPREAD_MOBIL_ID;
 
@@ -11,7 +11,7 @@ export const fetchMobil = async () => {
     return (
       data?.data.map((mobil: any) => ({
         ...mobil,
-        type: mobil.type.split(",").map((t: string) => t.trim()), // Convert 'type' string to list
+        kategori: mobil.kategori.split(",").map((t: string) => t.trim()), // Convert 'type' string to list
       })) || []
     );
   } catch (error) {
@@ -20,13 +20,10 @@ export const fetchMobil = async () => {
   }
 };
 
-export async function fetchMobilDetail(
-  slug: string
-): Promise<DetailMobil | null> {
+export async function fetchMobilDetail(slug: string): Promise<Mobil | null> {
   try {
     const response = await fetch(
-      `https://script.google.com/macros/s/${idSpead}/exec?action=detail&nama=${slug}`,
-      { cache: "no-store" }
+      `https://script.google.com/macros/s/${idSpead}/exec?action=mobil&nama=${slug}`
     );
     if (!response.ok) {
       throw new Error(`Failed to fetch detail: ${response.statusText}`);

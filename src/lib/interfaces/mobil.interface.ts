@@ -1,16 +1,14 @@
 export interface Mobil {
   id: number;
   nama: string;
-  harga: number;
+  harga: any;
   gambar: string;
-  type: string[];
-}
-
-export interface DetailMobil {
-  id: number;
+  kategori: string[];
   deskripsi: string;
+  transmisi: string;
   type: string[];
-  harga: string[];
   mesin: string;
   torsi_max: number;
+  tahun: number;
+  cc: number;
 }

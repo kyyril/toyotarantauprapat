@@ -1,4 +1,4 @@
-import { ListMobil } from "@/components/ListMobil";
+import { ListMobil } from "@/components/Mobil/ListMobil";
 import { fetchMobil } from "@/lib/utils/fetcher";
 
 const MobilPage = async () => {
