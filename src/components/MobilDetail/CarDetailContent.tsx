@@ -1,6 +1,7 @@
 import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
 import { useState } from "react";
+import { Card } from "../ui/card";
 
 interface CarDetailContentProps {
   mobil: Mobil;
@@ -37,17 +38,17 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
   const torsiArray: string[] = mobil.torsi_max?.split(",") || ["Unknown"];
 
   return (
-    <main className="w-full flex flex-col items-center min-h-screen p-5 bg-gray-100">
+    <main className="w-full flex flex-col items-center min-h-screen p-5 ">
       {/* Header */}
       <div className="w-full max-w-4xl text-center mb-8">
         <h1 className="text-3xl font-bold">{mobil.nama}</h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           {mobil.kategori} | Tahun {mobil.tahun}
         </p>
       </div>
 
       {/* Gambar dan Dropdown */}
-      <section className="w-full max-w-4xl flex flex-col items-center bg-white rounded-lg shadow-md p-5 mb-8">
+      <section className="w-full max-w-4xl flex flex-col items-center rounded-lg shadow-md p-5 mb-8">
         <img
           src={mobil.gambar}
           alt={mobil.nama}
@@ -62,37 +63,39 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
       </section>
 
       {/* Spesifikasi */}
-      <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-5 mb-8">
+      <Card className="w-full max-w-4xl rounded-lg shadow-md p-5 mb-8">
         <h2 className="text-2xl font-semibold mb-4">Spesifikasi</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <li className="bg-gray-50 p-4 rounded-lg shadow">
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
             <strong>Tipe:</strong> {selectedType || "Tidak tersedia"}
           </li>
-          <li className="bg-gray-50 p-4 rounded-lg shadow">
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
             <strong>Harga:</strong> {selectedHarga || "Tidak tersedia"}
           </li>
-          <li className="bg-gray-50 p-4 rounded-lg shadow">
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
             <strong>CC:</strong>{" "}
             {ccArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
-          <li className="bg-gray-50 p-4 rounded-lg shadow">
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
             <strong>Mesin:</strong>{" "}
             {mesinArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
-          <li className="bg-gray-50 p-4 rounded-lg shadow">
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
             <strong>Transmisi:</strong> {selectedTransmisi || "Tidak tersedia"}
           </li>
-          <li className="bg-gray-50 p-4 rounded-lg shadow">
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
             <strong>Torsi Maks:</strong>{" "}
             {torsiArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
         </ul>
-      </section>
+      </Card>
 
       {/* Deskripsi */}
-      <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-5">
+      <section className="w-full max-w-4xl rounded-lg shadow-md p-5">
         <h2 className="text-2xl font-semibold mb-4">Deskripsi</h2>
-        <p className="text-gray-700 leading-relaxed">{mobil.deskripsi}</p>
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+          {mobil.deskripsi}
+        </p>
       </section>
     </main>
   );

@@ -65,7 +65,7 @@ export function TypeDropdown({
           <div className="mb-4">
             <label
               htmlFor="type"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm text-gray-600 dark:text-gray-400"
             >
               Pilih Tipe:
             </label>
