@@ -6,7 +6,7 @@ export interface Mobil {
   kategori: string[];
   deskripsi: string;
   transmisi: string;
-  type: string[];
+  type: any;
   mesin: string;
   torsi_max: number;
   tahun: number;
