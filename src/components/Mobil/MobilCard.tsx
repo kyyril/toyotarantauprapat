@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
@@ -5,10 +8,15 @@ import { Mobil } from "@/lib/interfaces/mobil.interface";
 interface MobilCardProps {
   mobil: Mobil;
   query: string;
-  getLowestPrice: (harga: any) => number;
+  getLowestPrice: (harga: string) => number;
 }
 
-export function MobilCard({ mobil, query, getLowestPrice }: MobilCardProps) {
+const MobilCard: React.FC<MobilCardProps> = ({
+  mobil,
+  query,
+  getLowestPrice,
+}) => {
+  // Function to highlight the query in the car name
   const highlightQuery = (text: string, query: string) => {
     if (!query) return text;
     const regex = new RegExp(`(${query})`, "gi");
@@ -66,4 +74,6 @@ export function MobilCard({ mobil, query, getLowestPrice }: MobilCardProps) {
       </Card>
     </Link>
   );
-}
+};
+
+export default MobilCard;

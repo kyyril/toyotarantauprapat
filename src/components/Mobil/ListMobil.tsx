@@ -1,45 +1,64 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
+import { Input } from "@/components/ui/input";
+import MobilCard from "./MobilCard";
 
-import { useState } from "react";
-import { Input } from "../ui/input";
-import { MobilCard } from "./MobilCard";
+interface ListMobilProps {
+  data: Mobil[];
+}
 
-export function ListMobil({ data }: { data: Mobil[] }) {
+const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
   const [query, setQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [sortedData, setSortedData] = useState<Mobil[]>(data);
 
-  const getLowestPrice = (harga: string) => {
-    const hargaArray = harga.split(",").map((h) => parseInt(h.trim(), 10));
-    return Math.min(...hargaArray);
+  useEffect(() => {
+    const sorted = [...data].sort((a, b) => {
+      const hargaA = getLowestPrice(a.harga);
+      const hargaB = getLowestPrice(b.harga);
+      return sortOrder === "asc" ? hargaA - hargaB : hargaB - hargaA;
+    });
+    setSortedData(sorted);
+  }, [data, sortOrder]);
+
+  // Function to get the lowest price from a comma-separated string
+  const getLowestPrice = (harga: string | undefined) => {
+    if (typeof harga === "string") {
+      const hargaArray = harga
+        .split(",")
+        .map((h) => parseInt(h.trim(), 10))
+        .filter((h) => !isNaN(h));
+      return Math.min(...hargaArray);
+    }
+    return 0;
   };
-
-  const sortedData = [...data].sort((a, b) => {
-    const hargaA = getLowestPrice(a.harga || "0");
-    const hargaB = getLowestPrice(b.harga || "0");
-    return sortOrder === "asc" ? hargaA - hargaB : hargaB - hargaA;
-  });
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center">
+      {/* Search and Sorting */}
+      <div className="flex justify-between items-center mb-4">
         <Input
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
-          placeholder="Cari Mobil.."
-          className="border rounded px-3 py-2 w-3/4"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Cari Mobil..."
+          className="w-3/4 p-2 border rounded"
         />
         <select
+          value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
-          className="border rounded px-3 py-2 w-1/4"
+          className="w-1/4 p-2 border rounded"
         >
           <option value="asc">Harga Terendah</option>
           <option value="desc">Harga Tertinggi</option>
         </select>
       </div>
-      <div className="grid grid-cols-1 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+      {/* Display List of Mobil */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {sortedData
-          .filter((mob) => mob.nama.toLocaleLowerCase().includes(query))
+          .filter((mob) => mob.nama.toLowerCase().includes(query.toLowerCase()))
           .map((mob) => (
             <MobilCard
               key={mob.id}
@@ -51,4 +70,6 @@ export function ListMobil({ data }: { data: Mobil[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default ListMobil;
