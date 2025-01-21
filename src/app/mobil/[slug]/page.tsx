@@ -6,26 +6,35 @@ import { fetchMobilDetail } from "@/lib/utils/fetcher";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function CarDetail() {
   const params = useParams();
   const [mobil, setMobil] = useState<Mobil | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedTransmisi, setSelectedTransmisi] = useState<string>("");
   const [selectedHarga, setSelectedHarga] = useState<string>("");
 
   useEffect(() => {
-    if (params?.slug) {
-      fetchMobilDetail(params.slug)
-        .then((data) => {
+    const fetchData = async () => {
+      if (params?.slug) {
+        setLoading(true);
+        setError(false); // Reset error state
+        try {
+          const data = await fetchMobilDetail(params.slug);
           setMobil(data);
           setSelectedType(data.type?.split(",")[0] || "");
-        })
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }
+        } catch (error) {
+          console.error("Error fetching car details:", error);
+          setError(true); // Set error state
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
   }, [params?.slug]);
 
   const handleSelectionChange = (
@@ -38,6 +47,10 @@ export default function CarDetail() {
     setSelectedHarga(harga);
   };
 
+  const handleReload = () => {
+    window.location.reload(); // Refresh the page
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -46,15 +59,13 @@ export default function CarDetail() {
     );
   }
 
-  if (!mobil) {
+  if (error || !mobil) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-center text-red-500">
+      <div className="flex justify-center items-center h-screen flex-col">
+        <p className="text-center text-red-500 mb-4">
           Error loading details. Please try again later.
         </p>
-        <Link href={"/mobil"}>
-          <Button>Go back</Button>
-        </Link>
+        <Button onClick={handleReload}>Refresh Page</Button>
       </div>
     );
   }
@@ -85,7 +96,7 @@ export default function CarDetail() {
           <img
             src={mobil.gambar}
             alt={mobil.nama}
-            className=" max-h-96 object-cover mb-4"
+            className="max-h-96 object-cover mb-4"
           />
           <div className="flex flex-col">
             <p className="text-lg mt-4">

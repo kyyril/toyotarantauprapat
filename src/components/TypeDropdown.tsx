@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -29,14 +29,30 @@ export function TypeDropdown({
   const [selectedTransmisi, setSelectedTransmisi] = useState("");
   const [selectedHarga, setSelectedHarga] = useState("");
 
+  // Update harga dan transmisi saat tipe berubah
+  useEffect(() => {
+    if (selectedType) {
+      const index = typeArray.indexOf(selectedType);
+      const transmisiOptions = transmissionArray[index]?.split(",") || [];
+      const hargaOptions = hargaArray[index]?.split(",") || [];
+      setSelectedTransmisi(transmisiOptions[0] || "Tidak tersedia");
+      setSelectedHarga(hargaOptions[0] || "Tidak tersedia");
+      onSelectionChange(
+        selectedType,
+        transmisiOptions[0] || "",
+        hargaOptions[0] || ""
+      );
+    }
+  }, [
+    selectedType,
+    typeArray,
+    transmissionArray,
+    hargaArray,
+    onSelectionChange,
+  ]);
+
   const handleTypeChange = (type: string) => {
     setSelectedType(type);
-    const index = typeArray.indexOf(type);
-    const transmisiOptions = transmissionArray[index]?.split(",") || [];
-    const hargaOptions = hargaArray[index]?.split(",") || [];
-    setSelectedTransmisi(transmisiOptions[0]);
-    setSelectedHarga(hargaOptions[0]);
-    onSelectionChange(type, transmisiOptions[0], hargaOptions[0]);
   };
 
   return (
@@ -67,35 +83,19 @@ export function TypeDropdown({
             </select>
           </div>
           {selectedType && (
-            <div>
-              <label
-                htmlFor="transmisi"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Pilih Transmisi:
-              </label>
-              <select
-                id="transmisi"
-                value={selectedTransmisi}
-                onChange={(e) => setSelectedTransmisi(e.target.value)}
-                className="mt-2 block w-full p-2 border border-gray-300 rounded-md"
-              >
-                {transmissionArray[typeArray.indexOf(selectedType)]
-                  .split(",")
-                  .map((transmisi, index) => (
-                    <option key={index} value={transmisi}>
-                      {transmisi}
-                    </option>
-                  ))}
-              </select>
-            </div>
-          )}
-          {selectedType && (
-            <div className="mt-4">
-              <p>
-                <strong>Harga:</strong> {selectedHarga || "Tidak tersedia"}
-              </p>
-            </div>
+            <>
+              <div className="mt-4">
+                <p>
+                  <strong>Transmisi:</strong>{" "}
+                  {selectedTransmisi || "Tidak tersedia"}
+                </p>
+              </div>
+              <div className="mt-4">
+                <p>
+                  <strong>Harga:</strong> {selectedHarga || "Tidak tersedia"}
+                </p>
+              </div>
+            </>
           )}
         </div>
       </PopoverContent>

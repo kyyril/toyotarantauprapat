@@ -22,13 +22,10 @@ export const fetchMobil = async () => {
 
 export async function fetchMobilDetail(slug: string): Promise<Mobil | null> {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `https://script.google.com/macros/s/${idSpead}/exec?action=mobil&nama=${slug}`
     );
-    if (!response.ok) {
-      throw new Error(`Failed to fetch detail: ${response.statusText}`);
-    }
-    return await response.json();
+    return await response.data;
   } catch (error) {
     console.error("Error fetching mobil detail:", error);
     return null;
