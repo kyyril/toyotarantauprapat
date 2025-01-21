@@ -5,10 +5,10 @@ export interface Mobil {
   gambar: string;
   kategori: string[];
   deskripsi: string;
-  transmisi: string;
+  transmisi: any;
   type: any;
-  mesin: string;
-  torsi_max: number;
+  mesin: any;
+  torsi_max: any;
   tahun: number;
-  cc: number;
+  cc: any;
 }

@@ -32,38 +32,67 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
   const transmissionArray: string[] = mobil.transmisi?.split(",") || [
     "Unknown",
   ];
+  const ccArray: string[] = mobil.cc?.split(",") || ["Unknown"];
+  const mesinArray: string[] = mobil.mesin?.split(",") || ["Unknown"];
+  const torsiArray: string[] = mobil.torsi_max?.split(",") || ["Unknown"];
 
   return (
-    <main className="w-full flex justify-center items-start min-h-screen flex-col mt-5">
-      <div className="flex flex-col">
-        <p className="text-lg mt-4">
-          {mobil.nama || "Deskripsi tidak tersedia."}
+    <main className="w-full flex flex-col items-center min-h-screen p-5 bg-gray-100">
+      {/* Header */}
+      <div className="w-full max-w-4xl text-center mb-8">
+        <h1 className="text-3xl font-bold">{mobil.nama}</h1>
+        <p className="text-gray-600">
+          {mobil.kategori} | Tahun {mobil.tahun}
         </p>
-        <div className="mt-4">
-          <TypeDropdown
-            typeArray={typeArray}
-            transmissionArray={transmissionArray}
-            hargaArray={hargaArray}
-            onSelectionChange={handleSelectionChange}
-          />
-        </div>
       </div>
-      <section className="w-full max-w-5xl flex justify-center flex-col">
-        <div className="flex">
-          <img
-            src={mobil.gambar}
-            alt={mobil.nama}
-            className="max-h-96 object-cover mb-4"
-          />
-          <div className="flex flex-col">
-            <p className="text-lg mt-4">
-              {mobil.nama || "Deskripsi tidak tersedia."}
-            </p>
-            <p className="mt-4 text-lg">
-              <strong>Harga:</strong> {selectedHarga || "Tidak tersedia"}
-            </p>
-          </div>
-        </div>
+
+      {/* Gambar dan Dropdown */}
+      <section className="w-full max-w-4xl flex flex-col items-center bg-white rounded-lg shadow-md p-5 mb-8">
+        <img
+          src={mobil.gambar}
+          alt={mobil.nama}
+          className="w-full max-h-96 object-contain rounded-md mb-5"
+        />
+        <TypeDropdown
+          typeArray={typeArray}
+          transmissionArray={transmissionArray}
+          hargaArray={hargaArray}
+          onSelectionChange={handleSelectionChange}
+        />
+      </section>
+
+      {/* Spesifikasi */}
+      <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-5 mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Spesifikasi</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <li className="bg-gray-50 p-4 rounded-lg shadow">
+            <strong>Tipe:</strong> {selectedType || "Tidak tersedia"}
+          </li>
+          <li className="bg-gray-50 p-4 rounded-lg shadow">
+            <strong>Harga:</strong> {selectedHarga || "Tidak tersedia"}
+          </li>
+          <li className="bg-gray-50 p-4 rounded-lg shadow">
+            <strong>CC:</strong>{" "}
+            {ccArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
+          </li>
+          <li className="bg-gray-50 p-4 rounded-lg shadow">
+            <strong>Mesin:</strong>{" "}
+            {mesinArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
+          </li>
+          <li className="bg-gray-50 p-4 rounded-lg shadow">
+            <strong>Transmisi:</strong> {selectedTransmisi || "Tidak tersedia"}
+          </li>
+          <li className="bg-gray-50 p-4 rounded-lg shadow">
+            <strong>Torsi Maks:</strong>{" "}
+            {torsiArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
+          </li>
+        </ul>
+      </section>
+
+      {/* Deskripsi */}
+      <section className="w-full max-w-4xl bg-white rounded-lg shadow-md p-5">
+        <h2 className="text-2xl font-semibold mb-4">Deskripsi</h2>
+        <p className="text-gray-700 leading-relaxed">{mobil.deskripsi}</p>
       </section>
     </main>
   );
