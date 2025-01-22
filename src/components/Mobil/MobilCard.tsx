@@ -16,7 +16,24 @@ const MobilCard: React.FC<MobilCardProps> = ({
   query,
   getLowestPrice,
 }) => {
-  // Function to highlight the query in the car name
+  const parseArray = (value: any): string[] => {
+    if (typeof value === "string" && value.includes(",")) {
+      return value.split(",").map((v) => v.trim());
+    }
+    if (Array.isArray(value)) {
+      return value.map((v) => v.toString());
+    }
+    return [value?.toString() || "Unknown"];
+  };
+
+  const hargaArray = parseArray(mobil.harga);
+  const transmissionArray = parseArray(mobil.transmisi);
+  const ccArray = parseArray(mobil.cc);
+
+  const harga = hargaArray[0];
+  const transmisi = transmissionArray[0];
+  const cc = ccArray[0];
+
   const highlightQuery = (text: string, query: string) => {
     if (!query) return text;
     const regex = new RegExp(`(${query})`, "gi");
@@ -47,27 +64,13 @@ const MobilCard: React.FC<MobilCardProps> = ({
             {highlightQuery(mobil.nama, query)}
           </h3>
         </div>
-        <div className="flex flex-wrap">
-          {mobil.kategori.map((kat, index) => (
-            <span
-              className="bg-red-500 rounded-md text-sm mx-1 px-2 py-1"
-              key={index}
-            >
-              {kat}
-            </span>
-          ))}
-        </div>
         <div className="p-1 px-2">
           <p className="text-lg font-semibold text-red-500">
-            {mobil.harga
-              ? `Rp ${getLowestPrice(mobil.harga).toLocaleString()}`
-              : "-"}
+            {harga ? `Rp ${parseInt(harga, 10).toLocaleString()}` : "-"}
           </p>
-          <p className="text-sm text-gray-700">{mobil.transmisi || "-"}</p>
+          <p className="text-sm text-gray-700">{transmisi || "-"}</p>
           <p className="text-sm text-gray-700">{mobil.tahun || "-"}</p>
-          <p className="text-sm text-gray-700">
-            {mobil.cc ? `${mobil.cc} cc` : "-"}
-          </p>
+          <p className="text-sm text-gray-700">{cc ? `${cc} cc` : "-"}</p>
         </div>
       </Card>
     </Link>

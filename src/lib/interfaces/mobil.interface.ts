@@ -12,4 +12,5 @@ export interface Mobil {
   torsi_max: any;
   tahun: number;
   cc: any;
+  video: string;
 }

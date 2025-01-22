@@ -3,20 +3,33 @@ import { TypeDropdown } from "@/components/TypeDropdown";
 import { useState } from "react";
 import { Card } from "../ui/card";
 import Deskripsi from "./Deskripsi";
+import YouTubePlayer from "./Video";
 
 interface CarDetailContentProps {
   mobil: Mobil;
 }
 
 export default function CarDetailContent({ mobil }: CarDetailContentProps) {
-  const [selectedType, setSelectedType] = useState<string>(
-    mobil.type?.split(",")[0] || ""
-  );
+  const parseArray = (value: any) => {
+    if (typeof value === "string" && value.includes(",")) {
+      return value.split(",").map((v) => v.trim());
+    }
+    return Array.isArray(value) ? value : [value?.toString() || "Unknown"];
+  };
+
+  const hargaArray: string[] = parseArray(mobil.harga);
+  const typeArray: string[] = parseArray(mobil.type);
+  const transmissionArray: string[] = parseArray(mobil.transmisi);
+  const ccArray: string[] = parseArray(mobil.cc);
+  const mesinArray: string[] = parseArray(mobil.mesin);
+  const torsiArray: string[] = parseArray(mobil.torsi_max);
+
+  const [selectedType, setSelectedType] = useState<string>(typeArray[0] || "");
   const [selectedTransmisi, setSelectedTransmisi] = useState<string>(
-    mobil.transmisi?.split(",")[0] || ""
+    transmissionArray[0] || ""
   );
   const [selectedHarga, setSelectedHarga] = useState<string>(
-    mobil.harga?.split(",")[0] || ""
+    hargaArray[0] || ""
   );
 
   const handleSelectionChange = (
@@ -28,15 +41,6 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
     setSelectedTransmisi(transmisi);
     setSelectedHarga(harga);
   };
-
-  const hargaArray: string[] = mobil.harga?.split(",") || ["N/A"];
-  const typeArray: string[] = mobil.type?.split(",") || ["Unknown"];
-  const transmissionArray: string[] = mobil.transmisi?.split(",") || [
-    "Unknown",
-  ];
-  const ccArray: string[] = mobil.cc?.split(",") || ["Unknown"];
-  const mesinArray: string[] = mobil.mesin?.split(",") || ["Unknown"];
-  const torsiArray: string[] = mobil.torsi_max?.split(",") || ["Unknown"];
 
   return (
     <main className="w-full flex flex-col items-center min-h-screen p-5 ">
@@ -90,6 +94,10 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
           </li>
         </ul>
       </Card>
+
+      <div>
+        <YouTubePlayer video={mobil.video} />
+      </div>
 
       {/* Deskripsi */}
       <Deskripsi nama={mobil.nama} />

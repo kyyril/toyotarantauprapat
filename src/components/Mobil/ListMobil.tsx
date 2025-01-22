@@ -10,29 +10,36 @@ interface ListMobilProps {
 }
 
 const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
+  const parseArray = (value: any): string[] => {
+    if (typeof value === "string" && value.includes(",")) {
+      return value.split(",").map((v) => v.trim());
+    }
+    if (Array.isArray(value)) {
+      return value.map((v) => v.toString());
+    }
+    return [value?.toString() || "Unknown"];
+  };
+
   const [query, setQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [sortedData, setSortedData] = useState<Mobil[]>(data);
 
   useEffect(() => {
     const sorted = [...data].sort((a, b) => {
-      const hargaA = getLowestPrice(a.harga);
-      const hargaB = getLowestPrice(b.harga);
+      const hargaA = getLowestPrice(parseArray(a.harga)[0]);
+      const hargaB = getLowestPrice(parseArray(b.harga)[0]);
       return sortOrder === "asc" ? hargaA - hargaB : hargaB - hargaA;
     });
     setSortedData(sorted);
   }, [data, sortOrder]);
 
-  // Function to get the lowest price from a comma-separated string
+  // Function to get the lowest price from a string
   const getLowestPrice = (harga: string | undefined) => {
-    if (typeof harga === "string") {
-      const hargaArray = harga
-        .split(",")
-        .map((h) => parseInt(h.trim(), 10))
-        .filter((h) => !isNaN(h));
-      return Math.min(...hargaArray);
-    }
-    return 0;
+    const parsedHarga = parseArray(harga);
+    const hargaNumbers = parsedHarga
+      .map((h) => parseInt(h.trim(), 10))
+      .filter((h) => !isNaN(h));
+    return Math.min(...hargaNumbers);
   };
 
   return (
