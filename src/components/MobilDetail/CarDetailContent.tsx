@@ -2,6 +2,7 @@ import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
 import { useState } from "react";
 import { Card } from "../ui/card";
+import Deskripsi from "./Deskripsi";
 
 interface CarDetailContentProps {
   mobil: Mobil;
@@ -91,12 +92,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
       </Card>
 
       {/* Deskripsi */}
-      <section className="w-full max-w-4xl rounded-lg shadow-md p-5">
-        <h2 className="text-2xl font-semibold mb-4">Deskripsi</h2>
-        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-          {mobil.deskripsi}
-        </p>
-      </section>
+      <Deskripsi nama={mobil.nama} />
     </main>
   );
 }

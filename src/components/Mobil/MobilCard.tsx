@@ -63,12 +63,10 @@ const MobilCard: React.FC<MobilCardProps> = ({
               ? `Rp ${getLowestPrice(mobil.harga).toLocaleString()}`
               : "-"}
           </p>
+          <p className="text-sm text-gray-700">{mobil.transmisi || "-"}</p>
+          <p className="text-sm text-gray-700">{mobil.tahun || "-"}</p>
           <p className="text-sm text-gray-700">
-            Transmisi: {mobil.transmisi || "-"}
-          </p>
-          <p className="text-sm text-gray-700">Tahun: {mobil.tahun || "-"}</p>
-          <p className="text-sm text-gray-700">
-            CC: {mobil.cc ? `${mobil.cc} cc` : "-"}
+            {mobil.cc ? `${mobil.cc} cc` : "-"}
           </p>
         </div>
       </Card>

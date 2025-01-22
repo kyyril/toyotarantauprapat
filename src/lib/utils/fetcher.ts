@@ -31,6 +31,17 @@ export async function fetchMobilDetail(slug: string): Promise<Mobil | null> {
     return null;
   }
 }
+export async function fetchDeskripsi(nama: string): Promise<Mobil | null> {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=deskripsiMobil&nama=${nama}`
+    );
+    return await response.data;
+  } catch (error) {
+    console.error("Error fetching mobil detail:", error);
+    return null;
+  }
+}
 
 // promo
 export async function fetchPromo() {
