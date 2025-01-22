@@ -4,7 +4,8 @@ export interface Mobil {
   harga: any;
   gambar: string;
   kategori: string[];
-  deskripsi: string;
+  deskripsi_awal: string;
+  deskripsi_akhir: string;
   transmisi: any;
   type: any;
   mesin: any;
