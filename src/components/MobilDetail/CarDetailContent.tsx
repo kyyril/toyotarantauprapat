@@ -95,12 +95,11 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
         </ul>
       </Card>
 
+      {/* Deskripsi */}
+      <Deskripsi nama={mobil.nama} />
       <div>
         <YouTubePlayer video={mobil.video} />
       </div>
-
-      {/* Deskripsi */}
-      <Deskripsi nama={mobil.nama} />
     </main>
   );
 }

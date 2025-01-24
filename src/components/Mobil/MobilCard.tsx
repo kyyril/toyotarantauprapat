@@ -29,10 +29,12 @@ const MobilCard: React.FC<MobilCardProps> = ({
   const hargaArray = parseArray(mobil.harga);
   const transmissionArray = parseArray(mobil.transmisi);
   const ccArray = parseArray(mobil.cc);
+  const kategoriArray = parseArray(mobil.kategori);
 
   const harga = hargaArray[0];
   const transmisi = transmissionArray[0];
   const cc = ccArray[0];
+  const kategori = kategoriArray.join(", "); // Gabungkan kategori dengan koma
 
   const highlightQuery = (text: string, query: string) => {
     if (!query) return text;
@@ -71,6 +73,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
           <p className="text-sm text-gray-700">{transmisi || "-"}</p>
           <p className="text-sm text-gray-700">{mobil.tahun || "-"}</p>
           <p className="text-sm text-gray-700">{cc ? `${cc} cc` : "-"}</p>
+          <p className="text-sm text-gray-700">{kategori || "-"}</p>
         </div>
       </Card>
     </Link>
