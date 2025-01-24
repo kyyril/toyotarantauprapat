@@ -24,7 +24,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
     if (Array.isArray(value)) {
       return value.map((v) => v.toString());
     }
-    return [value?.toString() || "Unknown"];
+    return [value?.toString() || "--"];
   };
 
   const hargaArray = parseArray(mobil.harga);
@@ -84,7 +84,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
             </p>
           </div>
           <p className="text-lg font-semibold text-red-500">
-            {harga ? `Rp ${parseInt(harga, 10).toLocaleString()}` : "-"}
+            {harga ? `Rp ${harga}` : "-"}
           </p>
         </div>
       </Card>
