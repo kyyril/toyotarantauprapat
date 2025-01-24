@@ -13,4 +13,5 @@ export interface Mobil {
   tahun: number;
   cc: any;
   video: string;
+  color: string;
 }

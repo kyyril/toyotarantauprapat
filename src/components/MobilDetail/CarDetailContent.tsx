@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Card } from "../ui/card";
 import Deskripsi from "./Deskripsi";
 import YouTubePlayer from "./Video";
+import ColorList from "./ColorList";
 
 interface CarDetailContentProps {
   mobil: Mobil;
@@ -89,15 +90,19 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             <strong>Transmisi:</strong> {selectedTransmisi || "Tidak tersedia"}
           </li>
           <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
-            <strong>Torsi Maks:</strong>{" "}
             {torsiArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
+          </li>
+          <li className="p-4 rounded-lg shadow dark:bg-zinc-800 flex flex-row">
+            <strong className="mr-2">Warna:</strong>{" "}
+            <ColorList colors={mobil.color || "-"} />
           </li>
         </ul>
       </Card>
 
       {/* Deskripsi */}
       <Deskripsi nama={mobil.nama} />
-      <div>
+
+      <div className="p-4">
         <YouTubePlayer video={mobil.video} />
       </div>
     </main>
