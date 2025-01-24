@@ -14,4 +14,5 @@ export interface Mobil {
   cc: any;
   video: string;
   color: string;
+  color_name: string;
 }

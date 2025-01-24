@@ -94,7 +94,10 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
           </li>
           <li className="p-4 rounded-lg shadow dark:bg-zinc-800 flex flex-row">
             <strong className="mr-2">Warna:</strong>{" "}
-            <ColorList colors={mobil.color || "-"} />
+            <ColorList
+              colors={mobil.color || "-"}
+              colorNames={mobil.color_name}
+            />
           </li>
         </ul>
       </Card>
