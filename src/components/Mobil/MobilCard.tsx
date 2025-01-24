@@ -4,6 +4,7 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
+import { CalendarDays, Cog, Gauge } from "lucide-react";
 
 interface MobilCardProps {
   mobil: Mobil;
@@ -61,19 +62,30 @@ const MobilCard: React.FC<MobilCardProps> = ({
             className="object-cover rounded-sm w-full h-full"
           />
         </div>
-        <div className="p-2">
+        <div className="p-1">
           <h3 className="text-lg font-bold">
             {highlightQuery(mobil.nama, query)}
           </h3>
         </div>
-        <div className="p-1 px-2">
+        <div className="px-1">
+          <div className="flex flex-row">
+            <p className="text-sm flex">
+              {" "}
+              <Cog className="w-4 h-4 mt-0.5 mx-0.5" />
+              {transmisi || "-"}
+            </p>
+            <p className="text-sm mx-2 flex flex-row">
+              <Gauge className="w-4 h-4 mt-0.5 mx-0.5" />
+              {cc ? `${cc} CC` : "-"}
+            </p>
+            <p className="text-sm flex">
+              <CalendarDays className="w-4 h-4 mt-0.5 mx-0.5" />{" "}
+              {mobil.tahun || "-"}
+            </p>
+          </div>
           <p className="text-lg font-semibold text-red-500">
             {harga ? `Rp ${parseInt(harga, 10).toLocaleString()}` : "-"}
           </p>
-          <p className="text-sm text-gray-700">{transmisi || "-"}</p>
-          <p className="text-sm text-gray-700">{mobil.tahun || "-"}</p>
-          <p className="text-sm text-gray-700">{cc ? `${cc} cc` : "-"}</p>
-          <p className="text-sm text-gray-700">{kategori || "-"}</p>
         </div>
       </Card>
     </Link>
