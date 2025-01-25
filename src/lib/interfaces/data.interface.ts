@@ -12,7 +12,7 @@ export interface Sales {
   profile: string;
   nohp: string;
   deskripsi: string;
-  gallery: string;
+  gallery: any;
 }
 
 interface ProsesPembayaran {

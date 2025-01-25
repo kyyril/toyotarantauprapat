@@ -53,7 +53,6 @@ export function CardPromo() {
   return (
     <div className="container mx-auto p-4">
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold">Promo🔥</h2>
         <div className="flex space-x-4 overflow-x-auto">
           {hotPromos.map((promo) => (
             <div

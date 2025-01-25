@@ -26,6 +26,10 @@ export const navigationItems = [
     href: "/layanan",
   },
   {
+    name: "Sales",
+    href: "/sales",
+  },
+  {
     name: "Rekomendasi AI",
     href: "/rekomendasi-ai",
   },

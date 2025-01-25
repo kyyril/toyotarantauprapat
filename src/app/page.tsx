@@ -6,6 +6,7 @@ import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
 import { CardSales } from "@/components/Sales/CardSales";
+import { BerandaCardSales } from "@/components/Sales/BerandaCardSales";
 
 export default function Home() {
   return (
@@ -62,9 +63,8 @@ export default function Home() {
         className="max-w-7xl w-full mt-10 px-4 md:px-16 mx-auto"
         id="promo"
       >
-        <div>
-          <CardPromo />
-        </div>
+        <h2 className="text-2xl font-semibold">Promo</h2>
+        <CardPromo />
       </section>
 
       {/* standart pembayaran */}
@@ -72,9 +72,7 @@ export default function Home() {
         className="max-w-7xl w-full mt-10 px-4 md:px-16 mx-auto"
         id="pembayaran"
       >
-        <div>
-          <CardProsesPembayaran />
-        </div>
+        <CardProsesPembayaran />
       </section>
 
       <div className="max-w-7xl w-full mt-4 px-8 md:px-32 text-center mx-auto text-red-700">
@@ -111,9 +109,8 @@ export default function Home() {
         id="sales"
         className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
       >
-        <div>
-          <CardSales />
-        </div>
+        <h2 className="text-2xl font-semibold">Sales</h2>
+        <BerandaCardSales />
       </section>
 
       <section
