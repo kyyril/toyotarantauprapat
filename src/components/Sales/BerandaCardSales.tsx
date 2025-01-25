@@ -55,7 +55,7 @@ export function BerandaCardSales() {
       {/* Tombol "Selengkapnya" untuk melihat semua sales */}
       <div className="mt-4 text-center">
         <Link href="/sales">
-          <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark">
+          <button className="px-4 py-2 bg-secondary rounded-lg hover:bg-primary-dark">
             Selengkapnya
           </button>
         </Link>

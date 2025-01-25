@@ -12,10 +12,21 @@ import { fetchPromo } from "@/lib/utils/fetcher";
 import { TimerIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Pagination from "./Pagination";
 
 export function CardPromo() {
   const [promos, setPromos] = useState<Promo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4; // Jumlah item per halaman
+
+  const totalPages = Math.ceil(promos.length / itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     async function loadPromoData() {
@@ -50,8 +61,15 @@ export function CardPromo() {
     return `${day} ${month} ${year}`;
   };
 
+  // Items for current page
+  const currentItems = promos.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <div className="container mx-auto p-4">
+      {/* Hot Promos Section */}
       <div className="mb-6">
         <div className="flex space-x-4 overflow-x-auto">
           {hotPromos.map((promo) => (
@@ -81,10 +99,11 @@ export function CardPromo() {
         </div>
       </div>
 
+      {/* Other Promos Section */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold">Lainnya</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {promos.map((promo, index) => (
+          {currentItems.map((promo) => (
             <Link
               href={{ pathname: "/promodetail", query: { id: promo?.id } }}
               key={promo.id}
@@ -105,6 +124,13 @@ export function CardPromo() {
           ))}
         </div>
       </div>
+
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
