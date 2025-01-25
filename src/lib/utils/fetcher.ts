@@ -67,3 +67,28 @@ export async function fetchPromoDetail(idPromo: any) {
     throw error;
   }
 }
+
+//salesss
+export async function fetchSales() {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=sales`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
+    throw error;
+  }
+}
+
+export async function fetchSalesDetail(idSales: any) {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=sales&id_sales=${idSales}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
+    throw error;
+  }
+}

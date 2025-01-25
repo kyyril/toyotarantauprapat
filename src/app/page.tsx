@@ -5,6 +5,7 @@ import { Car, CreditCard, PhoneCall, Wrench } from "lucide-react";
 import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
+import { CardSales } from "@/components/Sales/CardSales";
 
 export default function Home() {
   return (
@@ -106,6 +107,15 @@ export default function Home() {
             <span className="font-bold text-md">Test Drive</span>
             <p>lorem ipsum dolor sit amet</p>
           </div>
+        </div>
+      </section>
+
+      <section
+        id="sales"
+        className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
+      >
+        <div>
+          <CardSales />
         </div>
       </section>
 

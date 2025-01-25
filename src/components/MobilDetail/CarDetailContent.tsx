@@ -90,6 +90,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             <strong>Transmisi:</strong> {selectedTransmisi || "Tidak tersedia"}
           </li>
           <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+            <strong>Torsi maximum:</strong>{" "}
             {torsiArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
           <li className="p-4 rounded-lg shadow dark:bg-zinc-800 flex flex-row">

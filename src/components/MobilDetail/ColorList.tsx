@@ -37,7 +37,7 @@ const ColorList: React.FC<ColorListProps> = ({ colors, colorNames }) => {
             className="w-8 h-8 rounded-full cursor-pointer"
             style={{
               backgroundColor: color,
-              border: color === "#ffffff" ? "1px solid #000" : "none", // Border untuk warna putih
+              border: "1px solid #000", // Border untuk warna putih
             }}
             title={colorNameArray[index] || "Unknown Color"} // Tooltip nama warna
           ></div>

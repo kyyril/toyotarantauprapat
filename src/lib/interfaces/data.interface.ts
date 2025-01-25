@@ -6,6 +6,14 @@ export interface Promo {
   gambar: string;
   deskripsi: string;
 }
+export interface Sales {
+  id: number;
+  nama: string;
+  profile: string;
+  nohp: string;
+  deskripsi: string;
+  gallery: string;
+}
 
 interface ProsesPembayaran {
   id: number;
