@@ -95,17 +95,14 @@ export default function Home() {
             <span className="font-bold text-center text-md">
               Simulasi Credit
             </span>
-            <p>lorem ipsum dolor sit amet</p>
           </div>
           <div className="flex flex-col mx-4 items-center">
             <Wrench className="h-8 w-8 text-red-500" />
             <span className="font-bold text-md">Service</span>
-            <p>lorem ipsum dolor sit amet</p>
           </div>
           <div className="flex flex-col  items-center">
             <Car className="h-8 w-8 text-red-500" />
             <span className="font-bold text-md">Test Drive</span>
-            <p>lorem ipsum dolor sit amet</p>
           </div>
         </div>
       </section>

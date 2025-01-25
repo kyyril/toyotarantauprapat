@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 function PromoDetail() {
   const searchParams = useSearchParams();
   const promoId = searchParams.get("id") || "ID tidak tersedia";
-
   const [detail, setDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
