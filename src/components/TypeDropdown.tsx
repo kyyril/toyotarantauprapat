@@ -65,8 +65,11 @@ export function TypeDropdown({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant={"secondary"} className="mt-2">
-          {selectedType || "Pilih Tipe"}
+        <Button
+          variant={"secondary"}
+          className="mt-2 max-w-full text-sm sm:text-base flex items-center justify-between gap-2"
+        >
+          <span className="truncate">{selectedType || "Pilih Tipe"}</span>
           <ArrowUp className="w-4 h-4 text-red-500" />
         </Button>
       </PopoverTrigger>

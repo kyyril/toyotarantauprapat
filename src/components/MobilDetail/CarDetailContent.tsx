@@ -85,41 +85,41 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             <span className="text-red-500">*</span> Harga dapat berubah sewaktu
             waktu. Hubungi kami untuk info promo dan kredit.
           </p>
-          <div className="flex space-x-4 justify-center items-center">
+          <div className="flex space-x-4 justify-center mx-auto items-center">
             <Button variant="secondary">Unduh Katalog</Button>
             <CreditSimulationButton type={selectedType} harga={selectedHarga} />
           </div>
-          <Button className="bg-red-500 text-white">Hubungi Kami</Button>
+          <Button variant={"destructive"}>Hubungi Kami</Button>
         </section>
       </div>
 
       {/* Spesifikasi */}
-      <Card className="w-full max-w-4xl rounded-lg shadow-md mt-4 p-5 mb-8">
+      <div className="w-full max-w-4xl rounded-lg mt-4 p-5 mb-8">
         <h2 className="text-2xl font-semibold mb-4">Spesifikasi</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+          <li className="p-4 rounded-lg bg-secondary">
             <strong>Tipe:</strong> {selectedType || "Tidak tersedia"}
           </li>
-          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+          <li className="p-4 rounded-lg bg-secondary">
             <strong>Harga:</strong> {selectedHarga || "Tidak tersedia"}
           </li>
-          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+          <li className="p-4 rounded-lg bg-secondary">
             <strong>CC:</strong>{" "}
             {ccArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
-          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+          <li className="p-4 rounded-lg bg-secondary">
             <strong>Mesin:</strong>{" "}
             {mesinArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
-          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+          <li className="p-4 rounded-lg bg-secondary">
             <strong>Transmisi:</strong> {selectedTransmisi || "Tidak tersedia"}
           </li>
-          <li className="p-4 rounded-lg shadow dark:bg-zinc-800">
+          <li className="p-4 rounded-lg bg-secondary">
             <strong>Torsi Maksimum:</strong>{" "}
             {torsiArray[typeArray.indexOf(selectedType)] || "Tidak tersedia"}
           </li>
         </ul>
-      </Card>
+      </div>
 
       {/* Deskripsi */}
       <Deskripsi nama={mobil.nama} />

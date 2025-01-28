@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { fetchDeskripsi } from "@/lib/utils/fetcher";
 import { Button } from "@/components/ui/button";
+import { ArrowDown } from "lucide-react";
 
 interface DeskripsiProps {
   nama: string;
@@ -31,9 +32,16 @@ const Deskripsi: React.FC<DeskripsiProps> = ({ nama }) => {
     <div className="w-full max-w-4xl justify-center items-center rounded-lg shadow-md p-5 mt-5">
       <h2 className="text-2xl font-semibold mb-4">Deskripsi</h2>
       {!deskripsiAwal && !deskripsiAkhir ? (
-        <Button onClick={handleFetchDeskripsi} disabled={loading}>
-          {loading ? "Loading..." : "Tampilkan Deskripsi"}
-        </Button>
+        <div className="flex w-full mx-auto justify-center items-center">
+          <Button
+            variant={"secondary"}
+            onClick={handleFetchDeskripsi}
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Tampilkan Deskripsi"}
+            <ArrowDown className="text-red-500" />
+          </Button>
+        </div>
       ) : (
         <div>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed items-center mb-4">
