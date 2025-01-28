@@ -26,9 +26,7 @@ export default function CreditSimulationButton({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" className="bg-red-500 text-white">
-          Simulasi Kredit
-        </Button>
+        <Button variant="secondary">Simulasi Kredit</Button>
       </PopoverTrigger>
       <PopoverContent className="w-96 p-4">
         <h2 className="text-lg font-semibold mb-2">{type}</h2>
@@ -86,8 +84,8 @@ export default function CreditSimulationButton({
         </div>
 
         {/* Catatan */}
-        <div className="text-sm text-gray-500 mb-4">
-          <p>Uang muka sudah termasuk biaya administrasi dan lainnya.</p>
+        <div className="text-xs text-gray-500 mb-4">
+          <p>Uang muka belum termasuk biaya administrasi dan lainnya.</p>
           <p>
             Total uang muka meliputi administrasi, fidusia, dan asuransi
             kendaraan.
@@ -96,10 +94,6 @@ export default function CreditSimulationButton({
           <p>
             Simulasi Kredit dibuat berdasarkan tingkat suku bunga yang
             disesuaikan dengan tenor yang telah Anda pilih.
-          </p>
-          <p>
-            Diskon Harga Kendaraan atau Diskon Total Uang Muka hanya berlaku
-            jika unit yang Anda pilih terdapat diskon.
           </p>
         </div>
 

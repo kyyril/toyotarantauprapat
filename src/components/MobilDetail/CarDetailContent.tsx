@@ -78,15 +78,15 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             colors={mobil.color || "-"}
             colorNames={mobil.color_name}
           />
-          <p className="text-lg font-medium">
-            Harga mulai: <span className="text-red-500">{selectedHarga}</span>
+          <p className="font-medium">
+            Mulai: <span className="text-red-500">Rp.{selectedHarga}</span>
           </p>
           <p className="text-sm text-gray-500">
             <span className="text-red-500">*</span> Harga dapat berubah sewaktu
             waktu. Hubungi kami untuk info promo dan kredit.
           </p>
           <div className="flex space-x-4 justify-center items-center">
-            <Button variant="ghost">Unduh Katalog</Button>
+            <Button variant="secondary">Unduh Katalog</Button>
             <CreditSimulationButton type={selectedType} harga={selectedHarga} />
           </div>
           <Button className="bg-red-500 text-white">Hubungi Kami</Button>

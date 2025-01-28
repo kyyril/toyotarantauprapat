@@ -7,6 +7,13 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import {
+  ArrowBigUpDash,
+  ArrowUp,
+  ArrowUpAZ,
+  ArrowUpCircle,
+  ArrowUpFromDotIcon,
+} from "lucide-react";
 
 interface TypeDropdownProps {
   typeArray: string[];
@@ -58,7 +65,10 @@ export function TypeDropdown({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="mt-2">{selectedType || "Pilih Tipe"}</Button>
+        <Button variant={"secondary"} className="mt-2">
+          {selectedType || "Pilih Tipe"}
+          <ArrowUp className="w-4 h-4 text-red-500" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent>
         <div className="p-4">
