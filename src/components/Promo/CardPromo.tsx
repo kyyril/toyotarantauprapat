@@ -71,28 +71,26 @@ export function CardPromo() {
     <div className="container mx-auto p-4">
       {/* Hot Promos Section */}
       <div className="mb-6">
-        <div className="flex space-x-4 overflow-x-auto">
+        <div className="flex space-x-4 overflow-x-auto snap-x snap-mandatory">
           {hotPromos.map((promo) => (
             <div
               key={promo.id}
-              className="w-screen min-w-[100vw] flex-shrink-0 m-1"
+              className="w-full min-w-[90vw] sm:min-w-[50vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0 snap-start"
             >
-              <Card className="border-none rounded-none shadow-none outline-none">
-                <CardHeader>
-                  <CardTitle>{promo.nama}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <img
-                    src={promo.gambar}
-                    alt={promo.nama}
-                    loading="lazy"
-                    className="w-full h-auto object-cover"
-                  />
-                </CardContent>
-                <CardFooter className="text-sm">
-                  <TimerIcon /> {formatDate(promo.mulai)} -{" "}
-                  {formatDate(promo.akhir)}
-                </CardFooter>
+              <Card className="rounded-lg shadow-lg overflow-hidden">
+                <img
+                  src={promo.gambar}
+                  alt={promo.nama}
+                  loading="lazy"
+                  className="w-full  object-cover"
+                />
+                <div className="p-2">
+                  <h2 className="text-lg font-semibold">{promo.nama}</h2>
+                  <div className="text-sm text-gray-500 flex items-center gap-1">
+                    <TimerIcon className="w-4 h-4" />
+                    {formatDate(promo.mulai)} - {formatDate(promo.akhir)}
+                  </div>
+                </div>
               </Card>
             </div>
           ))}
@@ -101,24 +99,27 @@ export function CardPromo() {
 
       {/* Other Promos Section */}
       <div className="mb-4">
-        <h2 className="text-2xl font-semibold">Lainnya</h2>
+        <h2 className="text-2xl font-semibold mb-2">Lainnya</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentItems.map((promo) => (
             <Link
               href={{ pathname: "/promodetail", query: { id: promo?.id } }}
               key={promo.id}
             >
-              <Card className="m-1 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out">
-                <CardHeader>
-                  <CardTitle>{promo.nama}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <img src={promo.gambar} alt={promo.nama} loading="lazy" />
-                </CardContent>
-                <CardFooter className="text-sm">
-                  <TimerIcon /> {formatDate(promo.mulai)} -{" "}
-                  {formatDate(promo.akhir)}
-                </CardFooter>
+              <Card className="m-1 transition transform hover:scale-95 hover:bg-secondary active:bg-primary-foreground duration-200 ease-in-out rounded-lg shadow-md">
+                <img
+                  src={promo.gambar}
+                  alt={promo.nama}
+                  loading="lazy"
+                  className="w-full h-32 object-cover rounded-t-lg"
+                />
+                <div className="p-2">
+                  <h2 className="text-base font-medium">{promo.nama}</h2>
+                  <div className="text-sm text-gray-500 flex items-center gap-1">
+                    <TimerIcon className="w-4 h-4" />
+                    {formatDate(promo.mulai)} - {formatDate(promo.akhir)}
+                  </div>
+                </div>
               </Card>
             </Link>
           ))}
