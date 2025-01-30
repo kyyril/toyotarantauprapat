@@ -1,5 +1,4 @@
 import { CardSales } from "@/components/Sales/CardSales";
-import { fetchSales } from "@/lib/utils/fetcher";
 
 const SalesPage = async () => {
   return (

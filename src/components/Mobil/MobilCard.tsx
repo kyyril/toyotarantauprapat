@@ -35,7 +35,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
   const harga = hargaArray[0];
   const transmisi = transmissionArray[0];
   const cc = ccArray[0];
-  const kategori = kategoriArray.join(", "); // Gabungkan kategori dengan koma
+  const kategori = kategoriArray.join(", ");
 
   const highlightQuery = (text: string, query: string) => {
     if (!query) return text;
@@ -43,7 +43,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
     const parts = text.split(regex);
     return parts.map((part, index) =>
       regex.test(part) ? (
-        <span key={index} className="bg-red-500 rounded-l-md rounded-t-md">
+        <span key={index} className="bg-red-500 px-1 rounded-md">
           {part}
         </span>
       ) : (
@@ -54,36 +54,37 @@ const MobilCard: React.FC<MobilCardProps> = ({
 
   return (
     <Link href={`/mobil/${mobil.nama}`}>
-      <Card className="overflow-hidden">
-        <div className="h-40 overflow-hidden">
+      <Card className="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+        <div className="h-36 sm:h-40 overflow-hidden">
           <img
             src={mobil.gambar || "/placeholder.png"}
             alt={mobil.nama || "Mobil"}
-            className="object-cover rounded-sm w-full h-full"
+            className="object-cover w-full h-full"
+            width={100}
+            height={50}
           />
         </div>
-        <div className="p-1">
-          <h3 className="text-lg font-bold">
+        <div className="p-2 sm:p-3">
+          <h3 className="text-sm sm:text-lg font-bold truncate">
             {highlightQuery(mobil.nama, query)}
           </h3>
         </div>
-        <div className="px-1">
-          <div className="flex flex-row">
-            <p className="text-sm flex">
-              {" "}
-              <Cog className="w-4 h-4 mt-0.5 mx-0.5" />
+        <div className="px-2 sm:px-3">
+          <div className="flex flex-wrap gap-2 text-xs sm:text-sm">
+            <p className="flex items-center">
+              <Cog className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {transmisi || "-"}
             </p>
-            <p className="text-sm mx-2 flex flex-row">
-              <Gauge className="w-4 h-4 mt-0.5 mx-0.5" />
-              {cc ? `${cc} CC` : "-"}
+            <p className="flex items-center">
+              <Gauge className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              {cc ? `${cc}` : "-"}
             </p>
-            <p className="text-sm flex">
-              <CalendarDays className="w-4 h-4 mt-0.5 mx-0.5" />{" "}
+            <p className="flex items-center">
+              <CalendarDays className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {mobil.tahun || "-"}
             </p>
           </div>
-          <p className="text-lg font-semibold text-red-500">
+          <p className="text-base sm:text-lg font-semibold text-red-500 mt-1">
             {harga ? `Rp ${harga}` : "-"}
           </p>
         </div>
