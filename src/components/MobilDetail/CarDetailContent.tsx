@@ -62,6 +62,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             src={mobil.gambar}
             alt={mobil.nama}
             className="w-full max-h-96 object-contain rounded-md mb-5"
+            loading="lazy"
           />
           <TypeDropdown
             typeArray={typeArray}

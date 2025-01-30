@@ -62,6 +62,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
             className="object-cover w-full h-full"
             width={100}
             height={50}
+            loading="lazy"
           />
         </div>
         <div className="p-2 sm:p-3">

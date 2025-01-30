@@ -3,43 +3,45 @@ import { Sales } from "@/lib/interfaces/data.interface";
 import { Button } from "../ui/button";
 import AdditionalSalesInfo from "./AdditionalSalesInfo";
 import GallerySales from "./GallerySales";
+import { PhoneCall } from "lucide-react";
 
 function SalesDetailContent({ sales }: { sales: Sales }) {
   return (
-    <main className="w-full flex justify-center items-start min-h-screen py-10 px-5 bg-gray-50">
-      <section className="w-full max-w-4xl bg-white shadow-md rounded-2xl p-8">
+    <main className="flex justify-center items-start min-h-screen py-10 px-5 w-full">
+      <section className="w-full max-w-4xl bg-background shadow-sm rounded-xl p-6">
         {/* Header Section */}
-        <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
-          Sales Details
-        </h2>
+        <h2 className="text-2xl font-bold mb-12 text-center">Sales Details</h2>
 
         {/* Content Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left Section */}
-          <div className="flex flex-col items-center">
+          <div className="flex justify-center">
             <img
               src={sales.profile}
               alt={sales.nama}
-              className="w-full h-72 object-cover rounded-xl shadow-md"
+              loading="lazy"
+              className="w-80 h-80 rounded-full object-cover border-2 border-red-500"
             />
-            <h1 className="text-2xl font-semibold text-gray-800 mt-6">
-              {sales.nama}
-            </h1>
           </div>
 
           {/* Right Section */}
-          <div className="flex flex-col justify-center">
-            <p className="text-gray-600 leading-relaxed text-justify mb-6">
+          <div>
+            <h1 className="text-2xl font-semibold mb-3">{sales.nama}</h1>
+            <p className="text-muted-foreground leading-relaxed text-left">
               {sales.deskripsi}
             </p>
-            <Button className="w-full bg-green-600  font-semibold py-2 rounded-lg hover:bg-opacity-50 transition">
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 w-full max-w-36 mt-4"
+            >
               {sales.nohp}
+              <PhoneCall className="h-5 w-5 text-red-500" />
             </Button>
           </div>
         </div>
 
         {/* Gallery Section */}
-        <div className="mt-8">
+        <div className="mt-16">
           <GallerySales gallery={sales.gallery} />
         </div>
 

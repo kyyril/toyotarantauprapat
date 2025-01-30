@@ -58,6 +58,7 @@ function PromoDetail() {
           src={gambar}
           alt={nama}
           className="w-full h-auto rounded-md mb-4"
+          loading="lazy"
         />
         <p className="text-gray-700 mb-2">
           <strong>Start Date:</strong>{" "}
