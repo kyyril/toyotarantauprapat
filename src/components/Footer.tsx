@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="py-12">
+    <footer className="pt-12 pb-4 mt-8 border-t shadow-lg">
       <div className="container mx-auto px-4 text-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Kolom 1 - Logo / Nama Website */}
@@ -16,19 +16,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Navigasi</h3>
             <ul className="mt-2 space-y-2">
               <li>
-                <a href="/" className="hover:underline">
-                  Tentang Kami
-                </a>
+                <a className="hover:underline">Tentang Kami</a>
               </li>
               <li>
-                <a href="/" className="hover:underline">
-                  Layanan
-                </a>
+                <a className="hover:underline">Layanan</a>
               </li>
               <li>
-                <a href="/" className="hover:underline">
-                  Kontak
-                </a>
+                <a className="hover:underline">Kontak</a>
               </li>
             </ul>
           </div>
