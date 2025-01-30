@@ -6,6 +6,8 @@ import { fetchSales } from "@/lib/utils/fetcher";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import { MousePointerClickIcon } from "lucide-react";
 
 export function BerandaCardSales() {
   const [sales, setSales] = useState<Sales[]>([]);
@@ -65,9 +67,9 @@ export function BerandaCardSales() {
       {/* Tombol "Selengkapnya" untuk melihat semua sales */}
       <div className="mt-4 text-center">
         <Link href="/sales">
-          <button className="px-4 py-2 text-sm sm:text-base bg-secondary rounded-lg hover:bg-primary-dark transition duration-200">
-            Selengkapnya
-          </button>
+          <Button variant={"secondary"}>
+            Selengkapnya <MousePointerClickIcon className="text-red-500" />
+          </Button>
         </Link>
       </div>
     </div>

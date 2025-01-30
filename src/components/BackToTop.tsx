@@ -36,7 +36,7 @@ const BackToTopButton = () => {
           variant="outline"
           className="backdrop-blur-sm rounded-xl py-6 mb-10 px-4 shadow-lg size-lg"
         >
-          <ArrowUp />
+          <ArrowUp className="text-red-500" />
         </Button>
       )}
     </div>

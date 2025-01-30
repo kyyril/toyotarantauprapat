@@ -31,7 +31,7 @@ function SalesDetailContent({ sales }: { sales: Sales }) {
               {sales.deskripsi}
             </p>
             <Button
-              variant="outline"
+              variant="secondary"
               className="flex items-center gap-2 w-full max-w-36 mt-4"
             >
               {sales.nohp}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navbar";
 import BackToTopButton from "@/components/BackToTop";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
         >
           <Navigation />
           {children}
+          <Footer />
           <BackToTopButton />
         </ThemeProvider>
       </body>

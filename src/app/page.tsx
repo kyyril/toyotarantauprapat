@@ -49,7 +49,7 @@ export default function Home() {
                   size="sm"
                 >
                   081269548966
-                  <PhoneCall />
+                  <PhoneCall className="text-red-500" />
                 </Button>
               </Link>
             </div>
@@ -74,10 +74,11 @@ export default function Home() {
         <CardProsesPembayaran />
       </section>
 
-      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 text-center mx-auto text-red-700">
-        “Auto2000 Rantauprapat tidak bertanggung jawab jika pembayaran tanpa
-        kuintansi resmi PT. ASTRA INTERNATIONAL Tbk. dan atau transfer
-        ditunjukkan ke rekening pribadi Sales/Oknum”
+      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 text-center mx-auto text-gray-600">
+        <span className="text-red-500">*</span> Auto2000 Rantauprapat tidak
+        bertanggung jawab jika pembayaran tanpa kuintansi resmi PT. ASTRA
+        INTERNATIONAL Tbk. dan atau transfer ditunjukkan ke rekening pribadi
+        Sales/Oknum
         <hr />
       </div>
 
