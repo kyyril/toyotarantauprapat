@@ -7,13 +7,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowBigUpDash,
-  ArrowUp,
-  ArrowUpAZ,
-  ArrowUpCircle,
-  ArrowUpFromDotIcon,
-} from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 interface TypeDropdownProps {
   typeArray: string[];

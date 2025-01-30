@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Sales } from "@/lib/interfaces/data.interface";
 import { fetchSales } from "@/lib/utils/fetcher";
 

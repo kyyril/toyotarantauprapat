@@ -20,7 +20,10 @@ export default function CarDetail() {
         setLoading(true);
         setError(false);
         try {
-          const data = await fetchMobilDetail(params?.slug);
+          const slug = Array.isArray(params.slug)
+            ? params.slug[0]
+            : params.slug; // Ambil string jika array
+          const data = await fetchMobilDetail(slug);
           setMobil(data);
         } catch (error) {
           console.error("Error fetching car details:", error);

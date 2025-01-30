@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { ClockIcon, MousePointerClickIcon } from "lucide-react";
+import { MousePointerClickIcon } from "lucide-react";
 
 interface CreditSimulationProps {
   type: string;

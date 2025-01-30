@@ -47,7 +47,7 @@ function PromoDetail() {
     );
   }
 
-  const { id, nama, gambar, mulai, akhir, deskripsi } = detail;
+  const { nama, gambar, mulai, akhir, deskripsi } = detail;
 
   return (
     <div className="max-w-4xl mx-auto p-6">

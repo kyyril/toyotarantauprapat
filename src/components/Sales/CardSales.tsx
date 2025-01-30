@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Sales } from "@/lib/interfaces/data.interface";
 import { fetchSales } from "@/lib/utils/fetcher";
 
@@ -35,7 +29,7 @@ export function CardSales() {
   if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-2 border-t-2 border-t-red-500 rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-2 border-t-2 border-t-red-500 border-dotted rounded-full animate-spin"></div>
       </div>
     );
   }

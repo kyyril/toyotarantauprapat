@@ -1,7 +1,6 @@
 import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
 import { useState } from "react";
-import { Card } from "../ui/card";
 import Deskripsi from "./Deskripsi";
 import YouTubePlayer from "./Video";
 import ColorList from "./ColorList";
