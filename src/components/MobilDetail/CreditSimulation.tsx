@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
+import { ClockIcon, MousePointerClickIcon } from "lucide-react";
 
 interface CreditSimulationProps {
   type: string;
@@ -26,7 +27,9 @@ export default function CreditSimulationButton({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="secondary">Simulasi Kredit</Button>
+        <Button variant="secondary">
+          Simulasi Kredit <MousePointerClickIcon className="text-red-500" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-96 p-4">
         <h2 className="text-lg font-semibold mb-2">{type}</h2>

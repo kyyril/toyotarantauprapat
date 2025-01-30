@@ -5,7 +5,6 @@ import { Car, CreditCard, PhoneCall, Wrench } from "lucide-react";
 import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
-import { CardSales } from "@/components/Sales/CardSales";
 import { BerandaCardSales } from "@/components/Sales/BerandaCardSales";
 
 export default function Home() {

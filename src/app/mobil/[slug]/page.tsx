@@ -20,7 +20,7 @@ export default function CarDetail() {
         setLoading(true);
         setError(false);
         try {
-          const data = await fetchMobilDetail(params.slug);
+          const data = await fetchMobilDetail(params?.slug);
           setMobil(data);
         } catch (error) {
           console.error("Error fetching car details:", error);

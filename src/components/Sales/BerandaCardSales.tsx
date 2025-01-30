@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Sales } from "@/lib/interfaces/data.interface";
 import { fetchSales } from "@/lib/utils/fetcher";
 
@@ -40,13 +46,23 @@ export function BerandaCardSales() {
         {/* Tampilkan maksimal 4 data sales */}
         {sales.slice(0, 4).map((sal) => (
           <Link href={`/sales/${sal.id}`} key={sal.id}>
-            <Card className="m-1 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out">
-              <CardContent>
-                <img src={sal.profile} alt={sal.nama} loading="lazy" />
+            <Card className="m-1 p-2 rounded-lg overflow-hidden transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out">
+              <CardContent className="flex flex-col items-center">
+                <img
+                  src={sal.profile}
+                  alt={sal.nama}
+                  loading="lazy"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border border-gray-300"
+                />
+                <div className="text-center mt-2">
+                  <h2 className="text-sm sm:text-base font-semibold">
+                    {sal.nama}
+                  </h2>
+                  <h3 className="text-xs sm:text-sm text-gray-500">
+                    {sal.nohp}
+                  </h3>
+                </div>
               </CardContent>
-              <CardHeader>
-                <CardTitle>{sal.nama}</CardTitle>
-              </CardHeader>
             </Card>
           </Link>
         ))}
@@ -55,7 +71,7 @@ export function BerandaCardSales() {
       {/* Tombol "Selengkapnya" untuk melihat semua sales */}
       <div className="mt-4 text-center">
         <Link href="/sales">
-          <button className="px-4 py-2 bg-secondary rounded-lg hover:bg-primary-dark">
+          <button className="px-4 py-2 text-sm sm:text-base bg-secondary rounded-lg hover:bg-primary-dark transition duration-200">
             Selengkapnya
           </button>
         </Link>
