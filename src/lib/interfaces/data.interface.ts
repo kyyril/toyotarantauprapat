@@ -15,6 +15,13 @@ export interface Sales {
   gallery: any;
 }
 
+export interface layanan {
+  id: number;
+  nama: string;
+  thumbnail: string;
+  desk_awal: string;
+}
+
 interface ProsesPembayaran {
   id: number;
   nama: string;

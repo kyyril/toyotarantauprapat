@@ -1,12 +1,13 @@
 import axios from "axios";
 import { Mobil } from "../interfaces/mobil.interface";
+import { layanan } from "../interfaces/data.interface";
 
 export const idSpead = process.env.NEXT_PUBLIC_SPREAD_MOBIL_ID;
 
 export const fetchMobil = async () => {
   try {
     const data = await axios.get(
-      `https://script.google.com/macros/s/${idSpead}/exec`
+      `https://script.google.com/macros/s/${idSpead}/exec?action=mobil`
     );
     return (
       data?.data.map((mobil: any) => ({
@@ -85,6 +86,31 @@ export async function fetchSalesDetail(idSales: any) {
   try {
     const response = await axios.get(
       `https://script.google.com/macros/s/${idSpead}/exec?action=sales&id_sales=${idSales}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
+    throw error;
+  }
+}
+
+// layanan
+export async function fetchLayanan() {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=layanan`
+    );
+    return response.data as layanan;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
+    throw error;
+  }
+}
+
+export async function fetchLayananDetail(idLayanan: number) {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=layanan&id_layanan=${idLayanan}=`
     );
     return response.data;
   } catch (error) {
