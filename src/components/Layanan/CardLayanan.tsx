@@ -14,6 +14,7 @@ const CardLayanan: React.FC<CardLayananProps> = ({ layanan }) => {
           src={layanan.thumbnail}
           alt={layanan.title}
           className="w-full h-full object-cover rounded-lg"
+          loading="lazy"
         />
       </div>
       <h3 className="text-lg font-semibold mt-2 mx-2">{layanan.title}</h3>

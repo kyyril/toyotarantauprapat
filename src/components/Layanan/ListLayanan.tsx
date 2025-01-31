@@ -35,7 +35,7 @@ const ListLayanan: React.FC = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
       {layananList.map((layanan, index) => (
         <Link href={`/layanan/${layanan.id}`}>
-          <CardLayanan key={index} layanan={layanan} />
+          <CardLayanan key={layanan.id} layanan={layanan} />
         </Link>
       ))}
     </div>

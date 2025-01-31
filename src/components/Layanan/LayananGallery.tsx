@@ -15,6 +15,7 @@ export default function LayananGallery({ images }: GalleryProps) {
               src={src}
               alt={`Gallery image ${index + 1}`}
               className="w-full h-40 object-cover transition-transform transform hover:scale-105"
+              loading="lazy"
             />
           </div>
         ))}
