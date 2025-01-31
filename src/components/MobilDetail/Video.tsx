@@ -6,10 +6,8 @@ interface YouTubePlayerProps {
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ video }) => {
   return (
-    <div className="youtube-container">
+    <div className="w-full aspect-video mx-auto">
       <iframe
-        width="560"
-        height="315"
         src={video}
         title="YouTube video player"
         frameBorder="0"

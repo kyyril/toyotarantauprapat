@@ -10,7 +10,7 @@ async function CardProsesPembayaran() {
       <div className="mb-4">
         <h2 className="text-2xl font-semibold">Proses Pembayaran</h2>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 sm:grid-cols-1 d:grid-cols-3 lg:grid-cols-2 gap-1">
         {data.prosespembayaran.map((inpem) => (
           <Card key={inpem.id} className="m-1">
             <div className="flex text-sm justify-between">

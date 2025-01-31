@@ -45,7 +45,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
   };
 
   return (
-    <main className="w-full flex flex-col items-center min-h-screen p-5">
+    <main className="w-full flex flex-col items-center min-h-screen p-5 mx- max-w-7xl">
       {/* Header */}
       <header className="w-full max-w-4xl text-center mb-8">
         <h1 className="text-3xl font-bold">{mobil.nama}</h1>
@@ -122,10 +122,12 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
       </div>
 
       {/* Deskripsi */}
+
       <Deskripsi nama={mobil.nama} />
 
       {/* Video */}
-      <div className="w-full max-w-4xl mt-8 items-center flex justify-center">
+      <div className="flex flex-col justify-center mt-16">
+        <h2 className="text-start mb-2 text-lg font-semibold">Video</h2>
         <YouTubePlayer video={mobil.video} />
       </div>
     </main>

@@ -44,13 +44,17 @@ const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
     setGroupedData(grouped);
   }, [data]);
 
-  // Function to get the lowest price from a string
+  // Function untuk mendapatkan harga terendah dengan membaca seluruh index
   const getLowestPrice = (harga: string | undefined) => {
+    if (!harga) return Infinity; // Jika tidak ada harga, return angka terbesar
+
     const parsedHarga = parseArray(harga);
     const hargaNumbers = parsedHarga
-      .map((h) => parseInt(h.trim(), 10))
-      .filter((h) => !isNaN(h));
-    return Math.min(...hargaNumbers);
+      .map((h) => h.replace(/\D/g, "")) // Hilangkan karakter non-angka
+      .map((h) => parseInt(h, 10)) // Ubah ke integer
+      .filter((h) => !isNaN(h)); // Hanya ambil angka valid
+
+    return hargaNumbers.length > 0 ? Math.min(...hargaNumbers) : Infinity;
   };
 
   return (
@@ -97,8 +101,8 @@ const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
                   mob.nama.toLowerCase().includes(query.toLowerCase())
                 )
                 .sort((a, b) => {
-                  const hargaA = getLowestPrice(parseArray(a.harga)[0]);
-                  const hargaB = getLowestPrice(parseArray(b.harga)[0]);
+                  const hargaA = getLowestPrice(a.harga); // Baca semua harga
+                  const hargaB = getLowestPrice(b.harga);
                   return sortOrder === "asc"
                     ? hargaA - hargaB
                     : hargaB - hargaA;

@@ -29,7 +29,7 @@ const Deskripsi: React.FC<DeskripsiProps> = ({ nama }) => {
   };
 
   return (
-    <div className="w-full max-w-4xl justify-center items-center rounded-lg shadow-md p-5 mt-5">
+    <div className="w-full max-w-4xl justify-center items-center p-5 mt-5">
       <h2 className="text-2xl font-semibold mb-4">Deskripsi</h2>
       {!deskripsiAwal && !deskripsiAkhir ? (
         <div className="flex w-full mx-auto justify-center items-center">

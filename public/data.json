@@ -19,12 +19,12 @@
     {
       "id": 3,
       "nama": "Cek/Bilyet Giro",
-      "deskripsi": "Harus diatasnamakan PT. Astra International Tbk. dan dianggap sah apabila dana sudah dinyatakan masuk direkening PT. Astra International Tbk:"
+      "deskripsi": "Harus diatasnamakan PT. Astra International Tbk. dan dianggap sah apabila dana sudah dinyatakan masuk direkening PT."
     },
     {
       "id": 4,
       "nama": "Transfer",
-      "deskripsi": "Transfer wajib dilakukan ke rekening PT. Astra International Tbk. dengan nomor rekening :"
+      "deskripsi": "Transfer wajib dilakukan ke rekening PT. Astra International Tbk."
     }
   ],
   "bank": [

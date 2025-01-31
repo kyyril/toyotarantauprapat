@@ -100,7 +100,7 @@ export function CardPromo() {
       {/* Other Promos Section */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold mb-2">Lainnya</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {currentItems.map((promo) => (
             <Link
               href={{ pathname: "/promodetail", query: { id: promo?.id } }}

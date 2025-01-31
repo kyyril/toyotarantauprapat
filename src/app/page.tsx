@@ -59,7 +59,7 @@ export default function Home() {
 
       {/* promo */}
       <section
-        className="max-w-7xl w-full mt-10 px-4 md:px-16 mx-auto"
+        className="max-w-8xl w-full mt-10 px-4 md:px-16 mx-auto"
         id="promo"
       >
         <h2 className="text-2xl font-semibold">Promo</h2>
@@ -68,7 +68,7 @@ export default function Home() {
 
       {/* standart pembayaran */}
       <section
-        className="max-w-7xl w-full mt-10 px-4 md:px-16 mx-auto"
+        className="max-w-8xl w-full mt-10 px-4 md:px-16 mx-auto"
         id="pembayaran"
       >
         <CardProsesPembayaran />
@@ -79,12 +79,12 @@ export default function Home() {
         bertanggung jawab jika pembayaran tanpa kuintansi resmi PT. ASTRA
         INTERNATIONAL Tbk. dan atau transfer ditunjukkan ke rekening pribadi
         Sales/Oknum
-        <hr />
+        <hr className="mt-4" />
       </div>
 
       {/* service */}
       <section
-        id="service"
+        id="services"
         className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
       >
         <div className="flex items-center justify-between">
@@ -107,15 +107,15 @@ export default function Home() {
 
       <section
         id="sales"
-        className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
+        className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
       >
         <h2 className="text-2xl font-semibold">Sales</h2>
         <BerandaCardSales />
       </section>
 
       <section
-        className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
-        id="pembayaran"
+        className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
+        id="lokasi"
       >
         <div className="mb-4">
           <h2 className="text-2xl font-semibold">Lokasi</h2>

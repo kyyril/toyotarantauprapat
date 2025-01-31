@@ -38,7 +38,7 @@ export function BerandaCardSales() {
 
   return (
     <div className="mb-4">
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-4">
         {/* Tampilkan maksimal 4 data sales */}
         {sales.slice(0, 4).map((sal) => (
           <Link href={`/sales/${sal.id}`} key={sal.id}>
@@ -51,7 +51,7 @@ export function BerandaCardSales() {
                   className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-red-500"
                 />
                 <div className="text-center mt-2">
-                  <h2 className="text-sm sm:text-base font-semibold">
+                  <h2 className="text-sm sm:text-base font-semibold truncate">
                     {sal.nama}
                   </h2>
                   <h3 className="text-xs sm:text-sm text-gray-500">
