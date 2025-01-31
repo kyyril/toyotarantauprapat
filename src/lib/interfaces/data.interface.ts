@@ -16,10 +16,13 @@ export interface Sales {
 }
 
 export interface layanan {
-  id: number;
-  nama: string;
+  id: string;
+  title: string;
   thumbnail: string;
   desk_awal: string;
+  deskripsi: string;
+  gallery: string;
+  poin_poin: string;
 }
 
 interface ProsesPembayaran {

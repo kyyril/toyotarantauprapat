@@ -1,11 +1,46 @@
-import React from "react";
+"use client";
 
-function LayananDetail(params: any) {
-  return (
-    <div>
-      LayananDetail dengan id: <span className="font-bold">{params.slug}</span>
-    </div>
-  );
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { fetchLayananDetail } from "@/lib/utils/fetcher";
+import LoadingScreen from "@/components/MobilDetail/LoadingDetail";
+import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
+import CarDetailContent from "@/components/MobilDetail/CarDetailContent";
+import { layanan } from "@/lib/interfaces/data.interface";
+import LayananDetailContent from "@/components/Layanan/LayananDetailContent";
+
+export default function LayananDetail() {
+  const params = useParams();
+  const [layanan, setLayanan] = useState<layanan | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (params?.slug) {
+        setLoading(true);
+        setError(false);
+        try {
+          const slug = Array.isArray(params.slug)
+            ? params.slug[0]
+            : params.slug; // Ambil string jika array
+          const data = await fetchLayananDetail(slug);
+          setLayanan(data);
+        } catch (error) {
+          console.error("Error fetching car details:", error);
+          setError(true);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+  }, [params?.slug]);
+
+  if (loading) return <LoadingScreen />;
+  if (error || !layanan)
+    return <ErrorScreen onReload={() => window.location.reload()} />;
+
+  return <LayananDetailContent layanan={layanan} />;
 }
-
-export default LayananDetail;

@@ -107,12 +107,12 @@ export async function fetchLayanan() {
   }
 }
 
-export async function fetchLayananDetail(idLayanan: number) {
+export async function fetchLayananDetail(idLayanan: string) {
   try {
     const response = await axios.get(
-      `https://script.google.com/macros/s/${idSpead}/exec?action=layanan&id_layanan=${idLayanan}=`
+      `https://script.google.com/macros/s/${idSpead}/exec?action=layanan&id_layanan=${idLayanan}&fields=title,gallery,desk_awal,deskripsi,poin_poin`
     );
-    return response.data;
+    return response.data as layanan;
   } catch (error) {
     console.error("Error fetching promo detail:", error);
     throw error;
