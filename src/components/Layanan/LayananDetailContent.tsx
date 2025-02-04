@@ -42,10 +42,10 @@ export default function LayananDetailContent({
 
       {/* Poin-poin layanan */}
       {[
-        { title: "Poin Layanan", data: point },
-        { title: "Keunggulan Layanan", data: keunggulan },
-        { title: "Kemudahan Layanan", data: kemudahan },
-        { title: "Langkah-Langkah Layanan", data: Langkah_langkah },
+        { title: "Layanan", data: point },
+        { title: "Keunggulan", data: keunggulan },
+        { title: "Kemudahan", data: kemudahan },
+        { title: "Langkah-Langkah", data: Langkah_langkah },
       ].map((section, index) => (
         <div key={index} className="mt-6">
           <h2 className="text-2xl font-semibold">{section.title}</h2>
