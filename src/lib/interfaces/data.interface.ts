@@ -22,7 +22,10 @@ export interface layanan {
   desk_awal: string;
   deskripsi: string;
   gallery: string;
-  poin_poin: string;
+  point: string;
+  keunggulan: string;
+  kemudahan: string;
+  langkah_langkah: string;
 }
 
 interface ProsesPembayaran {

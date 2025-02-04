@@ -110,7 +110,7 @@ export async function fetchLayanan() {
 export async function fetchLayananDetail(idLayanan: string) {
   try {
     const response = await axios.get(
-      `https://script.google.com/macros/s/${idSpead}/exec?action=layanan&id_layanan=${idLayanan}&fields=title,gallery,desk_awal,deskripsi,poin_poin`
+      `https://script.google.com/macros/s/${idSpead}/exec?action=layanan&id_layanan=${idLayanan}&fields=title,gallery,desk_awal,deskripsi,point,keunggulan,kemudahan,langkah_langkah,`
     );
     return response.data as layanan;
   } catch (error) {
