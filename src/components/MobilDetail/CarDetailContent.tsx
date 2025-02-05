@@ -2,7 +2,6 @@ import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
 import { useState } from "react";
 import Deskripsi from "./Deskripsi";
-import YouTubePlayer from "./Video";
 import ColorList from "./ColorList";
 import { Button } from "../ui/button";
 import CreditSimulationButton from "./CreditSimulation";
@@ -126,9 +125,19 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
       <Deskripsi nama={mobil.nama} />
 
       {/* Video */}
-      <div className="flex flex-col justify-center mt-16">
+      <div className="flex flex-col justify-center mt-16 w-full mx-auto max-w-4xl px-4">
         <h2 className="text-start mb-2 text-lg font-semibold">Video</h2>
-        <YouTubePlayer video={mobil.video} />
+        <div className="w-full aspect-video mx-auto">
+          <iframe
+            className="w-full h-full"
+            src={mobil.video}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </main>
   );
