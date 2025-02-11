@@ -1,3 +1,4 @@
+"use client";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
 import { useState } from "react";
