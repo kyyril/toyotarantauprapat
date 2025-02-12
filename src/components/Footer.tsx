@@ -36,9 +36,8 @@ const Footer = () => {
               ToyotaRantauPrapat
             </h2>
             <p className="text-sm text-gray-400 mt-2">
-              Bersama Toyota Rantauprapat, Anda Tidak Hanya Mendapatkan Mobil
-              Impian, Tapi Juga Pengalaman Berbelanja yang Menyenangkan dan
-              Terpercaya.
+              Toyota Rantauprapat: Beli Mobil Impian Jadi Lebih Mudah, Proses
+              Cepat, Angsuran Ringan, dan Pelayanan Purna Jual Terjamin.
             </p>
           </div>
 

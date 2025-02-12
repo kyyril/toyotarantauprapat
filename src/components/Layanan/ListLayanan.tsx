@@ -27,8 +27,8 @@ const ListLayanan: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-2 border-t-2 border-t-red-500 border-dotted rounded-full animate-spin" />
+      <div className="flex items-center justify-center h-screen">
+        <span className="loader"></span>
       </div>
     );
   }

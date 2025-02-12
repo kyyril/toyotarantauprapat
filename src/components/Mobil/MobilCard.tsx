@@ -54,7 +54,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
 
   return (
     <Link href={`/mobil/${mobil.nama}`}>
-      <Card className="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+      <Card className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out ">
         <div className="h-36 sm:h-40 overflow-hidden">
           <img
             src={mobil.gambar || "/placeholder.png"}

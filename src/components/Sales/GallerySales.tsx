@@ -9,7 +9,7 @@ function GallerySales({ gallery }: { gallery: string }) {
   return (
     <div>
       <h3 className="text-lg font-semibold mb-4">Gallery</h3>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {images.map((image, index) => (
           <Dialog key={index}>
             <DialogTrigger onClick={() => setSelectedImage(image.trim())}>
@@ -18,7 +18,7 @@ function GallerySales({ gallery }: { gallery: string }) {
                   <img
                     src={image.trim()}
                     alt={`Gallery Image ${index + 1}`}
-                    className="w-full h-32 object-cover"
+                    className="w-full h-40 object-cover transition-transform transform hover:scale-105"
                     loading="lazy"
                   />
                 </CardContent>

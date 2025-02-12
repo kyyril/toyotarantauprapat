@@ -45,8 +45,8 @@ export function CardPromo() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-2 border-t-2 border-t-red-500 rounded-full border-dotted animate-spin"></div>
+      <div className="flex items-center justify-center h-screen">
+        <span className="loader"></span>
       </div>
     );
   }
@@ -77,12 +77,12 @@ export function CardPromo() {
               key={promo.id}
               className="w-full min-w-[90vw] sm:min-w-[50vw] md:min-w-[40vw] lg:min-w-[30vw] flex-shrink-0 snap-start"
             >
-              <Card className="rounded-lg shadow-lg overflow-hidden">
+              <Card className="rounded-lg overflow-hidden shadow-xl outline-none border-none dark:bg-black">
                 <img
                   src={promo.gambar}
                   alt={promo.nama}
                   loading="lazy"
-                  className="w-full  object-cover"
+                  className="w-full max-h-screen object-cover"
                 />
                 <div className="p-2">
                   <h2 className="text-lg font-semibold">{promo.nama}</h2>
@@ -106,7 +106,7 @@ export function CardPromo() {
               href={{ pathname: "/promodetail", query: { id: promo?.id } }}
               key={promo.id}
             >
-              <Card className="m-1 transition transform hover:scale-95 hover:bg-secondary active:bg-primary-foreground duration-200 ease-in-out rounded-lg shadow-md">
+              <Card className="m-1 transition transform shadow-xl outline-none border-none dark:bg-black hover:scale-95 hover:bg-secondary active:bg-primary-foreground duration-200 ease-in-out rounded-lg">
                 <img
                   src={promo.gambar}
                   alt={promo.nama}

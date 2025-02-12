@@ -30,8 +30,8 @@ export function BerandaCardSales() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-16 h-16 border-2 border-t-2 border-t-red-500 rounded-full border-dotted animate-spin"></div>
+      <div className="flex items-center justify-center h-screen">
+        <span className="loader"></span>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export function BerandaCardSales() {
         {/* Tampilkan maksimal 4 data sales */}
         {sales.slice(0, 4).map((sal) => (
           <Link href={`/sales/${sal.id}`} key={sal.id}>
-            <Card className="m-1 p-2 rounded-lg overflow-hidden transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out">
+            <Card className="m-1 p-2 rounded-lg overflow-hidden transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 shadow-xl outline-none border-none dark:bg-black">
               <div className="flex flex-col items-center">
                 <img
                   src={sal.profile}
