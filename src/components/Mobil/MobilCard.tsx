@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { CalendarDays, Cog, Gauge } from "lucide-react";
@@ -12,11 +11,7 @@ interface MobilCardProps {
   getLowestPrice: (harga: string) => number;
 }
 
-const MobilCard: React.FC<MobilCardProps> = ({
-  mobil,
-  query,
-  getLowestPrice,
-}) => {
+const MobilCard: React.FC<MobilCardProps> = ({ mobil, query }) => {
   const parseArray = (value: any): string[] => {
     if (typeof value === "string" && value.includes(",")) {
       return value.split(",").map((v) => v.trim());
@@ -54,7 +49,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
 
   return (
     <Link href={`/mobil/${mobil.nama}`}>
-      <Card className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out ">
+      <div className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out ">
         <div className="h-36 sm:h-40 overflow-hidden">
           <img
             src={mobil.gambar || "/placeholder.png"}
@@ -89,7 +84,7 @@ const MobilCard: React.FC<MobilCardProps> = ({
             {harga ? `Rp ${harga}` : "-"}
           </p>
         </div>
-      </Card>
+      </div>
     </Link>
   );
 };

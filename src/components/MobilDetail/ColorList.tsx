@@ -34,10 +34,9 @@ const ColorList: React.FC<ColorListProps> = ({ colors, colorNames }) => {
           <div
             key={index}
             onClick={() => handleColorClick(index)} // Handle klik pada warna
-            className="w-8 h-8 rounded-full cursor-pointer"
+            className="w-8 h-8 rounded-full cursor-pointer border border-solid border-gray-500"
             style={{
               backgroundColor: color,
-              border: "1px solid #000", // Border untuk warna putih
             }}
             title={colorNameArray[index] || "Unknown Color"} // Tooltip nama warna
           ></div>

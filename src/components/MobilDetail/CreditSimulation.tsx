@@ -27,8 +27,9 @@ export default function CreditSimulationButton({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="secondary">
-          Simulasi Kredit <MousePointerClickIcon className="text-red-500" />
+        <Button variant="outline" className="group">
+          Simulasi Kredit{" "}
+          <MousePointerClickIcon className="text-red-500 group-hover:translate-x-1 transition-transform" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-96 p-4">

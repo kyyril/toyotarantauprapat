@@ -6,6 +6,7 @@ import Deskripsi from "./Deskripsi";
 import ColorList from "./ColorList";
 import { Button } from "../ui/button";
 import CreditSimulationButton from "./CreditSimulation";
+import { PhoneCall, ScrollText } from "lucide-react";
 
 interface CarDetailContentProps {
   mobil: Mobil;
@@ -42,6 +43,14 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
     setSelectedType(type);
     setSelectedTransmisi(transmisi);
     setSelectedHarga(harga);
+  };
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "6281260671163";
+    const message = encodeURIComponent(
+      `Halo, saya tertarik dengan ${mobil.nama}, dengan tipe (${selectedType}). Saya ingin mengetahui lebih lanjut mengenai mobil ini.`
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (
@@ -86,10 +95,20 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             waktu. Hubungi kami untuk info promo dan kredit.
           </p>
           <div className="flex space-x-4 justify-center mx-auto items-center">
-            <Button variant="secondary">Unduh Katalog</Button>
+            <Button variant="outline" className="group">
+              <ScrollText className="text-red-500 group-hover:translate-x-1 transition-transform" />
+              <a href={mobil.katalog}>Unduh Katalog</a>
+            </Button>
             <CreditSimulationButton type={selectedType} harga={selectedHarga} />
           </div>
-          <Button variant={"destructive"}>Hubungi Kami</Button>
+          <Button
+            onClick={handleWhatsAppClick}
+            variant={"default"}
+            className="group max-w-40 flex justify-center items-center w-full mx-auto"
+          >
+            <PhoneCall className="text-red-500 group-hover:translate-x-1 transition-transform" />{" "}
+            Hubungi Kami
+          </Button>
         </section>
       </div>
 

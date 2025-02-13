@@ -8,7 +8,7 @@ interface CardLayananProps {
 
 const CardLayanan: React.FC<CardLayananProps> = ({ layanan }) => {
   return (
-    <Card className="rounded-2xl shadow-lg overflow-hidden transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out outline-none border-none dark:bg-black">
+    <div className="rounded-2xl shadow-lg overflow-hidden transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out outline-none border-none dark:bg-black">
       <div className="w-full h-48">
         <img
           src={layanan.thumbnail}
@@ -18,8 +18,8 @@ const CardLayanan: React.FC<CardLayananProps> = ({ layanan }) => {
         />
       </div>
       <h3 className="text-lg font-semibold mt-2 mx-2">{layanan.title}</h3>
-      <p className="text-gray-400 text-sm mx-2 mb-2">{layanan.desk_awal}</p>
-    </Card>
+      <p className="text-gray-500 text-sm mx-2 mb-2">{layanan.desk_awal}</p>
+    </div>
   );
 };
 

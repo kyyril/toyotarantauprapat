@@ -15,4 +15,5 @@ export interface Mobil {
   video: string;
   color: string;
   color_name: string;
+  katalog: string;
 }

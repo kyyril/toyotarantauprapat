@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, CardDescription } from "./ui/card";
 
 import { getJSONData } from "@/lib/server";
 
@@ -12,7 +11,7 @@ async function CardProsesPembayaran() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-1 d:grid-cols-3 lg:grid-cols-2 gap-1">
         {data.prosespembayaran.map((inpem) => (
-          <Card key={inpem.id} className="m-1">
+          <div key={inpem.id} className="m-1 shadow-lg p-1 rounded-sm">
             <div className="flex text-sm justify-between">
               <div className="flex items-start left-0 top-0 w-auto justify-start">
                 <div className="flex flex-row">
@@ -25,10 +24,10 @@ async function CardProsesPembayaran() {
                 </div>
               </div>
             </div>
-            <CardDescription className="flex px-3 ml-2 justify-start text-sm text-primary">
+            <p className="flex px-3 ml-2 justify-start text-sm text-primary">
               {inpem.deskripsi}
-            </CardDescription>
-          </Card>
+            </p>
+          </div>
         ))}
       </div>
     </div>

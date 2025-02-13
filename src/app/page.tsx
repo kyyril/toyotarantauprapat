@@ -1,18 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Car, CreditCard, PhoneCall, Wrench } from "lucide-react";
-
 import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
-import { BerandaCardSales } from "@/components/Sales/BerandaCardSales";
+import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <section
         id="home"
-        className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20 h-[90vh]"
+        className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20 h-screen"
       >
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mx-1">
           <div className="">
@@ -48,7 +47,7 @@ export default function Home() {
                   variant="secondary"
                   size="sm"
                 >
-                  081269548966
+                  +6281260671163
                   <PhoneCall className="text-red-500" />
                 </Button>
               </Link>
@@ -74,7 +73,7 @@ export default function Home() {
         <CardProsesPembayaran />
       </section>
 
-      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 text-center mx-auto text-gray-600">
+      <div className="max-w-7xl w-full mt-4 px-8 md:px-32 text-center mx-auto text-gray-500">
         <span className="text-red-500">*</span> Auto2000 Rantauprapat tidak
         bertanggung jawab jika pembayaran tanpa kuintansi resmi PT. ASTRA
         INTERNATIONAL Tbk. dan atau transfer ditunjukkan ke rekening pribadi
@@ -109,8 +108,8 @@ export default function Home() {
         id="sales"
         className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
       >
-        <h2 className="text-2xl font-semibold">Sales</h2>
-        <BerandaCardSales />
+        <h2 className="text-2xl font-semibold">Mobil</h2>
+        <BerandaCardMobil />
       </section>
 
       <section
