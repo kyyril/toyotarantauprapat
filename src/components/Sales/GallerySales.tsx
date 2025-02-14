@@ -1,43 +1,76 @@
-import React, { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Card, CardContent } from "@/components/ui/card";
+"use client";
 
-function GallerySales({ gallery }: { gallery: string }) {
-  const images = gallery.split(",");
+import React, { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Skeleton } from "@/components/ui/skeleton";
+import { fetchGallery } from "@/lib/utils/fetcher";
+
+const TestimoniCard = () => {
+  const [testimonials, setTestimonials] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  useEffect(() => {
+    const getTestimonials = async () => {
+      try {
+        const response = await fetchGallery();
+        if (response) {
+          setTestimonials(response);
+        }
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getTestimonials();
+  }, []);
+
   return (
-    <div>
-      <h3 className="text-lg font-semibold mb-4">Gallery</h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-        {images.map((image, index) => (
-          <Dialog key={index}>
-            <DialogTrigger onClick={() => setSelectedImage(image.trim())}>
-              <Card className="cursor-pointer overflow-hidden">
-                <CardContent className="p-0">
-                  <img
-                    src={image.trim()}
-                    alt={`Gallery Image ${index + 1}`}
-                    className="w-full h-40 object-cover transition-transform transform hover:scale-105"
-                    loading="lazy"
-                  />
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-bold text-center mb-6">Testimoni</h2>
+      <div className="grid md:grid-cols-3 gap-4">
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <Card
+                key={index}
+                className="shadow-lg rounded-lg overflow-hidden"
+              >
+                <CardContent className="p-2 flex justify-center items-center">
+                  <Skeleton className="w-full h-[200px] md:h-[240px] lg:h-[320px] rounded-lg animate-pulse" />
                 </CardContent>
               </Card>
-            </DialogTrigger>
-            <DialogContent className="p-2">
-              {selectedImage && (
-                <img
-                  src={selectedImage}
-                  alt="Full Image"
-                  className="w-full h-auto rounded-lg"
-                />
-              )}
-            </DialogContent>
-          </Dialog>
-        ))}
+            ))
+          : testimonials.map((imageUrl, index) => (
+              <Dialog key={index}>
+                <DialogTrigger asChild>
+                  <Card
+                    className="shadow-lg rounded-lg overflow-hidden cursor-pointer"
+                    onClick={() => setSelectedImage(imageUrl)}
+                  >
+                    <CardContent className="p-2 flex justify-center items-center">
+                      <img
+                        src={imageUrl}
+                        alt={`Testimoni ${index + 1}`}
+                        className="w-full h-[200px] md:h-[240px] lg:h-[320px] object-cover rounded-lg transition-transform transform hover:scale-105"
+                      />
+                    </CardContent>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <img
+                    src={selectedImage || ""}
+                    alt="Preview"
+                    className="w-full h-auto rounded-lg"
+                  />
+                </DialogContent>
+              </Dialog>
+            ))}
       </div>
     </div>
   );
-}
+};
 
-export default GallerySales;
+export default TestimoniCard;

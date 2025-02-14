@@ -25,10 +25,10 @@ export const navigationItems = [
     name: "Layanan",
     href: "/layanan",
   },
-  // {
-  //   name: "Sales",
-  //   href: "/sales",
-  // },
+  {
+    name: "Gallery",
+    href: "/gallery",
+  },
   {
     name: "Rekomendasi AI",
     href: "/rekomendasi-ai",

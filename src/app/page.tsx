@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Car, CreditCard, PhoneCall, Wrench } from "lucide-react";
+import { Car, CreditCard, Wrench } from "lucide-react";
 import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
 import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
+import WassapClick from "@/components/WassapClick";
 
 export default function Home() {
   return (
@@ -43,22 +43,14 @@ export default function Home() {
               </h1>
             </div>
             <p className="max-w-[600px] lg:text-lg  text-gray-500 font-light dark:text-gray-400">
-              Selamat datang di dealer Resmi Toyota Rantauprapat . Tersedia
-              beragam kebutuhan serta promo maupun fasilitas pembayaran secara
-              kredit dan tunai. Dapatkan juga layanan purna jual seperti servis
-              mobil dan penjualan part Toyota.
+              Halo! Perkenalkan saya Viona Pakpahan, seorang sales executive
+              yang penuh semangat di Auto2000 Rantauprapat. Saya senang membantu
+              pelanggan menemukan mobil Toyota yang sempurna untuk kebutuhan
+              mereka. Saya memiliki kepribadian yang ramah dan mudah bergaul,
+              dan selalu siap untuk menjawab pertanyaan dan memberikan saran.
             </p>
             <div className="space-x-4 mt-2">
-              <Link target="_blank" href={"/"}>
-                <Button
-                  className="hover:text-red-500 transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out"
-                  variant="secondary"
-                  size="sm"
-                >
-                  +6281260671163
-                  <PhoneCall className="text-red-500" />
-                </Button>
-              </Link>
+              <WassapClick />
             </div>
           </div>
         </div>

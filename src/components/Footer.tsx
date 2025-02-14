@@ -1,29 +1,11 @@
-import { Instagram } from "lucide-react";
+import { FacebookIcon, InstagramIcon } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
-  const navigationLinks = [
-    { name: "Beranda", href: "/" },
-    { name: "Mobil", href: "/mobil" },
-    { name: "Layanan", href: "/layanan" },
-    { name: "Sales", href: "/sales" },
-  ];
-
-  const socialLinks = [
-    {
-      name: "Instagram",
-      href: "https://www.instagram.com/auto2000_rantauprapat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
-    },
-  ];
-
   const officeHours = [
     "Senin - Jumat : 08:00 - 17:00",
     "Sabtu : 08:00 - 16:00",
     "Minggu & Tanggal Merah : TUTUP",
-  ];
-
-  const contacts = [
-    { role: "Kepala Cabang", name: "Lim Beny Gunawan" },
-    { role: "Kepala Bengkel", name: "Teddy Ekamto" },
   ];
 
   return (
@@ -31,30 +13,43 @@ const Footer = () => {
       <div className="container mx-auto px-6 text-center md:text-left">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo & Deskripsi */}
-          <div className="md:col-span-2">
-            <h2 className="text-2xl font-bold text-red-500">
-              ToyotaRantauPrapat
-            </h2>
+          <div className="flex justify-center flex-col items-center">
+            <img
+              src={"/images/logo.png"}
+              alt="logo"
+              className="w-full h-auto max-w-40"
+            />
+            <h2 className="text-2xl font-semibold">Viona Rantauprapat</h2>
             <p className="text-sm text-gray-400 mt-2">
-              Toyota Rantauprapat: Beli Mobil Impian Jadi Lebih Mudah, Proses
-              Cepat, Angsuran Ringan, dan Pelayanan Purna Jual Terjamin.
+              Viona Toyota Rantauprapat, siap melayani anda sepenuh hati
             </p>
           </div>
 
           {/* Navigasi */}
           <div>
             <h3 className="text-lg font-bold text-red-500">Navigasi</h3>
-            <ul className="mt-3 space-y-1">
-              {navigationLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-sm hover:text-red-500 transition underline"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
+            <ul className="mt-3 space-y-1 flex flex-col">
+              <Link href={"/"} className="hover:opacity-50 text-sm underline">
+                Home
+              </Link>
+              <Link
+                href={"/mobil"}
+                className="hover:opacity-50 text-sm underline"
+              >
+                Mobil
+              </Link>
+              <Link
+                href={"/layanan"}
+                className="hover:opacity-50 text-sm underline"
+              >
+                Layanan
+              </Link>
+              <Link
+                href={"/rekomendasi-ai"}
+                className="hover:opacity-50 text-sm underline"
+              >
+                Rekomendasi AI
+              </Link>
             </ul>
           </div>
 
@@ -62,30 +57,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold text-red-500">Ikuti Kami</h3>
             <div className="mt-3 flex space-x-4 justify-center md:justify-start">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-red-500 transition text-sm underline flex items-center gap-2"
-                >
-                  {social.name}
-                </a>
-              ))}
+              <Link
+                href="https://www.instagram.com/viona_elisa/"
+                className="gap-1 text-sm  flex flex-row justify-center items-center text-center hover:opacity-50"
+              >
+                <InstagramIcon className="h-4 w-4 text-pink-600" />
+                Instagram
+              </Link>
+              <Link
+                href="https://www.facebook.com/profile.php?id=61555485359987#"
+                className="gap-1 text-sm  flex flex-row justify-center items-center text-center hover:opacity-50"
+              >
+                <FacebookIcon className="h-4 w-4 text-blue-500" />
+                Facebook
+              </Link>
             </div>
-          </div>
-
-          {/* Kontak */}
-          <div>
-            <h3 className="text-lg font-bold text-red-500">Kepala</h3>
-            <ul className="mt-3 space-y-1 text-sm">
-              {contacts.map((contact) => (
-                <li key={contact.role}>
-                  {contact.role}: {contact.name}
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Jam Operasional */}

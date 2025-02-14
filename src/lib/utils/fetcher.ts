@@ -118,3 +118,16 @@ export async function fetchLayananDetail(idLayanan: string) {
     throw error;
   }
 }
+
+//gallery
+export async function fetchGallery() {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=gallery`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
+    throw error;
+  }
+}
