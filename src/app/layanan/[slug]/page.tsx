@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { fetchLayananDetail } from "@/lib/utils/fetcher";
 import LoadingScreen from "@/components/MobilDetail/LoadingDetail";
 import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
-import CarDetailContent from "@/components/MobilDetail/CarDetailContent";
 import { layanan } from "@/lib/interfaces/data.interface";
 import LayananDetailContent from "@/components/Layanan/LayananDetailContent";
 

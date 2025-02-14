@@ -49,10 +49,10 @@ export function BerandaCardMobil() {
   return (
     <div className="mb-4">
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 gap-4">
-        {cars.slice(4, 8).map((mobil) => (
+        {cars.slice(4, 8).map((mobil, index) => (
           <Link
             href={`/mobil/${mobil.nama}`}
-            key={mobil.id}
+            key={index}
             className="block transition hover:scale-95 ease-in-out duration-300"
           >
             <div className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black">
