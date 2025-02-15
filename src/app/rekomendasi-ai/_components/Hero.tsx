@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Hero() {
   return (
-    <div className="flex items-center mt-32 gap-5 flex-col">
+    <div className="flex items-center gap-5 flex-col">
       <h2 className="text-primary text-center text-5xl font-bold">
         Rekomedasi mobil dengan ai
       </h2>

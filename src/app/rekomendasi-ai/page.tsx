@@ -3,7 +3,7 @@ import Hero from "./_components/Hero";
 
 function rekomendasiAI() {
   return (
-    <div className="h-screen flex items-center justify-center w-full">
+    <div className="h-screen flex items-center mx-auto justify-center w-full">
       <Hero />
     </div>
   );

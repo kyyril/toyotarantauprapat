@@ -7,8 +7,12 @@ function BudgetComp({ onHandleInputChange, formState }: any) {
   return (
     <div>
       <div>
-        <h2 className="font-bold text-3xl text-primary ">title</h2>
-        <h2 className="mt-2 text-lg text-gray-600 ">deskripsi</h2>
+        <h2 className="font-bold text-3xl text-primary ">
+          Budget (Kisaran Harga)
+        </h2>
+        <h2 className="mt-2 text-lg text-gray-600 ">
+          Berapa rentang harga yang diinginkan?
+        </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-5">
         {Budget.map((bu, index) => (

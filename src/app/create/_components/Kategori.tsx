@@ -46,7 +46,7 @@ function KategoriComp({ onHandleInputChange, formState }: any) {
       </div>
 
       {selectedKategori && (
-        <div className="mt-4 p-4 rounded-md">
+        <div className="mt-4 p-4 bg-secondary rounded-md">
           <h3 className="text-xl font-semibold text-primary">
             {selectedKategori}
           </h3>

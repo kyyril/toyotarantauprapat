@@ -1,76 +1,131 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Prompt from "@/app/_data/Prompt";
 import { Loader2Icon } from "lucide-react";
+import Prompt from "@/app/_data/Prompt";
 
-function RekomendasiComp({ formState, onHandleInputChange }: any) {
-  const [ideas, setIdeas] = useState();
+import { Card } from "@/components/ui/card";
+import { RekomendasiResponse } from "@/lib/interfaces/ai.mobil.interface";
+
+interface FormState {
+  budget: {
+    budget: string;
+  };
+  kategori: string;
+  kebutuhan: string;
+  penggunaan: string;
+  lokasi: string;
+}
+
+function RekomendasiComp({ formState }: { formState: FormState }) {
+  const [mobil, setMobil] = useState<RekomendasiResponse | null>(null);
   const [loading, setLoading] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(formState?.idea);
-  useEffect(() => {
-    generateLogoDesignIdea();
-  }, []);
+  const [error, setError] = useState<string | null>(null);
 
-  const generateLogoDesignIdea = async () => {
-    setLoading(true);
-    const PROMPT = Prompt.DESIGN_IDEA_PROMPT.replace(
-      "{logoType}",
-      formState?.design?.title
-    )
-      .replace("{logoTitle}", formState?.title)
-      .replace("{logoDesc}", formState?.desc)
-      .replace("{logoPrompt}", formState?.design?.prompt);
+  const generateMobilRekomendasi = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    // console.log(PROMPT);
-    const result = await axios.post("/api/ai-design-ideas", {
-      prompt: PROMPT,
-    });
+      const PROMPT = Prompt.PROMPT_REKOMENDASI_AI.replace(
+        "{budget}",
+        formState?.budget?.budget || "N/A"
+      )
+        .replace("{kategori}", formState?.kategori || "N/A")
+        .replace("{kebutuhan}", formState?.kebutuhan || "N/A")
+        .replace("{penggunaan}", formState?.penggunaan || "N/A")
+        .replace("{lokasi}", formState?.lokasi || "N/A");
 
-    console.log(result.data);
-    !ideas && setIdeas(result?.data?.ideas);
-    setLoading(false);
+      const { data } = await axios.post<RekomendasiResponse>("/api/ai-mobil", {
+        prompt: PROMPT,
+      });
+
+      if ("error" in data) {
+        throw new Error(data.error as string);
+      }
+
+      setMobil(data);
+    } catch (error) {
+      console.error("Error:", error);
+      setError("Gagal mendapatkan rekomendasi. Silakan coba lagi.");
+    } finally {
+      setLoading(false);
+    }
   };
 
+  useEffect(() => {
+    if (formState && Object.values(formState).every(Boolean)) {
+      generateMobilRekomendasi();
+    }
+  }, [formState]);
+
   return (
-    <div className="my-10">
-      <div>
-        <h2 className="font-bold text-3xl text-primary ">title</h2>
-        <h2 className="mt-2 text-lg text-gray-600 ">deskripsi</h2>
-      </div>
-      <div className="flex items-center justify-center">
-        {loading && <Loader2Icon className="animate-spin my-10" />}
-      </div>
-      <div className="flex flex-wrap gap-3 mt-6">
-        {ideas &&
-          ideas?.map((item, index) => (
-            <h2
-              key={index}
-              onClick={() => {
-                setSelectedOption(item);
-                onHandleInputChange(item);
-              }}
-              className={`p-2 rounded-full border px-3 cursor-pointer
-          hover:border-primary ${
-            selectedOption == item && "border-primary text-primary"
-          }`}
-            >
-              {item}
-            </h2>
-          ))}
-        <h2
-          onClick={() => {
-            setSelectedOption("Let AI Select the best idea");
-            onHandleInputChange("Let AI Select the best idea");
-          }}
-          className={`p-2 border rounded-tl-2xl rounded-br-2xl px-3 cursor-pointer
-          hover:border-primary ${
-            selectedOption == "Let AI Select the best idea" &&
-            "border-primary text-primary"
-          }`}
-        >
-          Let AI Select the best idea
+    <div className="my-10 space-y-6 h-screen">
+      <div className="text-center">
+        <h2 className="font-bold text-3xl text-primary">
+          Rekomendasi Mobil Toyota
         </h2>
+        <p className="mt-2 text-lg text-gray-600">
+          Berdasarkan preferensi Anda
+        </p>
       </div>
+
+      {loading && (
+        <div className="flex items-center justify-center py-10">
+          <Loader2Icon className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      )}
+
+      {error && (
+        <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">
+          {error}
+        </div>
+      )}
+
+      {mobil?.rekomendasi && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {mobil.rekomendasi.map((item, index) => (
+            <Card
+              key={`mobil-${index}`}
+              className="p-4 hover:shadow-lg transition-shadow"
+            >
+              <div className="relative h-48 mb-4">
+                <img
+                  src={item.image_url || "/placeholder-car.png"}
+                  alt={item.nama_mobil}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-xl font-bold">{item.nama_mobil}</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <p>
+                    <span className="font-semibold">Kategori:</span>{" "}
+                    {item.kategori}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Tipe:</span> {item.tipe}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Transmisi:</span>{" "}
+                    {item.transmisi}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Bahan Bakar:</span>{" "}
+                    {item.bahan_bakar}
+                  </p>
+                </div>
+                <p className="mt-2 text-gray-700 text-sm">{item.alasan}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {!loading && !error && !mobil?.rekomendasi && (
+        <p className="text-center text-gray-500">
+          Belum ada rekomendasi. Silakan isi form di atas.
+        </p>
+      )}
     </div>
   );
 }
