@@ -48,7 +48,7 @@ export default function PromoDetailContent() {
     );
   }
 
-  const { nama, gambar, mulai, akhir, deskripsi } = detail;
+  const { nama, gambar, mulai, akhir, deskripsi, sub_judul, hashtag } = detail;
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -62,16 +62,16 @@ export default function PromoDetailContent() {
         />
 
         <div className="flex flex-row gap-x-4">
-          <p className="mb-2">
-            <strong>Start Date:</strong>{" "}
+          <p className="mb-2 text-sm">
+            <strong>Mulai:</strong>{" "}
             {new Date(mulai).toLocaleDateString("id-ID", {
               day: "numeric",
               month: "short",
               year: "numeric",
             })}
           </p>
-          <p className="mb-2">
-            <strong>End Date:</strong>{" "}
+          <p className="mb-2 text-sm">
+            <strong>Akhir:</strong>{" "}
             {new Date(akhir).toLocaleDateString("id-ID", {
               day: "numeric",
               month: "short",
@@ -79,8 +79,10 @@ export default function PromoDetailContent() {
             })}
           </p>
         </div>
-        <h2 className="text-2xl font-semibold my-4">{nama}</h2>
-        <p className="text-gray-600">{deskripsi}</p>
+        <h2 className="text-2xl font-semibold mt-4">{nama}</h2>
+        <h2 className="text-xl font-semibold mb-4">{sub_judul}</h2>
+        <p className="text-gray-500">{deskripsi}</p>
+        <p className="mt-6">{hashtag}</p>
       </div>
     </div>
   );

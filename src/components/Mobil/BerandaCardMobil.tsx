@@ -1,7 +1,6 @@
 "use client";
 
 import { fetchMobil } from "@/lib/utils/fetcher";
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";

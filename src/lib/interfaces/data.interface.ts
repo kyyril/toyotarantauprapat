@@ -5,6 +5,8 @@ export interface Promo {
   akhir: string;
   gambar: string;
   deskripsi: string;
+  sub_judul: string;
+  hashtag: string;
 }
 export interface Sales {
   id: number;

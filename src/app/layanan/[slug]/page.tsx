@@ -1,5 +1,4 @@
 "use client";
-
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchLayananDetail } from "@/lib/utils/fetcher";
@@ -41,5 +40,10 @@ export default function LayananDetail() {
   if (error || !layanan)
     return <ErrorScreen onReload={() => window.location.reload()} />;
 
-  return <LayananDetailContent layanan={layanan} />;
+  return (
+    <div className="h-screen">
+      {" "}
+      <LayananDetailContent layanan={layanan} />
+    </div>
+  );
 }
