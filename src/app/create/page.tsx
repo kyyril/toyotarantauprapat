@@ -9,7 +9,7 @@ import LokasiDomisili from "./_components/LokasiDomisili";
 import PenggunaanMobilComp from "./_components/PenggunaanMobil";
 import RekomendasiComp from "./_components/Rekomendasi";
 
-function createPage() {
+function CreatePage() {
   const [step, setStep] = useState(1);
   const [formState, setFormState] = useState<any>();
 
@@ -67,4 +67,4 @@ function createPage() {
     </div>
   );
 }
-export default createPage;
+export default CreatePage;
