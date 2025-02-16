@@ -1,5 +1,6 @@
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   const officeHours = [
@@ -8,88 +9,109 @@ const Footer = () => {
     "Minggu & Tanggal Merah : TUTUP",
   ];
 
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Mobil", href: "/mobil" },
+    { name: "Layanan", href: "/layanan" },
+    { name: "Rekomendasi AI", href: "/rekomendasi-ai" },
+  ];
+
+  const socialMedia = [
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/viona_elisa/",
+      icon: InstagramIcon,
+      color: "text-pink-600",
+    },
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61555485359987#",
+      icon: FacebookIcon,
+      color: "text-blue-500",
+    },
+  ];
+
   return (
-    <footer className="bg-primary-foreground pt-12 pb-6 mt-16">
-      <div className="container mx-auto px-6 text-center md:text-left">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Logo & Deskripsi */}
-          <div className="flex justify-center flex-col items-center">
-            <img
-              src={"/images/logo.png"}
-              alt="logo"
-              className="w-full h-auto max-w-40"
-            />
-            <h2 className="text-2xl font-semibold">Viona Rantauprapat</h2>
-            <p className="text-sm text-gray-400 mt-2">
+    <footer className="bg-primary-foreground mt-auto w-full">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Logo & Description */}
+          <div className="flex flex-col items-center md:items-start space-y-2">
+            <div className="relative w-40 h-20">
+              <Image
+                src="/images/logo.png"
+                alt="Toyota Rantauprapat"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <h2 className="text-xl font-bold">Viona Rantauprapat</h2>
+            <p className="text-sm text-gray-500 text-center md:text-left">
               Viona Toyota Rantauprapat, siap melayani anda sepenuh hati
             </p>
           </div>
 
-          {/* Navigasi */}
-          <div>
-            <h3 className="text-lg font-bold text-red-500">Navigasi</h3>
-            <ul className="mt-3 space-y-1 flex flex-col">
-              <Link href={"/"} className="hover:opacity-50 text-sm underline">
-                Home
-              </Link>
-              <Link
-                href={"/mobil"}
-                className="hover:opacity-50 text-sm underline"
-              >
-                Mobil
-              </Link>
-              <Link
-                href={"/layanan"}
-                className="hover:opacity-50 text-sm underline"
-              >
-                Layanan
-              </Link>
-              <Link
-                href={"/rekomendasi-ai"}
-                className="hover:opacity-50 text-sm underline"
-              >
-                Rekomendasi AI
-              </Link>
-            </ul>
+          {/* Navigation */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-red-500 text-center md:text-left">
+              Navigasi
+            </h3>
+            <nav className="flex flex-col space-y-2">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm hover:text-red-500 transition-colors duration-200 text-center md:text-left"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
           </div>
 
-          {/* Sosial Media */}
-          <div>
-            <h3 className="text-lg font-bold text-red-500">Ikuti Kami</h3>
-            <div className="mt-3 flex space-x-4 justify-center md:justify-start">
-              <Link
-                href="https://www.instagram.com/viona_elisa/"
-                className="gap-1 text-sm  flex flex-row justify-center items-center text-center hover:opacity-50"
-              >
-                <InstagramIcon className="h-4 w-4 text-pink-600" />
-                Instagram
-              </Link>
-              <Link
-                href="https://www.facebook.com/profile.php?id=61555485359987#"
-                className="gap-1 text-sm  flex flex-row justify-center items-center text-center hover:opacity-50"
-              >
-                <FacebookIcon className="h-4 w-4 text-blue-500" />
-                Facebook
-              </Link>
+          {/* Social Media */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-red-500 text-center md:text-left">
+              Ikuti Kami
+            </h3>
+            <div className="flex flex-col space-y-2">
+              {socialMedia.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center md:justify-start space-x-2 hover:opacity-80 transition-opacity duration-200"
+                >
+                  <item.icon className={`h-5 w-5 ${item.color}`} />
+                  <span className="text-sm">{item.name}</span>
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Jam Operasional */}
-          <div>
-            <h3 className="text-lg font-bold text-red-500">Jam Operasional</h3>
-            <ul className="mt-3 space-y-1 text-sm">
+          {/* Office Hours */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-red-500 text-center md:text-left">
+              Jam Operasional
+            </h3>
+            <ul className="space-y-2">
               {officeHours.map((hour, index) => (
-                <li key={index}>{hour}</li>
+                <li key={index} className="text-sm text-center md:text-left">
+                  {hour}
+                </li>
               ))}
             </ul>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 text-sm text-gray-400 text-center">
-          <hr className="my-4" />
-          &copy; {new Date().getFullYear()} ToyotaRantauPrapat. All rights
-          reserved.
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <p className="text-sm text-gray-500 text-center">
+            &copy; {new Date().getFullYear()} Toyota Rantauprapat. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>

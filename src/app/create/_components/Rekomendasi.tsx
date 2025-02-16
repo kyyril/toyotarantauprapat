@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { Loader2Icon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2Icon } from "lucide-react";
 import Prompt from "@/app/_data/Prompt";
-
 import { Card } from "@/components/ui/card";
 import { RekomendasiResponse } from "@/lib/interfaces/ai.mobil.interface";
+import { Button } from "@/components/ui/button";
 
 interface FormState {
   budget: {
@@ -20,8 +20,12 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
   const [mobil, setMobil] = useState<RekomendasiResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasGenerated, setHasGenerated] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const generateMobilRekomendasi = async () => {
+  const generateMobilRekomendasi = useCallback(async () => {
+    if (hasGenerated) return;
+
     try {
       setLoading(true);
       setError(null);
@@ -44,24 +48,44 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
       }
 
       setMobil(data);
+      console.log(data);
+      setHasGenerated(true);
     } catch (error) {
       console.error("Error:", error);
       setError("Gagal mendapatkan rekomendasi. Silakan coba lagi.");
     } finally {
       setLoading(false);
     }
-  };
+  }, [formState, hasGenerated]);
 
   useEffect(() => {
-    if (formState && Object.values(formState).every(Boolean)) {
+    const isFormComplete =
+      formState &&
+      formState.budget?.budget &&
+      formState.kategori &&
+      formState.kebutuhan &&
+      formState.penggunaan &&
+      formState.lokasi;
+
+    if (isFormComplete && !hasGenerated) {
       generateMobilRekomendasi();
     }
-  }, [formState]);
+  }, [formState, generateMobilRekomendasi, hasGenerated]);
+
+  const totalPages = mobil?.rekomendasi ? mobil.rekomendasi.length : 0;
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+  };
 
   return (
-    <div className="my-10 space-y-6 h-screen">
-      <div className="text-center">
-        <h2 className="font-bold text-3xl text-primary">
+    <div className="min-h-screen pb-20">
+      <div className="text-center mb-8">
+        <h2 className="font-bold text-3xl text-red-500 ">
           Rekomendasi Mobil Toyota
         </h2>
         <p className="mt-2 text-lg text-gray-600">
@@ -76,55 +100,84 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
       )}
 
       {error && (
-        <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">
+        <div className="text-red-500 text-center p-4 mx-4 bg-red-50 rounded-lg">
           {error}
         </div>
       )}
 
       {mobil?.rekomendasi && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {mobil.rekomendasi.map((item, index) => (
-            <Card
-              key={`mobil-${index}`}
-              className="p-4 hover:shadow-lg transition-shadow"
+        <div className="max-w-3xl mx-auto">
+          <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+            <div className="relative aspect-video">
+              <img
+                src={
+                  mobil.rekomendasi[currentPage].image_url ||
+                  "/placeholder-car.png"
+                }
+                alt={mobil.rekomendasi[currentPage].nama_mobil}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-4 space-y-4">
+              <h3 className="text-2xl font-bold">
+                {mobil.rekomendasi[currentPage].nama_mobil}
+              </h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <p>
+                  <span className="font-semibold">Kategori:</span>
+                  <br />
+                  {mobil.rekomendasi[currentPage].kategori}
+                </p>
+                <p>
+                  <span className="font-semibold">Tipe:</span>
+                  <br />
+                  {mobil.rekomendasi[currentPage].tipe}
+                </p>
+                <p>
+                  <span className="font-semibold">Transmisi:</span>
+                  <br />
+                  {mobil.rekomendasi[currentPage].transmisi}
+                </p>
+                <p>
+                  <span className="font-semibold">Bahan Bakar:</span>
+                  <br />
+                  {mobil.rekomendasi[currentPage].bahan_bakar}
+                </p>
+              </div>
+              <p className="text-sm text-gray-500 pt-4 border-t">
+                {mobil.rekomendasi[currentPage].alasan}
+              </p>
+            </div>
+          </Card>
+
+          <div className="flex justify-between items-center mt-6">
+            <Button
+              variant="outline"
+              onClick={handlePrevPage}
+              disabled={currentPage === 0}
+              className="flex items-center gap-2"
             >
-              <div className="relative h-48 mb-4">
-                <img
-                  src={item.image_url || "/placeholder-car.png"}
-                  alt={item.nama_mobil}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <div className="space-y-3">
-                <h3 className="text-xl font-bold">{item.nama_mobil}</h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <p>
-                    <span className="font-semibold">Kategori:</span>{" "}
-                    {item.kategori}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Tipe:</span> {item.tipe}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Transmisi:</span>{" "}
-                    {item.transmisi}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Bahan Bakar:</span>{" "}
-                    {item.bahan_bakar}
-                  </p>
-                </div>
-                <p className="mt-2 text-gray-700 text-sm">{item.alasan}</p>
-              </div>
-            </Card>
-          ))}
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <span className="text-sm text-gray-600">
+              {currentPage + 1} dari {totalPages}
+            </span>
+            <Button
+              variant="outline"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages - 1}
+              className="flex items-center gap-2"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       )}
 
       {!loading && !error && !mobil?.rekomendasi && (
-        <p className="text-center text-gray-500">
-          Belum ada rekomendasi. Silakan isi form di atas.
-        </p>
+        <div className="text-center text-gray-500 mx-4">
+          <p>Belum ada rekomendasi. Silakan isi semua form .</p>
+        </div>
       )}
     </div>
   );

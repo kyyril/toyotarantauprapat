@@ -22,10 +22,10 @@ function KategoriComp({ onHandleInputChange, formState }: any) {
   return (
     <div>
       <div>
-        <h2 className="font-bold text-3xl text-primary">
+        <h2 className="font-bold text-3xl text-red-500 ">
           Pilih Kategori Mobil
         </h2>
-        <h2 className="mt-2 text-lg text-gray-600">
+        <h2 className="mt-2 text-lg text-gray-500">
           Pilih jenis mobil yang sesuai dengan kebutuhan Anda.
         </h2>
       </div>

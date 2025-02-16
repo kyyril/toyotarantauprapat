@@ -38,8 +38,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          {children}
-          <Footer />
+          <div className="flex flex-col">
+            {children}
+            <Footer />
+          </div>
           <BackToTopButton />
         </ThemeProvider>
       </body>

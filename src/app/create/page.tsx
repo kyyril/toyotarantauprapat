@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon, ArrowRight } from "lucide-react";
+import { ArrowLeftIcon, ArrowRight, Car } from "lucide-react";
 import BudgetComp from "./_components/Budget";
 import KategoriComp from "./_components/Kategori";
 import KebutuhanUtamaComp from "./_components/KebutuhanUtamaComp";
 import LokasiDomisili from "./_components/LokasiDomisili";
 import PenggunaanMobilComp from "./_components/PenggunaanMobil";
 import RekomendasiComp from "./_components/Rekomendasi";
+import Link from "next/link";
 
 function CreatePage() {
   const [step, setStep] = useState(1);
@@ -22,7 +23,7 @@ function CreatePage() {
   };
 
   return (
-    <div className="p-10 rounded-xl max-w-5xl justify-center items-center w-full mx-auto h-screen mb-24">
+    <div className="p-10 rounded-xl max-w-5xl justify-center items-center w-full mx-auto h-auto min-h-screen mb-24">
       {step == 1 ? (
         <BudgetComp
           onHandleInputChange={(v: any) => onHandleChange("budget", v)}
@@ -52,17 +53,31 @@ function CreatePage() {
         <RekomendasiComp formState={formState} />
       ) : null}
 
-      <div className="flex justify-between items-center mt-8 ">
-        {step != 1 && (
-          <Button variant={"outline"} onClick={() => setStep(step - 1)}>
-            <ArrowLeftIcon />
-            Previos
+      <div className="flex justify-between mt-8">
+        {step !== 1 && (
+          <Button variant="outline" onClick={() => setStep(step - 1)}>
+            <ArrowLeftIcon className="mr-2" />
+            Prev
           </Button>
         )}
-        <Button disabled={step >= 6} onClick={() => setStep(step + 1)}>
-          Next
-          <ArrowRight />
-        </Button>
+
+        {step >= 6 ? (
+          <Link href="/rekomendasi-ai" className="ml-auto">
+            <Button variant="default" className="flex items-center gap-2">
+              <Car className="w-4 h-4" />
+              Kembali
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            disabled={step >= 6}
+            onClick={() => setStep(step + 1)}
+            className="flex items-end justify-end gap-2"
+          >
+            Next
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+        )}
       </div>
     </div>
   );
