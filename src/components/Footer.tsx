@@ -13,21 +13,16 @@ const Footer = () => {
     { name: "Home", href: "/" },
     { name: "Mobil", href: "/mobil" },
     { name: "Layanan", href: "/layanan" },
+    { name: "Sales", href: "/sales" },
     { name: "Rekomendasi AI", href: "/rekomendasi-ai" },
   ];
 
   const socialMedia = [
     {
       name: "Instagram",
-      href: "https://www.instagram.com/viona_elisa/",
+      href: "https://www.instagram.com/auto2000_rantauprapat?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       icon: InstagramIcon,
       color: "text-pink-600",
-    },
-    {
-      name: "Facebook",
-      href: "https://www.facebook.com/profile.php?id=61555485359987#",
-      icon: FacebookIcon,
-      color: "text-blue-500",
     },
   ];
 
