@@ -41,5 +41,9 @@ export default function CarDetail() {
   if (error || !mobil)
     return <ErrorScreen onReload={() => window.location.reload()} />;
 
-  return <CarDetailContent mobil={mobil} />;
+  return (
+    <div className="min-h-screen">
+      <CarDetailContent mobil={mobil} />;
+    </div>
+  );
 }

@@ -15,39 +15,37 @@ export default function Home() {
       >
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mx-1">
           <div className="">
-            {/* <Image
+            <Image
               src="/images/pt.png"
               width={1000}
               height={400}
               loading="lazy"
               alt="pt"
               className="mx-auto overflow-hidden object-cover object-center rounded-br-xl rounded-tl-xl"
-            /> */}
-            <Image
+            />
+            {/* <Image
               src={"/images/profile.png"}
               width={280}
               height={280}
               loading="lazy"
               alt="image"
               className="mx-auto aspect-square overflow-hidden object-cover object-center rounded-full border-2 border-red-500"
-            />
+            /> */}
           </div>
           <div className="max-w-7xl w-full px-4 md:px-8 mx-auto">
             <div className="space-y-1 mb-2 flex flex-col">
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter ">
-                Viona
                 <span className="text-red-500"> Toyota</span>
               </h1>
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter">
-                RantauPrapat
+                Rantauprapat
               </h1>
             </div>
             <p className="max-w-[600px] lg:text-lg  text-gray-500 font-light dark:text-gray-400">
-              Halo! Perkenalkan saya Viona Pakpahan, seorang sales executive
-              yang penuh semangat di Auto2000 Rantauprapat. Saya senang membantu
-              pelanggan menemukan mobil Toyota yang sempurna untuk kebutuhan
-              mereka. Saya memiliki kepribadian yang ramah dan mudah bergaul,
-              dan selalu siap untuk menjawab pertanyaan dan memberikan saran.
+              Selamat datang di dealer Resmi Toyota Rantauprapat . Tersedia
+              beragam kebutuhan serta promo maupun fasilitas pembayaran secara
+              kredit dan tunai. Dapatkan juga layanan purna jual seperti servis
+              mobil dan penjualan part Toyota.
             </p>
             <div className="space-x-4 mt-2">
               <WassapClick />
@@ -81,7 +79,7 @@ export default function Home() {
         <hr className="mt-4" />
       </div>
 
-      {/* service */}
+      {/* service
       <section
         id="services"
         className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
@@ -102,7 +100,7 @@ export default function Home() {
             <span className="font-bold text-md">Test Drive</span>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section
         id="sales"

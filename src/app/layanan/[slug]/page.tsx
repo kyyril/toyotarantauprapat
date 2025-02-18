@@ -41,7 +41,7 @@ export default function LayananDetail() {
     return <ErrorScreen onReload={() => window.location.reload()} />;
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       {" "}
       <LayananDetailContent layanan={layanan} />
     </div>

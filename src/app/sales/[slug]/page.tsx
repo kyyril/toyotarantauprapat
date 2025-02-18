@@ -38,5 +38,9 @@ export default function CarDetail() {
   if (error || !sales)
     return <ErrorScreen onReload={() => window.location.reload()} />;
 
-  return <SalesDetailContent sales={sales} />;
+  return (
+    <div className="min-h-screen">
+      <SalesDetailContent sales={sales} />;
+    </div>
+  );
 }

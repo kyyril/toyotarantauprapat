@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -38,10 +38,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          <div className="flex flex-col">
-            {children}
-            <Footer />
-          </div>
+          {children}
+          <Footer />
           <BackToTopButton />
         </ThemeProvider>
       </body>
