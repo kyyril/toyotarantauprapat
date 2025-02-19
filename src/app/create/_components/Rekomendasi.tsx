@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { ChevronLeft, ChevronRight, Loader2Icon } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  LinkIcon,
+  Loader2Icon,
+  Navigation2Icon,
+} from "lucide-react";
 import Prompt from "@/app/_data/Prompt";
 import { Card } from "@/components/ui/card";
 import { RekomendasiResponse } from "@/lib/interfaces/ai.mobil.interface";
@@ -107,7 +113,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
 
       {mobil?.rekomendasi && (
         <div className="max-w-3xl mx-auto">
-          <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="overflow-hidden shadow-lg p-2">
             <div className="relative aspect-video">
               <img
                 src={
@@ -122,7 +128,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
               <h3 className="text-2xl font-bold">
                 {mobil.rekomendasi[currentPage].nama_mobil}
               </h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-4 text-sm text-opacity-80">
                 <p>
                   <span className="font-semibold">Kategori:</span>
                   <br />
@@ -147,8 +153,15 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
               <p className="text-gray-500 pt-4 border-t">
                 {mobil.rekomendasi[currentPage].alasan}
               </p>
+              <hr />
+              <a
+                className="text-md flex w-full justify-end text-red-500 underline hover:opacity-50"
+                href={`/mobil/${mobil.rekomendasi[currentPage].nama_mobil}`}
+              >
+                Lihat Detail
+              </a>
             </div>
-          </Card>
+          </div>
 
           <div className="flex justify-between items-center mt-6">
             <Button
