@@ -86,7 +86,9 @@ export function CardPromo() {
                   className="w-full max-h-screen object-cover"
                 />
                 <div className="p-2">
-                  <h2 className="text-lg font-semibold">{promo.nama}</h2>
+                  <h2 className="text-lg font-semibold text-ellipsis line-clamp-1">
+                    {promo.nama}
+                  </h2>
                   <div className="text-sm text-gray-500 flex items-center gap-1">
                     <TimerIcon className="w-4 h-4" />
                     {formatDate(promo.mulai)} - {formatDate(promo.akhir)}
@@ -115,7 +117,9 @@ export function CardPromo() {
                   className="w-full h-32 object-cover rounded-t-lg"
                 />
                 <div className="p-2">
-                  <h2 className="text-base font-medium">{promo.nama}</h2>
+                  <h2 className="text-base font-medium text-ellipsis line-clamp-1">
+                    {promo.nama}
+                  </h2>
                   <div className="text-sm text-gray-500 flex items-center gap-1">
                     <TimerIcon className="w-4 h-4" />
                     {formatDate(promo.mulai)} - {formatDate(promo.akhir)}

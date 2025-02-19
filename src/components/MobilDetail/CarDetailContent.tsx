@@ -145,7 +145,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             <Button
               onClick={handleWhatsAppClick}
               variant={"default"}
-              className="group max-w-40 flex w-full mx-auto"
+              className="group flex w-full mx-auto"
             >
               <PhoneCall className="text-red-500 group-hover:translate-x-1 transition-transform" />{" "}
               Hubungi Kami
@@ -158,7 +158,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
                 setSelectedSales(selected || null);
               }}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="">
                 <SelectValue
                   placeholder={selectedSales?.nama || "Pilih Sales"}
                 />

@@ -18,7 +18,9 @@ const CardLayanan: React.FC<CardLayananProps> = ({ layanan }) => {
         />
       </div>
       <h3 className="text-lg font-semibold mt-2 mx-2">{layanan.title}</h3>
-      <p className="text-gray-500 text-sm mx-2 mb-2">{layanan.desk_awal}</p>
+      <p className="text-gray-500 text-sm mx-2 mb-2 text-ellipsis line-clamp-3">
+        {layanan.desk_awal}
+      </p>
     </div>
   );
 };
