@@ -2,7 +2,7 @@ import CardSales from "@/components/Sales/CardSales";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sales Team | Toyota Rantauprapat",
+  title: "Sales | Toyota Rantauprapat",
   description:
     "Temui tim sales profesional Toyota Rantauprapat yang siap membantu Anda menemukan mobil Toyota impian. Konsultasikan kebutuhan dan dapatkan penawaran terbaik.",
   keywords:
