@@ -7,6 +7,7 @@ import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
 import { fetchSalesDetail } from "@/lib/utils/fetcher";
 import { Sales } from "@/lib/interfaces/data.interface";
 import SalesDetailContent from "@/components/Sales/SalesDetailContent";
+import SalesDetailsSkeleton from "@/components/Sales/SalesDetailSkeleton";
 
 export default function CarDetail() {
   const params = useParams();
@@ -34,7 +35,7 @@ export default function CarDetail() {
     fetchData();
   }, [params?.slug]);
 
-  if (loading) return <LoadingScreen />;
+  if (loading) return <SalesDetailsSkeleton />;
   if (error || !sales)
     return <ErrorScreen onReload={() => window.location.reload()} />;
 

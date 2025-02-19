@@ -1,6 +1,8 @@
 import { fetchMobil } from "@/lib/utils/fetcher";
 import ListMobil from "@/components/Mobil/ListMobil";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import { MobilListSkeleton } from "@/components/Mobil/MobilListSkeleton";
 
 export const metadata: Metadata = {
   title: "Daftar Mobil Toyota | Toyota Rantauprapat",
@@ -35,7 +37,9 @@ const MobilPage = async () => {
         <div className="mb-4">
           <h2 className="text-2xl font-semibold">Mobil</h2>
         </div>
-        <ListMobil data={data} />
+        <Suspense fallback={<MobilListSkeleton />}>
+          <ListMobil data={data} />
+        </Suspense>
       </section>
     </main>
   );

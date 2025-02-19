@@ -7,7 +7,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, ChevronDown, ChevronUp } from "lucide-react";
 
 interface TypeDropdownProps {
   typeArray: string[];
@@ -29,6 +29,7 @@ export function TypeDropdown({
   const [selectedType, setSelectedType] = useState(typeArray[0] || "");
   const [selectedTransmisi, setSelectedTransmisi] = useState("");
   const [selectedHarga, setSelectedHarga] = useState("");
+  const [open, setOpen] = useState(false);
 
   // Update harga dan transmisi saat tipe berubah
   useEffect(() => {
@@ -60,11 +61,16 @@ export function TypeDropdown({
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant={"secondary"}
+          onClick={() => setOpen(!open)}
+          variant={"outline"}
           className="mt-2 max-w-full text-sm sm:text-base flex items-center justify-between gap-2"
         >
           <span className="truncate">{selectedType || "Pilih Tipe"}</span>
-          <ArrowUp className="w-4 h-4 text-red-500" />
+          {open ? (
+            <ChevronUp className="w-4 h-4 text-red-500" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-red-500" />
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent>

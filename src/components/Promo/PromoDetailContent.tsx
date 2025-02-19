@@ -3,6 +3,7 @@
 import { fetchPromoDetail } from "@/lib/utils/fetcher";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PromosSkeletonDetail } from "./PromoSkeleton";
 
 export default function PromoDetailContent() {
   const searchParams = useSearchParams();
@@ -31,11 +32,7 @@ export default function PromoDetailContent() {
   }, [promoId]);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <span className="loader"></span>
-      </div>
-    );
+    return <PromosSkeletonDetail />;
   }
 
   if (!detail) {

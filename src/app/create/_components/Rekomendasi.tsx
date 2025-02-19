@@ -11,6 +11,7 @@ import Prompt from "@/app/_data/Prompt";
 import { Card } from "@/components/ui/card";
 import { RekomendasiResponse } from "@/lib/interfaces/ai.mobil.interface";
 import { Button } from "@/components/ui/button";
+import SkeletonRekomendasi from "./RekomendasiSkeleton";
 
 interface FormState {
   budget: {
@@ -99,11 +100,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
         </p>
       </div>
 
-      {loading && (
-        <div className="flex items-center justify-center py-10">
-          <Loader2Icon className="w-8 h-8 animate-spin text-primary" />
-        </div>
-      )}
+      {loading && <SkeletonRekomendasi />}
 
       {error && (
         <div className="text-red-500 text-center p-4 mx-4 bg-red-50 rounded-lg">

@@ -15,9 +15,6 @@ function SalesDetailContent({ sales }: { sales: Sales }) {
   return (
     <main className="flex justify-center items-start min-h-screen py-10 px-5 w-full">
       <section className="w-full max-w-4xl bg-background shadow-sm rounded-xl p-6">
-        {/* Header Section */}
-        <h2 className="text-2xl font-bold mb-12 text-center">Sales Details</h2>
-
         {/* Content Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left Section */}

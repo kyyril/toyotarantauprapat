@@ -51,7 +51,7 @@ export default function Home() {
     <main className="min-h-screen">
       <section
         id="profile"
-        className="container max-w-6xl mx-auto py-12 md:py-16 lg:py-20 h-screen"
+        className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20 h-screen"
       >
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mx-1">
           <div className="">
@@ -72,7 +72,7 @@ export default function Home() {
               className="mx-auto aspect-square overflow-hidden object-cover object-center rounded-full border-2 border-red-500"
             /> */}
           </div>
-          <div className="max-w-7xl w-full px-4 md:px-8 mx-auto">
+          <div className="max-w-7xl w-full px-2 mx-auto">
             <div className="space-y-1 mb-2 flex flex-col">
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter ">
                 <span className="text-red-500"> Toyota</span>

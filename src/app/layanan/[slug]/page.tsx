@@ -6,6 +6,7 @@ import LoadingScreen from "@/components/MobilDetail/LoadingDetail";
 import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
 import { layanan } from "@/lib/interfaces/data.interface";
 import LayananDetailContent from "@/components/Layanan/LayananDetailContent";
+import { DetailLayananSkeleton } from "@/components/Layanan/LayananDetailSkeleton";
 
 export default function LayananDetail() {
   const params = useParams();
@@ -36,7 +37,7 @@ export default function LayananDetail() {
     fetchData();
   }, [params?.slug]);
 
-  if (loading) return <LoadingScreen />;
+  if (loading) return <DetailLayananSkeleton />;
   if (error || !layanan)
     return <ErrorScreen onReload={() => window.location.reload()} />;
 

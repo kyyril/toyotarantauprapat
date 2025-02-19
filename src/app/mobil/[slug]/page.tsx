@@ -7,6 +7,7 @@ import { Mobil } from "@/lib/interfaces/mobil.interface";
 import LoadingScreen from "@/components/MobilDetail/LoadingDetail";
 import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
 import CarDetailContent from "@/components/MobilDetail/CarDetailContent";
+import CarDetailSkeleton from "@/components/MobilDetail/CarDetailSkeleton";
 
 export default function CarDetail() {
   const params = useParams();
@@ -37,7 +38,7 @@ export default function CarDetail() {
     fetchData();
   }, [params?.slug]);
 
-  if (loading) return <LoadingScreen />;
+  if (loading) return <CarDetailSkeleton />;
   if (error || !mobil)
     return <ErrorScreen onReload={() => window.location.reload()} />;
 
