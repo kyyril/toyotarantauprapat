@@ -1,4 +1,8 @@
+"use client"; // Pastikan ini di bagian atas karena kita pakai useEffect
+
 import type { Metadata } from "next";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation"; // Import usePathname
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -17,16 +21,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "toyotarantauprapat",
-  description: "astra toyota auto 2000 cabang labuhanbatu rantauprapat",
-};
+// export const metadata: Metadata = {
+//   title: "toyotarantauprapat",
+//   description: "astra toyota auto 2000 cabang labuhanbatu rantauprapat",
+// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname(); // Ambil URL saat ini
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll ke atas saat halaman berubah
+  }, [pathname]); // Jalankan setiap kali pathname berubah
+
   return (
     <html lang="en">
       <body
