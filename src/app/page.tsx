@@ -4,8 +4,9 @@ import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
 import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
-import WassapClick from "@/components/WassapClick";
+
 import { Metadata } from "next";
+import PhoneContact from "@/components/PhoneContact";
 
 export const metadata: Metadata = {
   title: "Toyota Rantauprapat | Dealer Resmi Toyota",
@@ -87,7 +88,7 @@ export default function Home() {
               mobil dan penjualan part Toyota.
             </p>
             <div className="space-x-4 mt-2">
-              <WassapClick />
+              <PhoneContact />
             </div>
           </div>
         </div>
