@@ -83,7 +83,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
   };
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-16">
       <div className="text-center mb-8">
         <h2 className="font-bold text-3xl text-red-500 ">
           Rekomendasi Mobil Toyota
@@ -115,7 +115,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
                   "/placeholder-car.png"
                 }
                 alt={mobil.rekomendasi[currentPage].nama_mobil}
-                className="w-full h-full object-cover"
+                className="w-full h-full "
               />
             </div>
             <div className="p-4 space-y-4">
@@ -144,7 +144,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
                   {mobil.rekomendasi[currentPage].bahan_bakar}
                 </p>
               </div>
-              <p className="text-sm text-gray-500 pt-4 border-t">
+              <p className="text-gray-500 pt-4 border-t">
                 {mobil.rekomendasi[currentPage].alasan}
               </p>
             </div>
@@ -159,7 +159,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-gray-500">
               {currentPage + 1} dari {totalPages}
             </span>
             <Button
@@ -175,8 +175,12 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
       )}
 
       {!loading && !error && !mobil?.rekomendasi && (
-        <div className="text-center text-gray-500 mx-4">
-          <p>Belum ada rekomendasi. Silakan isi semua form .</p>
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center p-4 bg-red-500/10 rounded-xl">
+            <h2 className="font-semibold text-lg text-red-500">
+              Terjadi Kesalahan! Silahkan Isi Semua Formulir...
+            </h2>
+          </div>
         </div>
       )}
     </div>

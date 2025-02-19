@@ -10,6 +10,7 @@ import { Navigation } from "@/components/Navbar";
 import BackToTopButton from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
         >
           <Navigation />
           {children}
+          <Analytics />
           <Toaster />
           <Footer />
           <BackToTopButton />
