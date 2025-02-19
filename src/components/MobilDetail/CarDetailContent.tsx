@@ -1,18 +1,64 @@
 "use client";
 import { Mobil } from "@/lib/interfaces/mobil.interface";
 import { TypeDropdown } from "@/components/TypeDropdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Deskripsi from "./Deskripsi";
 import ColorList from "./ColorList";
 import { Button } from "../ui/button";
 import CreditSimulationButton from "./CreditSimulation";
 import { PhoneCall, ScrollText } from "lucide-react";
+import { Sales } from "@/lib/interfaces/data.interface";
+import { fetchSales } from "@/lib/utils/fetcher";
+import { toast } from "@/hooks/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 interface CarDetailContentProps {
   mobil: Mobil;
 }
 
 export default function CarDetailContent({ mobil }: CarDetailContentProps) {
+  const [salesList, setSalesList] = useState<Sales[]>([]);
+  const [selectedSales, setSelectedSales] = useState<Sales | null>();
+
+  // Update the fetch function
+  useEffect(() => {
+    async function fetchSalesData() {
+      try {
+        const data = await fetchSales();
+        setSalesList(data || []);
+      } catch (error) {
+        console.error("Error fetching sales data:", error);
+      }
+    }
+    fetchSalesData();
+  }, []);
+
+  // Update WhatsApp click handler
+  const handleWhatsAppClick = () => {
+    if (!selectedSales) {
+      toast({
+        title: "Error",
+        description: "Silakan pilih sales terlebih dahulu",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const message = encodeURIComponent(
+      `Halo ${selectedSales.nama}, saya tertarik dengan ${mobil.nama}, tipe (${selectedType}). Bisa berikan informasi lebih lanjut?`
+    );
+    window.open(
+      `https://wa.me/62${selectedSales.nohp}?text=${message}`,
+      "_blank"
+    );
+  };
+
   const parseArray = (value: any) => {
     if (typeof value === "string" && value.includes(",")) {
       return value.split(",").map((v) => v.trim());
@@ -43,14 +89,6 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
     setSelectedType(type);
     setSelectedTransmisi(transmisi);
     setSelectedHarga(harga);
-  };
-
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "6281260671163";
-    const message = encodeURIComponent(
-      `Halo, saya tertarik dengan ${mobil.nama}, dengan tipe (${selectedType}). Saya ingin mengetahui lebih lanjut mengenai mobil ini.`
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (
@@ -94,6 +132,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             <span className="text-red-500">*</span> Harga dapat berubah sewaktu
             waktu. Hubungi kami untuk info promo dan kredit.
           </p>
+
           <div className="flex space-x-4 justify-center mx-auto items-center">
             <Button variant="outline" className="group">
               <ScrollText className="text-red-500 group-hover:translate-x-1 transition-transform" />
@@ -101,14 +140,38 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
             </Button>
             <CreditSimulationButton type={selectedType} harga={selectedHarga} />
           </div>
-          <Button
-            onClick={handleWhatsAppClick}
-            variant={"default"}
-            className="group max-w-40 flex justify-center items-center w-full mx-auto"
-          >
-            <PhoneCall className="text-red-500 group-hover:translate-x-1 transition-transform" />{" "}
-            Hubungi Kami
-          </Button>
+
+          <div className="flex space-x-4 justify-center mx-auto items-center">
+            <Button
+              onClick={handleWhatsAppClick}
+              variant={"default"}
+              className="group max-w-40 flex w-full mx-auto"
+            >
+              <PhoneCall className="text-red-500 group-hover:translate-x-1 transition-transform" />{" "}
+              Hubungi Kami
+            </Button>
+            {/* sales selected */}
+            <Select
+              value={selectedSales?.nama || ""}
+              onValueChange={(value) => {
+                const selected = salesList.find((s) => s.nama === value);
+                setSelectedSales(selected || null);
+              }}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue
+                  placeholder={selectedSales?.nama || "Pilih Sales"}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                {salesList.map((sales) => (
+                  <SelectItem key={sales.id} value={sales.nama}>
+                    {sales.nama}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </section>
       </div>
 

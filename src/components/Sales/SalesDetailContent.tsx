@@ -1,11 +1,17 @@
 import React from "react";
 import { Sales } from "@/lib/interfaces/data.interface";
 import { Button } from "../ui/button";
-import AdditionalSalesInfo from "./AdditionalSalesInfo";
 import GallerySales from "./GallerySales";
 import { PhoneCall } from "lucide-react";
 
 function SalesDetailContent({ sales }: { sales: Sales }) {
+  const handleWhatsAppClick = () => {
+    const message = encodeURIComponent(
+      `Halo ${sales.nama} saya dari website toyota rantauprapat ingin diskusi dengan anda..`
+    );
+    window.open(`https://wa.me/62${sales.nohp}?text=${message}`, "_blank");
+  };
+
   return (
     <main className="flex justify-center items-start min-h-screen py-10 px-5 w-full">
       <section className="w-full max-w-4xl bg-background shadow-sm rounded-xl p-6">
@@ -31,6 +37,7 @@ function SalesDetailContent({ sales }: { sales: Sales }) {
               {sales.deskripsi}
             </p>
             <Button
+              onClick={handleWhatsAppClick}
               variant="secondary"
               className="flex items-center gap-2 w-full max-w-36 mt-4"
             >
@@ -43,11 +50,6 @@ function SalesDetailContent({ sales }: { sales: Sales }) {
         {/* Gallery Section */}
         <div className="mt-16">
           <GallerySales gallery={sales.gallery} />
-        </div>
-
-        {/* Additional Content Section */}
-        <div className="mt-8">
-          <AdditionalSalesInfo />
         </div>
       </section>
     </main>

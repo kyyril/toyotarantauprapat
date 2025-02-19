@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Promo } from "@/lib/interfaces/data.interface";
 import { fetchPromo } from "@/lib/utils/fetcher";
 import { TimerIcon } from "lucide-react";
@@ -32,7 +26,12 @@ export function CardPromo() {
     async function loadPromoData() {
       try {
         const data = await fetchPromo();
-        setPromos(data);
+        // Sort promos by start date, newest first
+        const sortedPromos = data.sort(
+          (a: any, b: any) =>
+            new Date(b.mulai).getTime() - new Date(a.mulai).getTime()
+        );
+        setPromos(sortedPromos);
       } catch (error) {
         console.error("Error fetching promo:", error);
       } finally {
@@ -51,7 +50,15 @@ export function CardPromo() {
     );
   }
 
-  const hotPromos = promos.filter((promo) => promo.id >= 100);
+  // Filter hot promos and sort by date
+  const hotPromos = promos
+    .filter((promo) => promo.id >= 100)
+    .sort((a, b) => new Date(b.mulai).getTime() - new Date(a.mulai).getTime());
+
+  // Get current items and sort by date
+  const currentItems = promos
+    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    .sort((a, b) => new Date(b.mulai).getTime() - new Date(a.mulai).getTime());
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -60,12 +67,6 @@ export function CardPromo() {
     const year = date.getFullYear();
     return `${day} ${month} ${year}`;
   };
-
-  // Items for current page
-  const currentItems = promos.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
 
   return (
     <div className="container mx-auto p-4">
