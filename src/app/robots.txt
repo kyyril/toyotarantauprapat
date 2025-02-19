@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://www.toyotarantauprapat.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10

@@ -9,6 +9,32 @@ import LokasiDomisili from "./_components/LokasiDomisili";
 import PenggunaanMobilComp from "./_components/PenggunaanMobil";
 import RekomendasiComp from "./_components/Rekomendasi";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Buat Rekomendasi | Toyota Rantauprapat",
+  description:
+    "Buat rekomendasi mobil Toyota yang sesuai dengan kebutuhan dan budget Anda. Dapatkan saran mobil Toyota terbaik berdasarkan preferensi personal Anda.",
+  keywords:
+    "rekomendasi mobil toyota, bantuan pemilihan mobil, konsultasi mobil toyota, toyota rantauprapat",
+  openGraph: {
+    title: "Buat Rekomendasi Mobil Toyota",
+    description:
+      "Dapatkan rekomendasi mobil Toyota yang sesuai dengan kebutuhan Anda",
+    locale: "id_ID",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 function CreatePage() {
   const [step, setStep] = useState(1);

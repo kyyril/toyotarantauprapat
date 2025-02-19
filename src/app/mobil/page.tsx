@@ -1,5 +1,30 @@
 import { fetchMobil } from "@/lib/utils/fetcher";
 import ListMobil from "@/components/Mobil/ListMobil";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Daftar Mobil Toyota | Toyota Rantauprapat",
+  description:
+    "Jelajahi koleksi lengkap mobil Toyota terbaru di Rantauprapat. Temukan berbagai model dan varian mobil Toyota dengan harga terbaik. Tersedia MPV, SUV, hatchback, dan sedan.",
+  keywords:
+    "mobil toyota rantauprapat, harga mobil toyota, dealer toyota, jual mobil toyota, toyota mpv, toyota suv",
+  openGraph: {
+    title: "Daftar Mobil Toyota Rantauprapat",
+    description: "Koleksi lengkap mobil Toyota terbaru dengan harga terbaik",
+    locale: "id_ID",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 const MobilPage = async () => {
   const data = await fetchMobil(); // Fetch data langsung di server

@@ -41,9 +41,10 @@ const Footer = () => {
                 priority
               />
             </div>
-            <h2 className="text-xl font-bold">Viona Rantauprapat</h2>
+            <h2 className="text-xl font-bold">Toyota Rantauprapat</h2>
             <p className="text-sm text-gray-500 text-center md:text-left">
-              Viona Toyota Rantauprapat, siap melayani anda sepenuh hati
+              Toyota Rantauprapat: Beli Mobil Impian Jadi Lebih Mudah, Proses
+              Cepat, Angsuran Ringan, dan Pelayanan Purna Jual Terjamin.
             </p>
           </div>
 

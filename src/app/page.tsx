@@ -5,6 +5,45 @@ import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
 import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
 import WassapClick from "@/components/WassapClick";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Toyota Rantauprapat | Dealer Resmi Toyota",
+  description:
+    "Dealer Resmi Toyota Rantauprapat - Layanan penjualan mobil Toyota baru, servis, dan sparepart. Dapatkan promo menarik dan fasilitas pembayaran kredit maupun tunai.",
+  keywords:
+    "toyota rantauprapat, dealer toyota, mobil toyota, servis toyota, sparepart toyota, kredit toyota",
+  openGraph: {
+    title: "Toyota Rantauprapat | Dealer Resmi Toyota",
+    description:
+      "Dealer Resmi Toyota Rantauprapat - Layanan penjualan mobil Toyota baru, servis, dan sparepart.",
+    images: [
+      {
+        url: "/images/pt.png",
+        width: 1200,
+        height: 630,
+        alt: "Toyota Rantauprapat",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // verification: {
+  //   google: "your-google-verification-code", // Add your Google verification code
+  // },
+};
 
 export default function Home() {
   return (
