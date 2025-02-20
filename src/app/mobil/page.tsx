@@ -32,7 +32,7 @@ const MobilPage = async () => {
   const data = await fetchMobil(); // Fetch data langsung di server
 
   return (
-    <main className="w-full flex justify-center items-start min-h-screen mt-5">
+    <main className="w-full flex justify-center items-start min-h-screen">
       <section className="w-full max-w-5xl flex justify-center items-center flex-col">
         <div className="mb-4">
           <h2 className="text-2xl font-semibold">Mobil</h2>

@@ -37,8 +37,8 @@ const LayananPage = async () => {
 
   return (
     <main className="flex flex-col flex-grow">
-      <div className="max-w-6xl w-full mx-auto p-6">
-        <div className="mb-8">
+      <div className="max-w-6xl w-full mx-auto">
+        <div className="mb-8 p-4">
           <h1 className="text-3xl font-bold text-primary">Layanan Kami</h1>
           <p className="mt-2 text-gray-600">
             Berbagai layanan yang kami sediakan untuk kenyamanan Anda

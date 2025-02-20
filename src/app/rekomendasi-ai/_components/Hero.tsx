@@ -4,7 +4,7 @@ import { CarIcon, SparklesIcon } from "lucide-react";
 
 function Hero() {
   return (
-    <div className="flex items-center mb-20 gap-4 flex-col py-16 px-4">
+    <div className="flex items-center mb-20 gap-4 flex-col pb-16 px-4">
       <div className="relative">
         <h2 className="text-primary text-center text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
           Temukan Mobil Toyota

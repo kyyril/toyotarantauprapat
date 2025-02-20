@@ -56,7 +56,7 @@ export function Navigation() {
               <Link
                 key={index}
                 href={item.href}
-                className="relative group flex flex-col items-center px-2 py-1 rounded-xl bg-secondary/75"
+                className="relative group flex flex-col items-center px-2 py-1 rounded-2xl bg-secondary/75"
               >
                 <Icon
                   className={`w-5 h-5 mb-0.5 transition-colors duration-200 ${
@@ -73,10 +73,10 @@ export function Navigation() {
                   {item.name}
                 </span>
 
-                {/* Hover tooltip */}
-                <span className="absolute -top-8 scale-0 transition-all rounded bg-red-500/30 p-2 text-xs text-white group-hover:scale-100">
+                {/* Hover tooltip
+                <span className="absolute -top-8 scale-0 transition-all rounded bg-red-500 p-2 text-xs text-white group-hover:scale-100">
                   {item.name}
-                </span>
+                </span> */}
               </Link>
             );
           })}
@@ -84,7 +84,6 @@ export function Navigation() {
       </div>
       {/* Add padding for mobile nav bars */}
       <div className="sm:hidden h-10" /> {/* Top padding for theme toggle */}
-      <div className="pb-16 sm:pb-0" /> {/* Bottom padding for navigation */}
     </>
   );
 }

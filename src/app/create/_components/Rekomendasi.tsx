@@ -90,7 +90,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
   };
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="min-h-screen">
       <div className="text-center mb-8">
         <h2 className="font-bold text-3xl text-red-500 ">
           Rekomendasi Mobil Toyota

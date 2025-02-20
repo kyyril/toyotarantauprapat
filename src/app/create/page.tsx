@@ -23,7 +23,7 @@ function CreatePage() {
   };
 
   return (
-    <div className="p-10 rounded-xl max-w-5xl justify-center items-center w-full mx-auto h-auto min-h-screen mb-24">
+    <div className="p-6 rounded-xl max-w-5xl justify-center items-center w-full mx-auto h-auto min-h-screen mb-24">
       {step == 1 ? (
         <BudgetComp
           onHandleInputChange={(v: any) => onHandleChange("budget", v)}
