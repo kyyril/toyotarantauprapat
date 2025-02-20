@@ -7,7 +7,7 @@ interface CardLayananProps {
 
 const CardLayanan: React.FC<CardLayananProps> = ({ layanan }) => {
   return (
-    <div className="hover:shadow-2xl shadow-lg p-2 rounded-lg">
+    <div className="overflow-hidden rounded-lg shadow-xl dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out">
       <div className="w-full h-48">
         <img
           src={layanan.thumbnail}

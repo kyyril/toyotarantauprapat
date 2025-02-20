@@ -15,6 +15,8 @@ export const navigationItems = [
 
 export function Navigation() {
   const pathname = usePathname();
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
@@ -60,14 +62,14 @@ export function Navigation() {
               >
                 <Icon
                   className={`w-5 h-5 mb-0.5 transition-colors duration-200 ${
-                    pathname === item.href
+                    isActive(item.href)
                       ? "text-red-500"
                       : "group-hover:text-primary"
                   }`}
                 />
                 <span
                   className={`text-xs transition-all duration-200 ${
-                    pathname === item.href ? "text-primary" : ""
+                    isActive(item.href) ? "text-primary" : ""
                   }`}
                 >
                   {item.name}

@@ -49,7 +49,7 @@ const MobilCard: React.FC<MobilCardProps> = ({ mobil, query }) => {
 
   return (
     <Link href={`/mobil/${mobil.nama}`}>
-      <div className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out ">
+      <div className="overflow-hidden rounded-lg shadow-xl dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out ">
         <div className="h-36 sm:h-40 overflow-hidden">
           <img
             src={mobil.gambar || "/placeholder.png"}

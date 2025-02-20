@@ -6,7 +6,7 @@ interface CardSalesProps {
 
 const CardSales = ({ sales }: CardSalesProps) => {
   return (
-    <div className="m-1 p-2 rounded-lg overflow-hidden transition transform hover:bg-secondary active:bg-primary-foreground hover:scale-95 duration-200 ease-in-out shadow-md dark:bg-black">
+    <div className="overflow-hidden rounded-lg shadow-xl dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out">
       <div className="flex flex-col items-center">
         <img
           src={sales.profile}
@@ -15,7 +15,7 @@ const CardSales = ({ sales }: CardSalesProps) => {
           className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-red-500"
         />
         <div className="text-center mt-2">
-          <h2 className="text-sm sm:text-base font-semibold truncate">
+          <h2 className="text-sm sm:text-base font-semibold text-ellipsis line-clamp-1">
             {sales.nama}
           </h2>
           <h3 className="text-xs sm:text-sm text-gray-500">{sales.nohp}</h3>

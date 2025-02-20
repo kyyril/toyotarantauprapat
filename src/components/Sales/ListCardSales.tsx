@@ -18,7 +18,7 @@ const ListSales = ({ sales }: ListSalesProps) => {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid mx-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {sales.map((sal) => (
         <Link key={sal.id} href={`/sales/${sal.id}`}>
           <CardSales sales={sal} />
