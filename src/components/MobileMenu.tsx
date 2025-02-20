@@ -18,7 +18,11 @@ export default function MobileMenu() {
   return (
     <Sheet open={open} onOpenChange={(state) => setOpen(state)}>
       <SheetTrigger asChild>
-        <Button variant={"ghost"} size={"icon"}>
+        <Button
+          variant={"secondary"}
+          size={"icon"}
+          className="transition-transform active:scale-90"
+        >
           <AlignJustify className="h-5 w-5" />
         </Button>
       </SheetTrigger>

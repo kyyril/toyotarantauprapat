@@ -1,5 +1,11 @@
 import Image from "next/image";
-import { Car, CreditCard, Wrench } from "lucide-react";
+import {
+  Bot,
+  Car,
+  CreditCard,
+  MousePointerClickIcon,
+  Wrench,
+} from "lucide-react";
 import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
 import { Button } from "@/components/ui/button";
@@ -7,6 +13,7 @@ import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
 
 import { Metadata } from "next";
 import PhoneContact from "@/components/PhoneContact";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Toyota Rantauprapat | Dealer Resmi Toyota",
@@ -103,6 +110,77 @@ export default function Home() {
         <CardPromo />
       </section>
 
+      {/* {highlight} */}
+
+      <section
+        id="feature-highlights"
+        className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
+      >
+        <h2 className="text-2xl font-semibold">Menyediakan</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+          <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
+            <Car className="h-8 w-8 text-red-500 mb-3" />
+            <h3 className="text-lg font-semibold mb-2">Mobil</h3>
+            <p className="text-gray-500">
+              Berbagai pilihan mobil Toyota terbaru dengan harga kompetitif
+            </p>
+            <a
+              className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
+              href="/mobil"
+            >
+              kunjungi
+            </a>
+          </div>
+          <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
+            <Wrench className="h-8 w-8 text-red-500 mb-3" />
+            <h3 className="text-lg font-semibold mb-2">Layanan</h3>
+            <p className="text-gray-500">
+              Layanan servis berkualitas dan penjualan suku cadang asli Toyota
+            </p>
+            <a
+              className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
+              href="/layanan"
+            >
+              kunjungi
+            </a>
+          </div>
+          <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
+            <CreditCard className="h-8 w-8 text-red-500 mb-3" />
+            <h3 className="text-lg font-semibold mb-2">Sales</h3>
+            <p className="text-gray-500">
+              Tim sales profesional siap membantu pembelian mobil impian Anda
+            </p>
+            <a
+              className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
+              href="/sales"
+            >
+              kunjungi
+            </a>
+          </div>
+          <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
+            <Bot className="h-8 w-8 text-red-500 mb-3" />
+            <h3 className="text-lg font-semibold mb-2">Rekomendasi AI</h3>
+            <p className="text-gray-500">
+              Dapatkan rekomendasi mobil yang sesuai dengan kebutuhan Anda
+            </p>
+            <a
+              className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
+              href="/rekomendasi-ai"
+            >
+              kunjungi
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="sales"
+        className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
+      >
+        <h2 className="text-2xl font-semibold">Mobil</h2>
+        <BerandaCardMobil />
+      </section>
+
       {/* standart pembayaran */}
       <section
         className="max-w-8xl w-full mt-10 px-4 md:px-16 mx-auto"
@@ -118,37 +196,6 @@ export default function Home() {
         Sales/Oknum
         <hr className="mt-4" />
       </div>
-
-      {/* service
-      <section
-        id="services"
-        className="max-w-7xl w-full mt-24 px-4 md:px-16 mx-auto"
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex flex-col  items-center">
-            <CreditCard className="h-8 w-8 text-red-500" />
-            <span className="font-bold text-center text-md">
-              Simulasi Credit
-            </span>
-          </div>
-          <div className="flex flex-col mx-4 items-center">
-            <Wrench className="h-8 w-8 text-red-500" />
-            <span className="font-bold text-md">Service</span>
-          </div>
-          <div className="flex flex-col  items-center">
-            <Car className="h-8 w-8 text-red-500" />
-            <span className="font-bold text-md">Test Drive</span>
-          </div>
-        </div>
-      </section> */}
-
-      <section
-        id="sales"
-        className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
-      >
-        <h2 className="text-2xl font-semibold">Mobil</h2>
-        <BerandaCardMobil />
-      </section>
 
       <section
         className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"
