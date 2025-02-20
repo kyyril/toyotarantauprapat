@@ -1,4 +1,6 @@
-import CardSales from "@/components/Sales/CardSales";
+import ListSales from "@/components/Sales/ListCardSales";
+import { Sales } from "@/lib/interfaces/data.interface";
+import { fetchSales } from "@/lib/utils/fetcher";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,14 +28,27 @@ export const metadata: Metadata = {
 };
 
 const SalesPage = async () => {
+  let sales: Sales[] = [];
+
+  try {
+    sales = await fetchSales();
+  } catch (error) {
+    console.error("Error fetching sales:", error);
+  }
+
   return (
-    <main className="w-full flex justify-center items-start min-h-screen mt-4">
-      <section className="w-full max-w-5xl flex justify-center items-center flex-col">
-        <div className="mb-4 w-full mx-auto flex justify-start items-start">
-          <h2 className="text-2xl font-bold mx-5">Sales</h2>
+    <main className="flex flex-col flex-grow">
+      <div className="max-w-6xl w-full mx-auto">
+        <div className="mb-8 p-4">
+          <h1 className="text-3xl font-bold text-primary">Sales</h1>
+          <p className="mt-2 text-gray-600">
+            Tim sales profesional kami siap membantu Anda menemukan mobil Toyota
+            impian. Hubungi sales advisor kami untuk konsultasi dan penawaran
+            terbaik.
+          </p>
         </div>
-        <CardSales />
-      </section>
+        <ListSales sales={sales} />
+      </div>
     </main>
   );
 };

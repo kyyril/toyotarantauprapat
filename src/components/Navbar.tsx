@@ -32,7 +32,7 @@ export function Navigation() {
             </span>
           </div>
         </Link>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           {navigationItems.map((item, index) => (
             <Link
               key={index}

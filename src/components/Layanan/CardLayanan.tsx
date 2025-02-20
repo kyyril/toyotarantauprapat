@@ -1,6 +1,5 @@
 import { layanan } from "@/lib/interfaces/data.interface";
 import React from "react";
-import { Card } from "../ui/card";
 
 interface CardLayananProps {
   layanan: layanan;
@@ -8,7 +7,7 @@ interface CardLayananProps {
 
 const CardLayanan: React.FC<CardLayananProps> = ({ layanan }) => {
   return (
-    <div className="hover:opacity-50">
+    <div className="hover:shadow-2xl shadow-lg p-2 rounded-lg">
       <div className="w-full h-48">
         <img
           src={layanan.thumbnail}

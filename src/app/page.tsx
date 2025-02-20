@@ -59,7 +59,7 @@ export default function Home() {
     <main className="min-h-screen">
       <section
         id="profile"
-        className="container max-w-5xl mx-auto md:py-16 lg:py-20 h-auto"
+        className="container max-w-5xl mx-auto md:py-16 lg:py-20 h-screen"
       >
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mx-1">
           <div className="">
