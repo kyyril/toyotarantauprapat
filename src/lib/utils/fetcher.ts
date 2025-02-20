@@ -131,3 +131,16 @@ export async function fetchGallery() {
     throw error;
   }
 }
+
+//review
+export async function fetchReview() {
+  try {
+    const response = await axios.get(
+      `https://script.google.com/macros/s/${idSpead}/exec?action=review`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching promo detail:", error);
+    throw error;
+  }
+}

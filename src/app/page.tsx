@@ -15,6 +15,7 @@ import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
 import { Metadata } from "next";
 import PhoneContact from "@/components/PhoneContact";
 import Link from "next/link";
+import ReviewCarousel from "@/components/ReviewCarousel";
 
 export const metadata: Metadata = {
   title: "Toyota Rantauprapat | Dealer Resmi Toyota",
@@ -204,6 +205,14 @@ export default function Home() {
         Sales/Oknum
         <hr className="mt-4" />
       </div>
+
+      {/* Review */}
+      <section
+        className="max-w-8xl w-full mt-10 px-4 md:px-16 mx-auto"
+        id="review"
+      >
+        <ReviewCarousel />
+      </section>
 
       <section
         className="max-w-8xl w-full mt-24 px-4 md:px-16 mx-auto"

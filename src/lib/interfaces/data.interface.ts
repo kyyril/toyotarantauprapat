@@ -16,7 +16,15 @@ export interface Sales {
   deskripsi: string;
   gallery: any;
 }
-
+export interface Review {
+  id: string;
+  name: string;
+  rating: number;
+  review: string;
+  link: string;
+  date: string;
+  profileImage?: string;
+}
 export interface layanan {
   id: string;
   title: string;
