@@ -21,11 +21,7 @@ const ListLayanan: React.FC<ListLayananProps> = ({ layananList }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
       {layananList.map((layanan) => (
-        <Link
-          key={layanan.id}
-          href={`/layanan/${layanan.id}`}
-          className="transition-transform hover:scale-105"
-        >
+        <Link key={layanan.id} href={`/layanan/${layanan.id}`}>
           <CardLayanan layanan={layanan} />
         </Link>
       ))}

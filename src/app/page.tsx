@@ -4,6 +4,7 @@ import {
   Car,
   CreditCard,
   MousePointerClickIcon,
+  Users,
   Wrench,
 } from "lucide-react";
 import { CardPromo } from "@/components/Promo/CardPromo";
@@ -145,7 +146,7 @@ export default function Home() {
             </a>
           </div>
           <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
-            <CreditCard className="h-8 w-8 text-red-500 mb-3" />
+            <Users className="h-8 w-8 text-red-500 mb-3" />
             <h3 className="text-lg font-semibold mb-2">Sales</h3>
             <p className="text-gray-500">
               Tim sales profesional siap membantu pembelian mobil impian Anda
@@ -169,6 +170,13 @@ export default function Home() {
             >
               kunjungi
             </a>
+          </div>
+          <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
+            <CreditCard className="h-8 w-8 text-red-500 mb-3" />
+            <h3 className="text-lg font-semibold mb-2">Simulasi Kredit</h3>
+            <p className="text-gray-500">
+              Hitung estimasi cicilan bulanan untuk pembelian mobil Toyota
+            </p>
           </div>
         </div>
       </section>

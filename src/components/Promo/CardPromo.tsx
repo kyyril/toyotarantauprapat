@@ -122,7 +122,9 @@ export function CardPromo() {
                   </h2>
                   <div className="text-sm text-gray-500 flex items-center gap-1">
                     <TimerIcon className="w-4 h-4" />
-                    {formatDate(promo.mulai)} - {formatDate(promo.akhir)}
+                    <p className="text-ellipsis line-clamp-1">
+                      {formatDate(promo.mulai)} - {formatDate(promo.akhir)}
+                    </p>
                   </div>
                 </div>
               </Card>
