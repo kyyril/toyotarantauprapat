@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Mobil } from "@/lib/interfaces/mobil.interface";
+
 import { Input } from "@/components/ui/input";
 import MobilCard from "./MobilCard";
 import {
@@ -11,19 +11,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useMobilStore } from "@/lib/store/useCarStore";
 
-interface ListMobilProps {
-  data: Mobil[];
-}
-
-const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
+const ListMobil = () => {
+  const { cars, isLoading, fetchCars } = useMobilStore();
   const [query, setQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [groupedData, setGroupedData] = useState<{ [key: string]: Mobil[] }>(
-    {}
-  );
+  const [groupedData, setGroupedData] = useState<{ [key: string]: any[] }>({});
 
+  // Fetch cars on mount
+  useEffect(() => {
+    if (cars.length === 0) {
+      fetchCars();
+    }
+  }, [cars, fetchCars]);
+
+  // Keep existing parseArray function
   const parseArray = (value: any): string[] => {
     if (typeof value === "string" && value.includes(",")) {
       return value.split(",").map((v) => v.trim());
@@ -34,7 +38,8 @@ const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
     return [value?.toString() || "Unknown"];
   };
 
-  const groupByCategory = (mobils: Mobil[]): { [key: string]: Mobil[] } => {
+  // Update groupByCategory to use cars from store
+  const groupByCategory = (mobils: any[]): { [key: string]: any[] } => {
     return mobils.reduce((acc, mob) => {
       const categories = parseArray(mob.kategori);
       categories.forEach((cat) => {
@@ -42,25 +47,25 @@ const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
         acc[cat].push(mob);
       });
       return acc;
-    }, {} as { [key: string]: Mobil[] });
+    }, {} as { [key: string]: any[] });
   };
 
+  // Update useEffect to use cars from store
   useEffect(() => {
-    if (data && data.length > 0) {
-      const grouped = groupByCategory(data);
+    if (cars && cars.length > 0) {
+      const grouped = groupByCategory(cars);
       setGroupedData(grouped);
     }
-  }, [data]);
+  }, [cars]);
 
+  // Keep existing helper functions
   const getLowestPrice = (harga: string | undefined) => {
     if (!harga) return Infinity;
-
     const parsedHarga = parseArray(harga);
     const hargaNumbers = parsedHarga
       .map((h) => h.replace(/\D/g, ""))
       .map((h) => parseInt(h, 10))
       .filter((h) => !isNaN(h));
-
     return hargaNumbers.length > 0 ? Math.min(...hargaNumbers) : Infinity;
   };
 
@@ -72,10 +77,15 @@ const ListMobil: React.FC<ListMobilProps> = ({ data }) => {
     ([category]) => categoryFilter === "all" || category === categoryFilter
   );
 
-  if (!data || data.length === 0) {
+  if (isLoading) {
+    return <div className="text-center p-4">Loading...</div>;
+  }
+
+  if (!cars || cars.length === 0) {
     return <div className="text-center p-4">Tidak ada data mobil tersedia</div>;
   }
 
+  // Keep existing return statement and UI code
   return (
     <div className="container mx-auto p-4">
       <div className="flex flex-wrap justify-between items-center mb-4 gap-4">

@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
-import { fetchReview } from "@/lib/utils/fetcher";
-import { Review } from "@/lib/interfaces/data.interface";
 import { Star, ExternalLink, User } from "lucide-react";
-import Image from "next/image";
+
+import { useReviewStore } from "@/lib/store/useReviewStore";
 
 const ReviewSkeleton = () => (
   <div className="flex space-x-4">
@@ -34,23 +33,13 @@ const ReviewSkeleton = () => (
 );
 
 const ReviewCarousel = () => {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { reviews, loading, fetchReviews } = useReviewStore();
 
   useEffect(() => {
-    const fetchRev = async () => {
-      try {
-        const response = await fetchReview();
-        setReviews(response);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRev();
-  }, []);
+    if (reviews.length === 0) {
+      fetchReviews();
+    }
+  }, [reviews, fetchReviews]);
 
   return (
     <section className="w-full py-8 px-4">
@@ -69,7 +58,8 @@ const ReviewCarousel = () => {
                   <CardHeader className="space-y-2">
                     <div className="flex items-center space-x-3">
                       {review.profileImage ? (
-                        <Image
+                        <img
+                          loading="lazy"
                           src={review.profileImage}
                           alt={review.name}
                           width={40}

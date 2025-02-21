@@ -29,12 +29,12 @@ const BackToTopButton = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-10 right-5">
+    <div className="fixed bottom-10 right-2">
       {isVisible && (
         <Button
           onClick={scrollToTop}
           variant="outline"
-          className="backdrop-blur-sm rounded-xl py-6 mb-10 px-4 shadow-lg size-lg"
+          className="backdrop-blur-lg bg-background/30 rounded-xl py-5 mb-10 px-3 shadow-lg size-lg"
         >
           <ArrowUp className="text-red-500" />
         </Button>

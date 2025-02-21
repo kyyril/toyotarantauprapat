@@ -1,30 +1,19 @@
 "use client";
 
-import { fetchMobil } from "@/lib/utils/fetcher";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button } from "../ui/button";
 import { CalendarDays, Cog, Gauge, MousePointerClickIcon } from "lucide-react";
-import { Mobil } from "@/lib/interfaces/mobil.interface";
+import { useMobilStore } from "@/lib/store/useCarStore";
 
 export function BerandaCardMobil() {
-  const [cars, setCars] = useState<Mobil[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { cars, isLoading, fetchCars } = useMobilStore();
 
   useEffect(() => {
-    async function loadSalesData() {
-      try {
-        const data = await fetchMobil();
-        setCars(data);
-      } catch (error) {
-        console.error("Error fetching sales:", error);
-      } finally {
-        setIsLoading(false);
-      }
+    if (cars.length === 0) {
+      fetchCars();
     }
-
-    loadSalesData();
-  }, []);
+  }, [cars, fetchCars]);
 
   const parseArrayFirst = (value: any): string => {
     if (!value) return "--";

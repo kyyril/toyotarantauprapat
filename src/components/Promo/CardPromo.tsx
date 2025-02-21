@@ -1,46 +1,27 @@
 "use client";
-
 import { Card } from "@/components/ui/card";
-import { Promo } from "@/lib/interfaces/data.interface";
-import { fetchPromo } from "@/lib/utils/fetcher";
+import { usePromoStore } from "@/lib/store/usePromoStore";
 import { TimerIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 
 export function CardPromo() {
-  const [promos, setPromos] = useState<Promo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Pagination states
+  const { promos, isLoading, fetchPromos } = usePromoStore();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; // Jumlah item per halaman
+  const itemsPerPage = 4;
+
+  useEffect(() => {
+    if (promos.length === 0) {
+      fetchPromos();
+    }
+  }, [fetchPromos, promos.length]);
 
   const totalPages = Math.ceil(promos.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-
-  useEffect(() => {
-    async function loadPromoData() {
-      try {
-        const data = await fetchPromo();
-        // Sort promos by start date, newest first
-        const sortedPromos = data.sort(
-          (a: any, b: any) =>
-            new Date(b.mulai).getTime() - new Date(a.mulai).getTime()
-        );
-        setPromos(sortedPromos);
-      } catch (error) {
-        console.error("Error fetching promo:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadPromoData();
-  }, []);
 
   if (isLoading) {
     return (
@@ -50,27 +31,23 @@ export function CardPromo() {
     );
   }
 
-  // Filter hot promos and sort by date
   const hotPromos = promos
     .filter((promo) => promo.id >= 100)
     .sort((a, b) => new Date(b.mulai).getTime() - new Date(a.mulai).getTime());
 
-  // Get current items and sort by date
   const currentItems = promos
     .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
     .sort((a, b) => new Date(b.mulai).getTime() - new Date(a.mulai).getTime());
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.toLocaleString("default", { month: "short" });
-    const year = date.getFullYear();
-    return `${day} ${month} ${year}`;
+    return `${date.getDate()} ${date.toLocaleString("default", {
+      month: "short",
+    })} ${date.getFullYear()}`;
   };
 
   return (
     <div className="container mx-auto p-4">
-      {/* Hot Promos Section */}
       <div className="mb-6">
         <div className="flex space-x-4 overflow-x-auto snap-x snap-mandatory">
           {hotPromos.map((promo) => (
@@ -100,7 +77,6 @@ export function CardPromo() {
         </div>
       </div>
 
-      {/* Other Promos Section */}
       <div className="mb-4">
         <h2 className="text-2xl font-semibold mb-2">Lainnya</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
@@ -133,7 +109,6 @@ export function CardPromo() {
         </div>
       </div>
 
-      {/* Pagination */}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Car, Wrench, Users, Bot } from "lucide-react"; // Import icons
+import { Home, Car, Wrench, Users, Bot } from "lucide-react";
 import ThemeToggler from "./ThemeToggle";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export const navigationItems = [
   { name: "Beranda", href: "/", icon: Home },
@@ -15,17 +17,30 @@ export const navigationItems = [
 
 export function Navigation() {
   const pathname = usePathname();
+
+  // Add scroll to top effect on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute("href");
+    if (pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  };
   return (
     <>
       {/* Mobile Top Theme Toggler */}
-      <div className="sm:hidden fixed top-0 right-0 z-50 bg-primary-foreground/50 rounded-full backdrop-blur-sm">
+      <div className="sm:hidden fixed top-1 right-1 z-50 bg-background/30 rounded-full backdrop-blur-lg">
         <ThemeToggler />
       </div>
       {/* Navbar untuk layar besar */}
-      <nav className="hidden sm:flex sticky top-0 z-50 max-w-7xl mx-auto px-4 md:px-8 py-3 justify-between items-center bg-primary-foreground/50 backdrop-blur-sm">
+      <nav className="hidden sm:flex sticky top-0 z-50 max-w-7xl mx-auto px-4 md:px-8 py-3 justify-between items-center bg-background/30 backdrop-blur-lg">
         <Link href={"/"}>
           <div className="flex flex-col">
             <Image alt="logo" width={110} height={5} src={"/images/logo.png"} />
@@ -39,8 +54,9 @@ export function Navigation() {
             <Link
               key={index}
               href={item.href}
-              className={`text-sm hover:text-primary transition-colors ${
-                pathname === item.href ? "font-bold text-primary" : "opacity-75"
+              onClick={handleNavigation}
+              className={`text-md hover:text-primary transition-colors ${
+                isActive(item.href) ? "text-red-500" : ""
               }`}
             >
               {item.name}
@@ -50,42 +66,59 @@ export function Navigation() {
         </div>
       </nav>
       {/* Mobile Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full bg-primary-foreground/50 backdrop-blur-sm shadow-md sm:hidden z-40">
-        <div className="flex justify-around py-2">
+      <motion.div
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        className="fixed bottom-0 left-0 w-full bg-background/30 backdrop-blur-lg shadow-lg sm:hidden z-40"
+      >
+        <div className="flex justify-around items-center py-2 px-1">
           {navigationItems.map((item, index) => {
             const Icon = item.icon;
+            const active = isActive(item.href);
+
             return (
               <Link
                 key={index}
                 href={item.href}
-                className="relative group flex flex-col items-center px-2 py-1 rounded-2xl bg-secondary/75"
+                onClick={handleNavigation}
+                className="relative group flex flex-col items-center justify-center w-16"
               >
-                <Icon
-                  className={`w-5 h-5 mb-0.5 transition-colors duration-200 ${
-                    isActive(item.href)
-                      ? "text-red-500"
-                      : "group-hover:text-primary"
-                  }`}
-                />
+                <motion.div
+                  className="relative"
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div
+                    className={`
+                    p-2 rounded-xl transition-all duration-200
+                    ${active ? "bg-red-500/10" : "group-hover:bg-red-500/5"}
+                  `}
+                  >
+                    <Icon
+                      className={`w-5 h-5 transition-colors duration-200 ${
+                        active
+                          ? "text-red-500"
+                          : "text-primary group-hover:text-red-500"
+                      }`}
+                    />
+                  </div>
+                </motion.div>
+
                 <span
                   className={`text-xs transition-all duration-200 ${
-                    isActive(item.href) ? "text-primary" : ""
+                    active ? "text-red-500" : "text-primary"
                   }`}
                 >
                   {item.name}
                 </span>
-
-                {/* Hover tooltip
-                <span className="absolute -top-8 scale-0 transition-all rounded bg-red-500 p-2 text-xs text-white group-hover:scale-100">
-                  {item.name}
-                </span> */}
               </Link>
             );
           })}
         </div>
-      </div>
-      {/* Add padding for mobile nav bars */}
-      <div className="sm:hidden h-10" /> {/* Top padding for theme toggle */}
+      </motion.div>
+
+      {/* Padding for fixed elements */}
+      <div className="sm:hidden h-16" />
     </>
   );
 }

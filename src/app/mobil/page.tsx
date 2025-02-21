@@ -1,8 +1,5 @@
-import { fetchMobil } from "@/lib/utils/fetcher";
 import ListMobil from "@/components/Mobil/ListMobil";
 import { Metadata } from "next";
-import { Suspense } from "react";
-import { MobilListSkeleton } from "@/components/Mobil/MobilListSkeleton";
 
 export const metadata: Metadata = {
   title: "Daftar Mobil Toyota | Toyota Rantauprapat",
@@ -29,17 +26,15 @@ export const metadata: Metadata = {
 };
 
 const MobilPage = async () => {
-  const data = await fetchMobil(); // Fetch data langsung di server
-
   return (
     <main className="w-full flex justify-center items-start min-h-screen">
       <section className="w-full max-w-5xl flex justify-center items-center flex-col">
         <div className="mb-4">
           <h2 className="text-2xl font-semibold">Mobil</h2>
         </div>
-        <Suspense fallback={<MobilListSkeleton />}>
-          <ListMobil data={data} />
-        </Suspense>
+        <div>
+          <ListMobil />
+        </div>
       </section>
     </main>
   );

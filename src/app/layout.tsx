@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { useEffect } from "react";
-import { usePathname } from "next/navigation"; // Import usePathname
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navbar";
@@ -9,16 +6,6 @@ import BackToTopButton from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -78,7 +65,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -88,9 +74,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
-      >
+      <head>
+        <link rel="stylesheet" href="scrollBehavior: 'smooth'" />
+      </head>
+      <body className={`antialiased scroll-smooth`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
