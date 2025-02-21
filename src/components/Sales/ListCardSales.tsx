@@ -2,21 +2,20 @@
 
 import Link from "next/link";
 import CardSales from "./CardSales";
-import { Sales } from "@/lib/interfaces/data.interface";
+import { useSalesStore } from "@/lib/store/useSalesStore";
+import { useEffect } from "react";
+import SalesListSkeleton from "./ListSalesSkeleton";
 
-interface ListSalesProps {
-  sales: Sales[];
-}
+const ListSales = () => {
+  const { sales, isLoading, fetchSales } = useSalesStore();
 
-const ListSales = ({ sales }: ListSalesProps) => {
-  if (!sales || sales.length === 0) {
-    return (
-      <div className="h-screen flex items-center justify-center text-gray-500">
-        Tidak ada sales tersedia
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (sales.length === 0) {
+      fetchSales();
+    }
+  }, [sales, fetchSales]);
 
+  if (isLoading) return <SalesListSkeleton />;
   return (
     <div className="grid mx-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {sales.map((sal) => (

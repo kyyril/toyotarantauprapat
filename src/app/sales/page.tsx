@@ -1,6 +1,4 @@
 import ListSales from "@/components/Sales/ListCardSales";
-import { Sales } from "@/lib/interfaces/data.interface";
-import { fetchSales } from "@/lib/utils/fetcher";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -28,14 +26,6 @@ export const metadata: Metadata = {
 };
 
 const SalesPage = async () => {
-  let sales: Sales[] = [];
-
-  try {
-    sales = await fetchSales();
-  } catch (error) {
-    console.error("Error fetching sales:", error);
-  }
-
   return (
     <main className="flex flex-col flex-grow">
       <div className="max-w-6xl w-full mx-auto">
@@ -47,7 +37,7 @@ const SalesPage = async () => {
             terbaik.
           </p>
         </div>
-        <ListSales sales={sales} />
+        <ListSales />
       </div>
     </main>
   );

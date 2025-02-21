@@ -5,6 +5,7 @@ import { TimerIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
+import PromoListSkeleton from "./PromoListSkeleton";
 
 export function CardPromo() {
   const { promos, isLoading, fetchPromos } = usePromoStore();
@@ -23,13 +24,7 @@ export function CardPromo() {
     setCurrentPage(page);
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <span className="loader"></span>
-      </div>
-    );
-  }
+  if (isLoading) return <PromoListSkeleton />;
 
   const hotPromos = promos
     .filter((promo) => promo.id >= 100)

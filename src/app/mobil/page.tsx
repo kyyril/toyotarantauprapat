@@ -32,9 +32,7 @@ const MobilPage = async () => {
         <div className="mb-4">
           <h2 className="text-2xl font-semibold">Mobil</h2>
         </div>
-        <div>
-          <ListMobil />
-        </div>
+        <ListMobil />
       </section>
     </main>
   );

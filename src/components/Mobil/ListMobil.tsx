@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useMobilStore } from "@/lib/store/useCarStore";
+import { MobilListSkeleton } from "./MobilListSkeleton";
 
 const ListMobil = () => {
   const { cars, isLoading, fetchCars } = useMobilStore();
@@ -78,7 +79,7 @@ const ListMobil = () => {
   );
 
   if (isLoading) {
-    return <div className="text-center p-4">Loading...</div>;
+    return <MobilListSkeleton />;
   }
 
   if (!cars || cars.length === 0) {
@@ -135,9 +136,9 @@ const ListMobil = () => {
                     ? hargaA - hargaB
                     : hargaB - hargaA;
                 })
-                .map((mob) => (
+                .map((mob, index) => (
                   <MobilCard
-                    key={mob.id}
+                    key={index}
                     mobil={mob}
                     query={query}
                     getLowestPrice={getLowestPrice}

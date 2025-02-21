@@ -1,6 +1,4 @@
 import ListLayanan from "@/components/Layanan/ListLayanan";
-import { fetchLayanan } from "@/lib/utils/fetcher";
-import { layanan } from "@/lib/interfaces/data.interface";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -27,14 +25,6 @@ export const metadata: Metadata = {
   },
 };
 const LayananPage = async () => {
-  let layananList: layanan[] | any = [];
-
-  try {
-    layananList = await fetchLayanan();
-  } catch (error) {
-    console.error("Error fetching layanan:", error);
-  }
-
   return (
     <main className="flex flex-col flex-grow">
       <div className="max-w-6xl w-full mx-auto">
@@ -44,7 +34,7 @@ const LayananPage = async () => {
             Berbagai layanan yang kami sediakan untuk kenyamanan Anda
           </p>
         </div>
-        <ListLayanan layananList={layananList} />
+        <ListLayanan />
       </div>
     </main>
   );
