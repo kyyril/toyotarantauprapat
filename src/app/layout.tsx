@@ -1,5 +1,3 @@
-"use client"; // Pastikan ini di bagian atas karena kita pakai useEffect
-
 import type { Metadata } from "next";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation"; // Import usePathname
@@ -22,22 +20,72 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: "toyotarantauprapat",
-//   description: "astra toyota auto 2000 cabang labuhanbatu rantauprapat",
-// };
+export const metadata: Metadata = {
+  title: {
+    default: "Toyota Rantauprapat | Dealer Resmi Toyota Auto 2000",
+    template: "%s | Toyota Rantauprapat",
+  },
+  description:
+    "Dealer Resmi Toyota Auto 2000 Cabang Labuhanbatu Rantauprapat - Melayani penjualan mobil baru, servis berkala, dan sparepart asli Toyota dengan harga terbaik.",
+  keywords:
+    "toyota rantauprapat, dealer toyota, mobil toyota, servis toyota, sparepart toyota, auto 2000, labuhanbatu",
+  authors: [{ name: "Toyota Rantauprapat" }],
+  creator: "Toyota Rantauprapat",
+  publisher: "Toyota Auto 2000",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  verification: {
+    google: "24f9cc081f9ae37b",
+  },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: "https://www.toyotarantauprapat.com/",
+    title: "Toyota Rantauprapat | Dealer Resmi Toyota Auto 2000",
+    description:
+      "Dealer Resmi Toyota Auto 2000 Cabang Labuhanbatu Rantauprapat - Melayani penjualan mobil baru, servis berkala, dan sparepart asli Toyota.",
+    siteName: "Toyota Rantauprapat",
+    images: [
+      {
+        url: "/images/pt.png",
+        width: 1200,
+        height: 630,
+        alt: "Toyota Rantauprapat",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  manifest: "/manifest.json",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname(); // Ambil URL saat ini
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scroll ke atas saat halaman berubah
-  }, [pathname]); // Jalankan setiap kali pathname berubah
-
   return (
     <html lang="en">
       <body
