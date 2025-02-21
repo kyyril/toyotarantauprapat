@@ -7,11 +7,7 @@ import Link from "next/link";
 import { useLayananStore } from "@/lib/store/useLayananStore";
 import LayananListSkeleton from "./LayananListSkeleton";
 
-interface ListLayananProps {
-  layananList: layanan[];
-}
-
-const ListLayanan: React.FC<ListLayananProps> = () => {
+const ListLayanan = () => {
   const { layananList, isLoading, fetchLayanan } = useLayananStore();
 
   useEffect(() => {

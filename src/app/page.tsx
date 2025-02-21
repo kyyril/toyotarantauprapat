@@ -1,15 +1,7 @@
 import Image from "next/image";
-import {
-  Bot,
-  Car,
-  CreditCard,
-  MousePointerClickIcon,
-  Users,
-  Wrench,
-} from "lucide-react";
+import { Bot, Car, CreditCard, Users, Wrench } from "lucide-react";
 import { CardPromo } from "@/components/Promo/CardPromo";
 import CardProsesPembayaran from "@/components/CardProsesPembayaran";
-import { Button } from "@/components/ui/button";
 import { BerandaCardMobil } from "@/components/Mobil/BerandaCardMobil";
 
 import { Metadata } from "next";
@@ -126,12 +118,12 @@ export default function Home() {
             <p className="text-gray-500">
               Berbagai pilihan mobil Toyota terbaru dengan harga kompetitif
             </p>
-            <a
+            <Link
               className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
-              href="/mobil"
+              href={"/mobil"}
             >
               kunjungi
-            </a>
+            </Link>
           </div>
           <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
             <Wrench className="h-8 w-8 text-red-500 mb-3" />
@@ -139,12 +131,12 @@ export default function Home() {
             <p className="text-gray-500">
               Layanan servis berkualitas dan penjualan suku cadang asli Toyota
             </p>
-            <a
+            <Link
               className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
-              href="/layanan"
+              href={"/layanan"}
             >
               kunjungi
-            </a>
+            </Link>
           </div>
           <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
             <Users className="h-8 w-8 text-red-500 mb-3" />
@@ -152,12 +144,12 @@ export default function Home() {
             <p className="text-gray-500">
               Tim sales profesional siap membantu pembelian mobil impian Anda
             </p>
-            <a
+            <Link
               className="text-red-500 underline hover:opacity-50 flex justify-end w-full"
-              href="/sales"
+              href={"/sales"}
             >
               kunjungi
-            </a>
+            </Link>
           </div>
           <div className="p-6 border rounded-lg hover:shadow-lg transition-shadow">
             <Bot className="h-8 w-8 text-red-500 mb-3" />

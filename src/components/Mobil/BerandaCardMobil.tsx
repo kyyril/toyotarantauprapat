@@ -31,7 +31,10 @@ export function BerandaCardMobil() {
     return (
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {Array.from({ length: 4 }).map((_, index) => (
-          <div className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out">
+          <div
+            key={index}
+            className="overflow-hidden rounded-lg shadow-xl outline-none border-none dark:bg-black transition hover:scale-95 hover:shadow-xl ease-in-out"
+          >
             <Skeleton className="h-36 sm:h-40 w-full" />
             <div className="p-2 sm:p-3">
               <Skeleton className="h-5 w-3/4" />

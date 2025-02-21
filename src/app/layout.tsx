@@ -74,9 +74,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" href="scrollBehavior: 'smooth'" />
-      </head>
       <body className={`antialiased scroll-smooth`}>
         <ThemeProvider
           attribute="class"

@@ -136,9 +136,9 @@ const ListMobil = () => {
                     ? hargaA - hargaB
                     : hargaB - hargaA;
                 })
-                .map((mob, index) => (
+                .map((mob) => (
                   <MobilCard
-                    key={index}
+                    key={mob.id}
                     mobil={mob}
                     query={query}
                     getLowestPrice={getLowestPrice}
