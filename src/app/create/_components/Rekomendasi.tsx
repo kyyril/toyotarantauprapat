@@ -1,30 +1,33 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import {
-  ChevronLeft,
-  ChevronRight,
-  LinkIcon,
-  Loader2Icon,
-  Navigation2Icon,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Prompt from "@/app/_data/Prompt";
-import { Card } from "@/components/ui/card";
-import { RekomendasiResponse } from "@/lib/interfaces/ai.mobil.interface";
 import { Button } from "@/components/ui/button";
 import SkeletonRekomendasi from "./RekomendasiSkeleton";
 
 interface FormState {
-  budget: {
-    budget: string;
-  };
+  budget: { budget: string };
   kategori: string;
   kebutuhan: string;
   penggunaan: string;
   lokasi: string;
 }
+const Id_PostAI = process.env.NEXT_PUBLIC_SPREAD_POST_AI;
+const sendToGoogleSheet = async (formState: FormState) => {
+  const scriptUrl = `https://script.google.com/macros/s/${Id_PostAI}/exec`;
+
+  await fetch(scriptUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formState),
+  });
+
+  console.log("Data dikirim ke Google Apps Script:", formState);
+};
 
 function RekomendasiComp({ formState }: { formState: FormState }) {
-  const [mobil, setMobil] = useState<RekomendasiResponse | null>(null);
+  const [mobil, setMobil] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasGenerated, setHasGenerated] = useState(false);
@@ -46,19 +49,15 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
         .replace("{penggunaan}", formState?.penggunaan || "N/A")
         .replace("{lokasi}", formState?.lokasi || "N/A");
 
-      const { data } = await axios.post<RekomendasiResponse>("/api/ai-mobil", {
-        prompt: PROMPT,
-      });
+      const { data } = await axios.post("/api/ai-mobil", { prompt: PROMPT });
 
       if ("error" in data) {
-        throw new Error(data.error as string);
+        throw new Error(data.error);
       }
 
       setMobil(data);
-      console.log(data);
       setHasGenerated(true);
     } catch (error) {
-      console.error("Error:", error);
       setError("Gagal mendapatkan rekomendasi. Silakan coba lagi.");
     } finally {
       setLoading(false);
@@ -79,20 +78,16 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
     }
   }, [formState, generateMobilRekomendasi, hasGenerated]);
 
-  const totalPages = mobil?.rekomendasi ? mobil.rekomendasi.length : 0;
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
-  };
+  useEffect(() => {
+    if (mobil?.rekomendasi && !error) {
+      sendToGoogleSheet(formState);
+    }
+  }, [mobil, error, formState]);
 
   return (
     <div className="min-h-screen">
       <div className="text-center mb-8">
-        <h2 className="font-bold text-3xl text-red-500 ">
+        <h2 className="font-bold text-3xl text-red-500">
           Rekomendasi Mobil Toyota
         </h2>
         <p className="mt-2 text-lg text-gray-600">
@@ -118,7 +113,7 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
                   "/placeholder-car.png"
                 }
                 alt={mobil.rekomendasi[currentPage].nama_mobil}
-                className="w-full h-full "
+                className="w-full h-full"
               />
             </div>
             <div className="p-4 space-y-4">
@@ -127,30 +122,25 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
               </h3>
               <div className="grid grid-cols-2 gap-4 text-sm text-opacity-80">
                 <p>
-                  <span className="font-semibold">Kategori:</span>
-                  <br />
+                  <span className="font-semibold">Kategori:</span>{" "}
                   {mobil.rekomendasi[currentPage].kategori}
                 </p>
                 <p>
-                  <span className="font-semibold">Tipe:</span>
-                  <br />
+                  <span className="font-semibold">Tipe:</span>{" "}
                   {mobil.rekomendasi[currentPage].tipe}
                 </p>
                 <p>
-                  <span className="font-semibold">Transmisi:</span>
-                  <br />
+                  <span className="font-semibold">Transmisi:</span>{" "}
                   {mobil.rekomendasi[currentPage].transmisi}
                 </p>
                 <p>
-                  <span className="font-semibold">Bahan Bakar:</span>
-                  <br />
+                  <span className="font-semibold">Bahan Bakar:</span>{" "}
                   {mobil.rekomendasi[currentPage].bahan_bakar}
                 </p>
               </div>
               <p className="text-gray-500 pt-4 border-t">
                 {mobil.rekomendasi[currentPage].alasan}
               </p>
-              <hr />
               <a
                 className="text-md flex w-full justify-end text-red-500 underline hover:opacity-50"
                 href={`/mobil/${mobil.rekomendasi[currentPage].nama_mobil}`}
@@ -163,19 +153,23 @@ function RekomendasiComp({ formState }: { formState: FormState }) {
           <div className="flex justify-between items-center mt-6">
             <Button
               variant="outline"
-              onClick={handlePrevPage}
+              onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
               disabled={currentPage === 0}
               className="flex items-center gap-2"
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
             <span className="text-sm text-gray-500">
-              {currentPage + 1} dari {totalPages}
+              {currentPage + 1} dari {mobil?.rekomendasi?.length}
             </span>
             <Button
               variant="outline"
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages - 1}
+              onClick={() =>
+                setCurrentPage((prev) =>
+                  Math.min(mobil?.rekomendasi?.length - 1, prev + 1)
+                )
+              }
+              disabled={currentPage === mobil?.rekomendasi?.length - 1}
               className="flex items-center gap-2"
             >
               <ChevronRight className="w-4 h-4" />
