@@ -1,53 +1,51 @@
 "use client";
 
-import { fetchPromoDetail } from "@/lib/utils/fetcher";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { PromosSkeletonDetail } from "./PromoSkeleton";
 import PostPromoDialog from "./PostPromoForm";
+import { usePromoDetailStore } from "@/lib/store/usePromoDetailStore";
 
 export default function PromoDetailContent() {
   const searchParams = useSearchParams();
-  const promoId = searchParams.get("id") || "ID tidak tersedia";
-  const [detail, setDetail] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const promoId = useMemo(() => searchParams.get("id") || "", [searchParams]);
+  const { promoCache, isLoading, error, fetchPromoDetail } =
+    usePromoDetailStore();
 
   useEffect(() => {
-    async function getPromoDetail() {
-      if (promoId === "ID tidak tersedia") {
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        const data = await fetchPromoDetail(promoId);
-        setDetail(data);
-      } catch (error) {
-        console.error("Error fetching promo detail:", error);
-      } finally {
-        setIsLoading(false);
-      }
+    if (promoId && !promoCache[promoId]) {
+      fetchPromoDetail(promoId);
     }
+  }, [promoId, promoCache, fetchPromoDetail]);
 
-    getPromoDetail();
-  }, [promoId]);
-
-  if (isLoading) {
-    return <PromosSkeletonDetail />;
+  if (!promoId) {
+    return <div className="text-red-500">Promo ID tidak tersedia</div>;
   }
 
-  if (!detail) {
+  if (isLoading) return <PromosSkeletonDetail />;
+  if (error || !promoCache[promoId]) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-red-500 text-lg">
-          No details available for this promo.
-        </p>
+      <div className="text-red-500 text-center">
+        Gagal memuat promo.{" "}
+        <button
+          onClick={() => fetchPromoDetail(promoId)}
+          className="text-blue-500 underline"
+        >
+          Coba lagi
+        </button>
       </div>
     );
   }
-
-  const { nama, gambar, mulai, akhir, deskripsi, sub_judul, hashtag, mobil } =
-    detail;
+  const {
+    nama,
+    gambar,
+    mulai,
+    akhir,
+    deskripsi,
+    sub_judul,
+    hashtag,
+    mobil,
+  }: any = promoCache[promoId];
   const parseArray = (value: any): string[] => {
     if (typeof value === "string" && value.includes(",")) {
       return value.split(",").map((v) => v.trim());

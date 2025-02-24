@@ -113,7 +113,7 @@ export default function PostPromoDialog({
         }),
       });
 
-      const waMessage = `Halo, saya ${form.nama} tertarik dengan PROMO ${namaPromo}.%0AMobil: ${form.mobil}%0APesan: ${form.pesan}%0ANomor HP: ${form.nomorHp}`;
+      const waMessage = `Halo, saya ${form.nama} tertarik dengan PROMO: ${namaPromo}.%0AMobil Terkait: ${form.mobil}%0APesan: ${form.pesan}`;
       const waUrl = `https://wa.me/62811612535?text=${waMessage}`;
       window.open(waUrl, "_blank");
       setForm({ nama: "", nomorHp: "", mobil: "", pesan: "" });

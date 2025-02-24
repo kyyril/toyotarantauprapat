@@ -1,50 +1,30 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { fetchMobilDetail } from "@/lib/utils/fetcher";
-import { Mobil } from "@/lib/interfaces/mobil.interface";
-import LoadingScreen from "@/components/MobilDetail/LoadingDetail";
-import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
+import { useEffect } from "react";
 import CarDetailContent from "@/components/MobilDetail/CarDetailContent";
 import CarDetailSkeleton from "@/components/MobilDetail/CarDetailSkeleton";
+import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
+import { useCarDetailStore } from "@/lib/store/useCarDetailStore";
 
 export default function CarDetail() {
   const params = useParams();
-  const [mobil, setMobil] = useState<Mobil | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const slug: any = Array.isArray(params?.slug) ? params.slug[0] : params.slug;
+  const { cars, isLoading, error, fetchCarDetail } = useCarDetailStore();
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (params?.slug) {
-        setLoading(true);
-        setError(false);
-        try {
-          const slug = Array.isArray(params.slug)
-            ? params.slug[0]
-            : params.slug; // Ambil string jika array
-          const data = await fetchMobilDetail(slug);
-          setMobil(data);
-        } catch (error) {
-          console.error("Error fetching car details:", error);
-          setError(true);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
+    if (slug && !cars[slug]) {
+      fetchCarDetail(slug);
+    }
+  }, [slug, cars, fetchCarDetail]);
 
-    fetchData();
-  }, [params?.slug]);
-
-  if (loading) return <CarDetailSkeleton />;
-  if (error || !mobil)
-    return <ErrorScreen onReload={() => window.location.reload()} />;
+  if (isLoading) return <CarDetailSkeleton />;
+  if (error || !cars[slug])
+    return <ErrorScreen onReload={() => fetchCarDetail(slug)} />;
 
   return (
     <div className="min-h-screen">
-      <CarDetailContent mobil={mobil} />;
+      <CarDetailContent mobil={cars[slug]} />
     </div>
   );
 }

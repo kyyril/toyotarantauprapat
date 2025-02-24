@@ -1,50 +1,31 @@
 "use client";
+
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { fetchLayananDetail } from "@/lib/utils/fetcher";
-import LoadingScreen from "@/components/MobilDetail/LoadingDetail";
-import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
-import { layanan } from "@/lib/interfaces/data.interface";
+import { useEffect } from "react";
 import LayananDetailContent from "@/components/Layanan/LayananDetailContent";
 import { DetailLayananSkeleton } from "@/components/Layanan/LayananDetailSkeleton";
+import ErrorScreen from "@/components/MobilDetail/ErrorDetail";
+import { useLayananDetailStore } from "@/lib/store/useLayananDetailStore";
 
 export default function LayananDetail() {
   const params = useParams();
-  const [layanan, setLayanan] = useState<layanan | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const slug: any = Array.isArray(params?.slug) ? params.slug[0] : params.slug;
+  const { layananCache, isLoading, error, fetchLayananDetail } =
+    useLayananDetailStore();
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (params?.slug) {
-        setLoading(true);
-        setError(false);
-        try {
-          const slug = Array.isArray(params.slug)
-            ? params.slug[0]
-            : params.slug; // Ambil string jika array
-          const data = await fetchLayananDetail(slug);
-          setLayanan(data);
-        } catch (error) {
-          console.error("Error fetching car details:", error);
-          setError(true);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
+    if (slug && !layananCache[slug]) {
+      fetchLayananDetail(slug);
+    }
+  }, [slug, layananCache, fetchLayananDetail]);
 
-    fetchData();
-  }, [params?.slug]);
-
-  if (loading) return <DetailLayananSkeleton />;
-  if (error || !layanan)
-    return <ErrorScreen onReload={() => window.location.reload()} />;
+  if (isLoading) return <DetailLayananSkeleton />;
+  if (error || !layananCache[slug])
+    return <ErrorScreen onReload={() => fetchLayananDetail(slug)} />;
 
   return (
     <div className="min-h-screen">
-      {" "}
-      <LayananDetailContent layanan={layanan} />
+      <LayananDetailContent layanan={layananCache[slug]} />
     </div>
   );
 }

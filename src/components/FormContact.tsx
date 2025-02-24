@@ -104,7 +104,7 @@ export default function ContactDialog() {
         }),
       });
 
-      const waMessage = `Halo, saya ${form.nama}.%0APesan: ${form.pesan}`;
+      const waMessage = `Halo, saya ${form.nama}.%0AJenis Pertanyaan: ${form.kategori}%0APesan: ${form.pesan}`;
       const waUrl = `https://wa.me/62811612535?text=${waMessage}`;
       window.open(waUrl, "_blank");
       setForm({ nama: "", nomorHp: "", kategori: "", pesan: "" });
