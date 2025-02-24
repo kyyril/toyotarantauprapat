@@ -4,6 +4,7 @@ import { fetchPromoDetail } from "@/lib/utils/fetcher";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PromosSkeletonDetail } from "./PromoSkeleton";
+import PostPromoDialog from "./PostPromoForm";
 
 export default function PromoDetailContent() {
   const searchParams = useSearchParams();
@@ -45,7 +46,19 @@ export default function PromoDetailContent() {
     );
   }
 
-  const { nama, gambar, mulai, akhir, deskripsi, sub_judul, hashtag } = detail;
+  const { nama, gambar, mulai, akhir, deskripsi, sub_judul, hashtag, mobil } =
+    detail;
+  const parseArray = (value: any): string[] => {
+    if (typeof value === "string" && value.includes(",")) {
+      return value.split(",").map((v) => v.trim());
+    }
+    if (Array.isArray(value)) {
+      return value.map((v) => v.toString());
+    }
+    return [value?.toString() || "--"];
+  };
+
+  const mobilList = parseArray(mobil);
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -78,7 +91,24 @@ export default function PromoDetailContent() {
         </div>
         <h2 className="text-2xl font-semibold mt-4">{nama}</h2>
         <h2 className="text-xl font-semibold mb-4">{sub_judul}</h2>
+        <div className="py-2">
+          <PostPromoDialog namaPromo={nama} mobil={mobilList} />
+        </div>
         <p className="text-gray-500">{deskripsi}</p>
+
+        {mobilList.length > 0 && mobilList[0] !== "--" && (
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold mb-2">Mobil Terkait:</h3>
+            <ul className="list-disc list-inside space-y-1">
+              {mobilList.map((item, index) => (
+                <li key={index} className="text-gray-600">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <p className="mt-6">{hashtag}</p>
       </div>
     </div>
