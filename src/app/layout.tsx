@@ -6,6 +6,7 @@ import BackToTopButton from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
+import FloatingContact from "@/components/ContactFloating";
 
 export const metadata: Metadata = {
   title: {
@@ -87,6 +88,7 @@ export default function RootLayout({
           <Toaster />
           <Footer />
           <BackToTopButton />
+          <FloatingContact />
         </ThemeProvider>
       </body>
     </html>

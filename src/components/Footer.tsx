@@ -1,6 +1,7 @@
-import { FacebookIcon, InstagramIcon } from "lucide-react";
+import { InstagramIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import ContactDialog from "./FormContact";
 
 const Footer = () => {
   const officeHours = [
