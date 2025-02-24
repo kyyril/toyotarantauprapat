@@ -71,10 +71,7 @@ const MobilCard: React.FC<MobilCardProps> = ({ mobil, query }) => {
               <Cog className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {transmisi || "-"}
             </p>
-            <p className="flex items-center">
-              <Gauge className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-              {cc ? `${cc}` : "-"}
-            </p>
+            <p className="flex items-center">{cc ? `${cc}` : "-"}CC</p>
             <p className="flex items-center">
               <CalendarDays className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {mobil.tahun || "-"}

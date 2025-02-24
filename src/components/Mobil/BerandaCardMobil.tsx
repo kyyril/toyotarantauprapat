@@ -83,8 +83,7 @@ export function BerandaCardMobil() {
                     {parseArrayFirst(mobil.transmisi)}
                   </p>
                   <p className="flex items-center">
-                    <Gauge className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                    {parseArrayFirst(mobil.cc)}
+                    {parseArrayFirst(mobil.cc)}CC
                   </p>
                   <p className="flex items-center">
                     <CalendarDays className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
