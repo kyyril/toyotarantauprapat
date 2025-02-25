@@ -43,7 +43,7 @@ export default function CarDetailContent({ mobil }: CarDetailContentProps) {
   const handleWhatsAppClick = () => {
     if (!selectedSales) {
       toast({
-        title: "Error",
+        title: "Pilih Sales",
         description: "Silakan pilih sales terlebih dahulu",
         variant: "destructive",
       });

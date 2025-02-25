@@ -1,6 +1,6 @@
 export default [
   {
-    Kategori: "MVP",
+    Kategori: "MPV",
     deskripsi:
       "Mobil Multi-Purpose Vehicle (MPV) dirancang untuk kenyamanan dan kapasitas penumpang yang besar, cocok untuk keluarga.",
   },

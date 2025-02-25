@@ -23,6 +23,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://www.toyotarantauprapat.com/sales",
+  },
+  authors: [{ name: "Toyota Rantauprapat" }],
+  category: "Automotive",
+  verification: {
+    google: "24f9cc081f9ae37b",
+  },
 };
 
 const SalesPage = async () => {
